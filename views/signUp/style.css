@@ -124,7 +124,7 @@ a {
 .socialmedia {
   display: flex;
   justify-content: space-around;
-  margin: 2rem 0;
+  margin: 2.5rem 0;
 }
 .socialmedia img {
   width: 70px;
@@ -136,4 +136,49 @@ a {
 
 .signupwith:last-child {
   text-align: center;
+}
+
+@media screen and (min-width: 700px) {
+  body {
+    line-height: 1.6;
+    font-size: 18px;
+    overflow: hidden;
+  }
+  .container {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
+    height: 100vh;
+  }
+  .hero-image img {
+    width: 40%;
+  }
+  .hero-image h2 {
+    font-size: 38px;
+    font-weight: 700;
+  }
+  .signUp {
+    align-self: center;
+    width: 90%;
+  }
+  .signUp h3 {
+    font-size: 20px;
+  }
+  .signUp label {
+    margin-top: 20px;
+  }
+
+  .signUp .signup-btn {
+    margin: 30px 0;
+  }
+
+  /* .signupwith {
+  } */
+  .socialmedia {
+    width: 70%;
+    margin: 2.5rem auto;
+  }
+  .socialmedia img {
+    width: 80px;
+    height: 80px;
+  }
 }

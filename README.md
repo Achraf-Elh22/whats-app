@@ -11,8 +11,8 @@
     - At least one lowercase character [a-z]
     - At least one uppercase character [A-Z]
     - At least 8 characters in length
-- [ ] Add password show toogle
-  - [ ] Build the Sign up page "Desktop version"
+  - [x] Add password show toogle
+  - [x] Build the Sign up page "Desktop version"
 - [ ]
 - [ ]
 - [ ]
