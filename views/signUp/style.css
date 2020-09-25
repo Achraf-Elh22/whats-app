@@ -1,0 +1,131 @@
+.iti-flag {
+  background-image: url('../../node_modules/intl-tel-input/build/img/flags.png');
+}
+/* 
+
+FONT-WEIGHT:
+  Thin 100    
+  Light 300
+  Regular 400
+  Medium 500
+  Bold 700 
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: 16px;
+  line-height: 1.4;
+  font-family: 'Roboto', sans-serif;
+  color: #085e55;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+}
+a {
+  color: #085e55;
+  text-decoration: none;
+  font-weight: 700;
+}
+/* Hero Image */
+.hero-image {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1bd741;
+}
+
+.hero-image img {
+  width: 20%;
+  margin-bottom: 10px;
+}
+
+.hero-image h2 {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Sign UP Section */
+
+.signUp {
+  width: 80%;
+  margin: 30px auto;
+}
+
+.signUp h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.signUp label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.signUp input {
+  background-color: transparent;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #1bd741;
+  outline: none;
+  padding: 10px;
+  color: #000;
+}
+
+/* Set the phone input to full width */
+.iti {
+  width: 100%;
+}
+
+.signUp .signup-btn {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  background: #1bd741;
+  color: #fff;
+  border-radius: 10px;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+
+.line-through {
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid rgba(68, 68, 68, 0.5);
+  line-height: 0.1em;
+  margin: 10px 0 20px;
+}
+
+.line-through span {
+  background: #fff;
+  color: rgba(68, 68, 68, 0.7);
+  padding: 0 10px;
+}
+
+/* social media */
+.socialmedia {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0;
+}
+.socialmedia img {
+  width: 70px;
+  height: 70px;
+  border: 1px solid rgba(68, 68, 68, 0.2);
+  border-radius: 50%;
+  padding: 20px;
+}
+
+.signupwith:last-child {
+  text-align: center;
+}
