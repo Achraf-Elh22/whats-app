@@ -80,6 +80,14 @@ a {
   color: #000;
 }
 
+.signUp .password-field {
+  position: relative;
+}
+.signUp .password-field .toggle-password {
+  position: absolute;
+  right: 0;
+}
+
 /* Set the phone input to full width */
 .iti {
   width: 100%;
