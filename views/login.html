@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../node_modules/intl-tel-input/build/css/intlTelInput.css" />
+    <link rel="stylesheet" href="../node_modules/intl-tel-input/build/css/intlTelInput.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
@@ -15,28 +15,27 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css" />
-    <title>Sign In</title>
+    <link rel="stylesheet" href="../public/styles/style.css" />
+    <title>Log In</title>
   </head>
   <body>
     <div class="container">
       <div class="hero-image">
-        <img src="../../public/assets/images/whatsapp.svg" alt="whatsapp" />
+        <img src="../public/assets/images/whatsapp.svg" alt="whatsapp" />
         <h2>WhatsApp</h2>
       </div>
-      <div class="signUp">
-        <h3>Create a New Account</h3>
+
+      <div class="form-primary">
+        <h2>Login to Your Account</h2>
         <form>
           <div>
-            <label for="tel"> Phone </label>
-            <input type="tel" id="phone" />
+            <label class="primary-label" for="tel"> Phone </label>
+            <input class="primary-input" type="tel" id="phone" />
           </div>
-          <label for="email"> Email Address </label>
-          <input type="email" id="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
-
-          <label for="password"> Password </label>
+          <label class="primary-label" for="password"> Password </label>
           <div class="password-field">
             <input
+              class="primary-input"
               type="password"
               pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
               id="password"
@@ -44,18 +43,21 @@
             <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
           </div>
 
-          <button type="submit" class="signup-btn">Sign Up</button>
+          <button type="submit" class="button button-primary">Login</button>
+          <p class="txt-centered forget-password"><a href="#"> Forget Password?</a></p>
         </form>
 
-        <div class="signupwith">
-          <p class="line-through"><span>or signup with</span></p>
+        <div>
+          <p class="line-through"><span>or login with</span></p>
           <div class="socialmedia">
-            <img src="../../public/assets/images/facebook.svg" alt="facebook" />
-            <img src="../../public/assets/images/instagram.png" alt="instagram" />
-            <img src="../../public/assets/images/google.svg" alt="google" />
+            <a href="#"><img src="../public/assets/images/facebook.svg" alt="facebook" /></a>
+            <a href="#"><img src="../public/assets/images/instagram.png" alt="instagram" /></a>
+            <a href="#"><img src="../public/assets/images/google.svg" alt="google" /></a>
           </div>
-          <p>Already have an account? <a href="#">Login Here</a></p>
         </div>
+        <p class="txt-centered">
+          Don't have an account? <a href="/views/signup.html">Create New</a>
+        </p>
       </div>
     </div>
     <script
@@ -63,7 +65,7 @@
       integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
       crossorigin="anonymous"
     ></script>
-    <script src="../../node_modules/intl-tel-input/build/js/intlTelInput.js"></script>
-    <script src="../../public/scripts/forms/tel/telInput.js"></script>
+    <script src="../node_modules/intl-tel-input/build/js/intlTelInput.js"></script>
+    <script src="../public/scripts/forms/tel/telInput.js"></script>
   </body>
 </html>

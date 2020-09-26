@@ -13,8 +13,8 @@
     - At least 8 characters in length
   - [x] Add password show toogle
   - [x] Build the Sign up page "Desktop version"
-- [ ]
-- [ ]
+- [x] Log In Page
+- [x] remove the deplicate code in css
 - [ ]
 - [ ]
 - [ ]

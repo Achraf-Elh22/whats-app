@@ -31,6 +31,36 @@ a {
   text-decoration: none;
   font-weight: 700;
 }
+.button {
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 15px 0;
+  outline: none;
+  cursor: pointer;
+}
+.txt-centered {
+  text-align: center;
+}
+
+.primary-input {
+  background-color: transparent;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #1bd741;
+  outline: none;
+  padding: 10px;
+  color: #000;
+}
+
+.primary-label {
+  display: block;
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 14px;
+}
+
 /* Hero Image */
 .hero-image {
   display: flex;
@@ -38,6 +68,7 @@ a {
   flex-direction: column;
   align-items: center;
   background-color: #1bd741;
+  padding: 50px 0;
 }
 
 .hero-image img {
@@ -50,42 +81,18 @@ a {
   font-weight: 500;
 }
 
-/* Sign UP Section */
+/* Form Section */
 
-.signUp {
+.form-primary {
   width: 80%;
-  margin: 30px auto;
+  margin: 0 auto;
+  margin-top: 30px;
 }
 
-.signUp h3 {
+.form-primary h2 {
   text-align: center;
   margin-bottom: 10px;
   font-weight: 500;
-}
-
-.signUp label {
-  display: block;
-  margin-top: 20px;
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.signUp input {
-  background-color: transparent;
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #1bd741;
-  outline: none;
-  padding: 10px;
-  color: #000;
-}
-
-.signUp .password-field {
-  position: relative;
-}
-.signUp .password-field .toggle-password {
-  position: absolute;
-  right: 0;
 }
 
 /* Set the phone input to full width */
@@ -93,19 +100,26 @@ a {
   width: 100%;
 }
 
-.signUp .signup-btn {
-  width: 100%;
-  margin-top: 20px;
-  border: none;
-  background: #1bd741;
-  color: #fff;
-  border-radius: 10px;
-  padding: 15px 0;
-  font-size: 18px;
-  font-weight: 400;
-  margin-bottom: 20px;
+.form-primary .password-field {
+  position: relative;
+}
+.form-primary .password-field .toggle-password {
+  position: absolute;
+  right: 0;
 }
 
+.form-primary .button-primary {
+  background: #1bd741;
+  color: #fff;
+  font-weight: 400;
+  margin: 20px 0;
+}
+
+.form-primary .forget-password {
+  margin-bottom: 30px;
+}
+
+/* Line through  */
 .line-through {
   width: 100%;
   text-align: center;
@@ -134,10 +148,6 @@ a {
   padding: 20px;
 }
 
-.signupwith:last-child {
-  text-align: center;
-}
-
 @media screen and (min-width: 700px) {
   body {
     line-height: 1.6;
@@ -156,23 +166,21 @@ a {
     font-size: 38px;
     font-weight: 700;
   }
-  .signUp {
+  .form-primary {
     align-self: center;
     width: 90%;
   }
-  .signUp h3 {
-    font-size: 20px;
+  .form-primary h2 {
+    font-weight: 700;
   }
-  .signUp label {
+  .form-primary label {
     margin-top: 20px;
   }
 
-  .signUp .signup-btn {
+  .form-primary .button-primary {
     margin: 30px 0;
   }
 
-  /* .signupwith {
-  } */
   .socialmedia {
     width: 70%;
     margin: 2.5rem auto;

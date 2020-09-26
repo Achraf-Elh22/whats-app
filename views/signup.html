@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../node_modules/intl-tel-input/build/css/intlTelInput.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../public/styles/style.css" />
+    <title>Sign In</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero-image">
+        <img src="../../public/assets/images/whatsapp.svg" alt="whatsapp" />
+        <h2>WhatsApp</h2>
+      </div>
+      <div class="form-primary">
+        <h2>Create a New Account</h2>
+        <form>
+          <div>
+            <label class="primary-label" for="tel"> Phone </label>
+            <input class="primary-input" type="tel" id="phone" />
+          </div>
+          <label class="primary-label" for="email"> Email Address </label>
+          <input
+            class="primary-input"
+            type="email"
+            id="email"
+            pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+          />
+
+          <label class="primary-label" for="password"> Password </label>
+          <div class="password-field">
+            <input
+              class="primary-input"
+              type="password"
+              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$"
+              id="password"
+            />
+            <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+          </div>
+
+          <button type="submit" class="button button-primary">Sign Up</button>
+        </form>
+
+        <div>
+          <p class="line-through"><span>or signup with</span></p>
+          <div class="socialmedia">
+            <a href="#"><img src="../../public/assets/images/facebook.svg" alt="facebook" /></a>
+            <a href="#"><img src="../../public/assets/images/instagram.png" alt="instagram" /></a>
+            <a href="#"><img src="../../public/assets/images/google.svg" alt="google" /></a>
+          </div>
+          <p class="txt-centered">
+            Already have an account? <a href="/views/login.html">Login Here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../node_modules/intl-tel-input/build/js/intlTelInput.js"></script>
+    <script src="../../public/scripts/forms/tel/telInput.js"></script>
+  </body>
+</html>
