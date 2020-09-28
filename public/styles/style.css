@@ -15,12 +15,15 @@ FONT-WEIGHT:
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   font-size: 16px;
   line-height: 1.4;
   font-family: 'Roboto', sans-serif;
   color: #085e55;
 }
+
+/* utils */
 
 .container {
   display: grid;
@@ -31,6 +34,7 @@ a {
   text-decoration: none;
   font-weight: 700;
 }
+
 .button {
   width: 100%;
   border: none;
@@ -42,6 +46,10 @@ a {
 }
 .txt-centered {
   text-align: center;
+}
+
+.txt-primary {
+  color: #1bd741;
 }
 
 .primary-input {
@@ -92,7 +100,32 @@ a {
 .form-primary h2 {
   text-align: center;
   margin-bottom: 10px;
-  font-weight: 500;
+}
+
+/* OTP INPUT */
+
+.digit-group {
+  margin-top: 40px;
+}
+.digit-group input {
+  width: 40px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: #ecf9ef;
+  line-height: 50px;
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 200;
+  color: #1bd741;
+  margin: 0 2px;
+  outline: none;
+}
+
+.descption-otp {
+  font-size: 12px;
+  margin-top: 20px;
 }
 
 /* Set the phone input to full width */

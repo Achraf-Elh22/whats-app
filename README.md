@@ -15,17 +15,18 @@
   - [x] Build the Sign up page "Desktop version"
 - [x] Log In Page
 - [x] remove the deplicate code in css
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
+- [x] Build the verify User page
+- [ ] Build the recover password page
+- [ ] Build the Contact page
+  - [ ] "Mobile version"
+  - [ ] "Desktop version"
 - [ ] refactor the pages to pug
 - [ ] implement the error and success flags popup
 - [ ] implement parcel html and css and js
 - [ ] implement the validator of intl-tel-input
 - [ ] Refacture js files to be server from nodejs server
   - [ ] add the email and password validator to validator.js
+- [ ]
 
 TODO: Learning version
 
