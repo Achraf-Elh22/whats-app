@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 $('.digit-group')
   .find('input')
   .each(function () {

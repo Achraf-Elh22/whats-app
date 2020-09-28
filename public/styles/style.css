@@ -34,7 +34,7 @@ a {
   text-decoration: none;
   font-weight: 700;
 }
-
+/* BUTTON */
 .button {
   width: 100%;
   border: none;
@@ -44,12 +44,21 @@ a {
   outline: none;
   cursor: pointer;
 }
+.button-small {
+  width: 20%;
+}
+/* TEXT */
 .txt-centered {
   text-align: center;
 }
 
 .txt-primary {
   color: #1bd741;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
 }
 
 .primary-input {
@@ -105,7 +114,7 @@ a {
 /* OTP INPUT */
 
 .digit-group {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 .digit-group input {
   width: 40px;
@@ -119,15 +128,17 @@ a {
   font-family: 'Roboto', sans-serif;
   font-weight: 200;
   color: #1bd741;
-  margin: 0 2px;
+  margin: 0 3px;
   outline: none;
 }
 
-.descption-otp {
+.small-txt {
   font-size: 12px;
-  margin-top: 20px;
 }
-
+.descption-otp {
+  margin-top: 10px;
+  opacity: 0.7;
+}
 /* Set the phone input to full width */
 .iti {
   width: 100%;
@@ -210,8 +221,15 @@ a {
     margin-top: 20px;
   }
 
-  .form-primary .button-primary {
-    margin: 30px 0;
+  .descption-otp {
+    text-align: center;
+  }
+  .digit-group input {
+    margin: 0 5px;
+  }
+
+  .center .button {
+    width: 40%;
   }
 
   .socialmedia {
