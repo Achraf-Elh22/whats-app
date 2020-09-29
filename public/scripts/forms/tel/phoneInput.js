@@ -1,3 +1,4 @@
+/* eslint-disable */
 var input = document.querySelector('#phone'),
   errorMsg = document.querySelector('#error-msg'),
   validMsg = document.querySelector('#valid-msg');

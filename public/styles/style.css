@@ -48,6 +48,17 @@ a {
   width: 20%;
 }
 /* TEXT */
+
+p {
+  font-size: 0.8rem;
+}
+
+.hide {
+  display: none;
+}
+
+/* TEXT */
+
 .txt-centered {
   text-align: center;
 }
@@ -61,6 +72,29 @@ a {
   justify-content: center;
 }
 
+.small-txt {
+  font-size: 12px;
+}
+
+.strong {
+  font-weight: 700;
+  opacity: 1;
+}
+
+.descption-text {
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* INPUT */
 .primary-input {
   background-color: transparent;
   width: 100%;
@@ -132,13 +166,6 @@ a {
   outline: none;
 }
 
-.small-txt {
-  font-size: 12px;
-}
-.descption-otp {
-  margin-top: 10px;
-  opacity: 0.7;
-}
 /* Set the phone input to full width */
 .iti {
   width: 100%;
@@ -212,7 +239,7 @@ a {
   }
   .form-primary {
     align-self: center;
-    width: 90%;
+    width: 70%;
   }
   .form-primary h2 {
     font-weight: 700;
@@ -220,16 +247,17 @@ a {
   .form-primary label {
     margin-top: 20px;
   }
-
-  .descption-otp {
-    text-align: center;
-  }
   .digit-group input {
     margin: 0 5px;
   }
 
   .center .button {
     width: 40%;
+  }
+
+  .descption-text {
+    /* width: 70%; */
+    margin: 10px auto;
   }
 
   .socialmedia {

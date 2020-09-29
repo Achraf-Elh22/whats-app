@@ -2,7 +2,7 @@
 
 # Front-End
 
-- [ ] Sign up page
+- [x] Sign up page
   - [x] Build the Sign up page "Mobile version"
   - [x] Country code Input
   - [x] build a validator for email
@@ -16,7 +16,10 @@
 - [x] Log In Page
 - [x] remove the deplicate code in css
 - [x] Build the verify User page
-- [ ] Build the recover password page
+- [x] Build the new password page
+  - [x] "Mobile version"
+  - [x] "Desktop version"
+  - [x] validate the new and confirm password using js
 - [ ] Build the Contact page
   - [ ] "Mobile version"
   - [ ] "Desktop version"
@@ -30,5 +33,7 @@
 
 TODO: Learning version
 
+- [ ] Learn jquery
 - [ ] know more about Parcel and @babel/polyfill
 - [ ] connect-flash
+- [ ] learn more about [Structure your solution by components]("https://github.com/Achraf-Elh22/nodebestpractices/blob/master/sections/projectstructre/breakintcomponents.md")
