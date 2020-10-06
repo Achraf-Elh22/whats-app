@@ -19,8 +19,7 @@ FONT-WEIGHT:
 body {
   font-size: 16px;
   line-height: 1.4;
-  font-family: 'Roboto', sans-serif;
-  color: #085e55;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* utils */
@@ -29,6 +28,7 @@ body {
   display: grid;
   grid-template-rows: 1fr 3fr;
 }
+
 a {
   color: #085e55;
   text-decoration: none;
@@ -53,11 +53,21 @@ p {
   font-size: 0.8rem;
 }
 
+.bg-gray {
+  background-color: #ededed;
+}
+
+.bg-gray-light {
+  background-color: #f6f6f6;
+}
+
+.bg-primary {
+  background-color: #1bd741;
+}
+
 .hide {
   display: none;
 }
-
-/* TEXT */
 
 .txt-centered {
   text-align: center;
@@ -65,6 +75,10 @@ p {
 
 .txt-primary {
   color: #1bd741;
+}
+
+.txt-secondary {
+  color: #085e55;
 }
 
 .center {
@@ -94,6 +108,41 @@ p {
   width: 100%;
 }
 
+/* Spacing */
+.py-1 {
+  padding: 0.5rem 0;
+}
+.py-2 {
+  padding: 1rem 0;
+}
+.py-3 {
+  padding: 1.5rem 0;
+}
+.px-1 {
+  padding: 0 0.5rem;
+}
+.px-2 {
+  padding: 0 1rem;
+}
+.px-3 {
+  padding: 01.5rem;
+}
+.p-1 {
+  padding: 0.5rem;
+}
+.p-2 {
+  padding: 1rem;
+}
+.p-3 {
+  padding: 1.5rem;
+}
+
+.border-divider {
+  border-bottom: 1px solid #ebebeb;
+  height: 1px;
+  width: 100%;
+}
+
 /* INPUT */
 .primary-input {
   background-color: transparent;
@@ -118,7 +167,6 @@ p {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #1bd741;
   padding: 50px 0;
 }
 
@@ -180,7 +228,6 @@ p {
 }
 
 .form-primary .button-primary {
-  background: #1bd741;
   color: #fff;
   font-weight: 400;
   margin: 20px 0;
@@ -219,11 +266,125 @@ p {
   padding: 20px;
 }
 
+/* Contact */
+.contact__options,
+.contact__options-option {
+  display: flex;
+  align-items: center;
+}
+
+.contact__options {
+  justify-content: space-between;
+  padding: 0.4rem;
+}
+.contact__options-option--addfriend {
+  padding-right: 1rem;
+}
+
+.contact__options-profile--img {
+  width: 40px;
+  border-radius: 50%;
+}
+.contact__search-bar {
+  position: relative;
+}
+
+.contact__search-bar input {
+  width: 100%;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  color: #999;
+  font-weight: 100;
+}
+
+.contact__search-bar img {
+  position: absolute;
+  top: 15%;
+  left: 2%;
+}
+
+.contact__search-bar {
+  top: 10%;
+}
+
+/* Chat user  */
+.contact__chat {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: 85vh;
+}
+
+.contact__chat .active,
+.contact__chat .active:hover {
+  background-color: #d4d4d4;
+}
+
+.contact__chat-msg:hover {
+  background-color: #ebebeb;
+}
+.contact__chat-msg {
+  display: flex;
+  align-items: center;
+}
+
+/* Scroll bar */
+::-webkit-scrollbar {
+  width: 7px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.contact__chat-msg img {
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.contact__chat-msg--lastmsgdate {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 200;
+  color: #727272;
+  align-self: flex-start;
+}
+.contact__chat-msg--name span {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.contact__chat-msg--name div {
+  display: flex;
+}
+
+.contact__chat-msg--name div p {
+  margin-left: 5px;
+  font-size: 14px;
+  color: #727272;
+}
+
+.contact__chat-msg--name svg {
+  margin-top: 2px;
+}
+
+.contact__chat .border-divider {
+  width: 90%;
+  margin-left: auto;
+  margin-top: -1px;
+}
+
 @media screen and (min-width: 700px) {
   body {
     line-height: 1.6;
     font-size: 18px;
-    overflow: hidden;
   }
   .container {
     grid-template-rows: 1fr;
@@ -256,7 +417,7 @@ p {
   }
 
   .descption-text {
-    /* width: 70%; */
+    width: 70%;
     margin: 10px auto;
   }
 

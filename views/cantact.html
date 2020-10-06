@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../public/styles/style.css" />
+    <title>Whatsapp Web</title>
+    <style>
+      body {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="contact">
+        <!-- DISPLAY STATIC -->
+        <header class="contact__options bg-gray">
+          <div class="contact__options-profile px-1">
+            <img
+              class="contact__options-profile--img"
+              src="../public/assets/images/profile.jpg"
+              alt="user"
+            />
+          </div>
+          <div class="contact__options-option">
+            <div class="contact__options-option--addfriend px-1">
+              <img src="../public/assets/icons/options-dots.svg" alt="options-dots" />
+            </div>
+            <div class="contact__options-option--options px-2">
+              <img src="../public/assets/icons/plus.svg" alt="plus" />
+            </div>
+          </div>
+        </header>
+        <section class="contact__search bg-gray-light p-1">
+          <form class="contact__search-bar">
+            <div class="bg-secondary">
+              <img src="../public/assets/icons/search.svg" alt="search" />
+              <input
+                type="text"
+                class="search-input"
+                id="search-input"
+                placeholder="Search or start new chat"
+              />
+            </div>
+          </form>
+        </section>
+        <!--  -->
+        <section class="contact__chat">
+          <div class="contact__chat-msg p-2 active">
+            <img src="../public/assets/images/user (1).png" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Rosa Welch</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="#34B7F1"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>HI</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 12:50 </span>
+          </div>
+          <div class="border-divider"></div>
+
+          <div class="contact__chat-msg p-2">
+            <img src="../public/assets/images/user (2).svg" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Caitlin Paul</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="rgba(0,0,0,.3)"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>Who are u ?</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 05:50 </span>
+          </div>
+          <div class="border-divider"></div>
+
+          <div class="contact__chat-msg p-2">
+            <img src="../public/assets/images/user (3).svg" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Harry Bourne</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="rgba(0,0,0,.3)"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>It's been a while</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 10:00 </span>
+          </div>
+          <div class="border-divider"></div>
+
+          <div class="contact__chat-msg p-2">
+            <img src="../public/assets/images/user (4).png" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Amber Price</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="rgba(0,0,0,.3)"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>Meet up tonight</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 05:00 </span>
+          </div>
+          <div class="border-divider"></div>
+
+          <div class="contact__chat-msg p-2">
+            <img src="../public/assets/images/user (5).png" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Hugo Morrison</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="rgba(0,0,0,.3)"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>go out today</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 15:20 </span>
+          </div>
+          <div class="border-divider"></div>
+
+          <div class="contact__chat-msg p-2">
+            <img src="../public/assets/images/user (6).png" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Spencer Payne</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="#34B7F1"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>see you soon</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 14:00 </span>
+          </div>
+          <div class="border-divider"></div>
+
+          <div class="contact__chat-msg p-2">
+            <img src="../public/assets/images/user (7).png" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Eric Klein</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="rgba(0,0,0,.3)"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>I miss you</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 1:00 </span>
+          </div>
+          <div class="border-divider"></div>
+
+          <div class="contact__chat-msg p-2">
+            <img src="../public/assets/images/user (8).png" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Olivia Anderson</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="rgba(0,0,0,0.3)"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>We need to talk</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 18:00 </span>
+          </div>
+          <div class="border-divider"></div>
+
+          <div class="contact__chat-msg p-2">
+            <img src="../public/assets/images/user (9).png" alt="user" />
+            <div class="contact__chat-msg--name">
+              <span>Charles Jones</span>
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16">
+                  <path
+                    fill="#34B7F1"
+                    d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z"
+                  ></path>
+                </svg>
+                <p>By</p>
+              </div>
+            </div>
+            <span class="contact__chat-msg--lastmsgdate"> 00:00 </span>
+          </div>
+        </section>
+      </div>
+      <div class="messages"></div>
+    </div>
+  </body>
+</html>

@@ -20,16 +20,32 @@
   - [x] "Mobile version"
   - [x] "Desktop version"
   - [x] validate the new and confirm password using js
-- [ ] Build the Contact page
+- [x] Build the Contact page
+  - [x] "Mobile version"
+  - [x] "Desktop version"
+- [ ] Build the Contact page Messages side
   - [ ] "Mobile version"
   - [ ] "Desktop version"
-- [ ] refactor the pages to pug
-- [ ] implement the error and success flags popup
+- [ ]
+- [ ]
+- [ ] Add animation to pages
+  - [ ] search icon in contact page
+  - [ ] add favicon like in the real whatsapp
+  - [ ]
 - [ ] implement parcel html and css and js
+
+# Back-End
+
+- [ ] refactor the pages to pug
+  - [ ] signup page
+  - [ ] login page
+- [ ] implement the basix structure of express app
+- [ ]
+- [ ]
+- [ ] implement the error and success flags popup
 - [ ] implement the validator of intl-tel-input
 - [ ] Refacture js files to be server from nodejs server
   - [ ] add the email and password validator to validator.js
-- [ ]
 
 TODO: Learning version
 
