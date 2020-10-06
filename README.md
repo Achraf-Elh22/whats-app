@@ -36,10 +36,10 @@
 
 # Back-End
 
+- [x] implement the basix structure of express app
 - [ ] refactor the pages to pug
   - [ ] signup page
   - [ ] login page
-- [ ] implement the basix structure of express app
 - [ ]
 - [ ]
 - [ ] implement the error and success flags popup
@@ -49,7 +49,8 @@
 
 TODO: Learning version
 
+- [ ] Pug
 - [ ] Learn jquery
 - [ ] know more about Parcel and @babel/polyfill
 - [ ] connect-flash
-- [ ] learn more about [Structure your solution by components]("https://github.com/Achraf-Elh22/nodebestpractices/blob/master/sections/projectstructre/breakintcomponents.md")
+- [ ] learn more about [Production best practices: performance and reliability]("https://expressjs.com/th/advanced/best-practice-performance.html")
