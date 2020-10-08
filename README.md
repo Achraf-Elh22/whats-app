@@ -39,7 +39,7 @@
   - [x] Login
   - [x] Verify
   - [x] reset password
-  - [x] add the email and password validator to validator.js
+  - [x] add the email and password validator
 - [x] Refacture js files to be server from nodejs server
 - [x] implement the error and success flags popup
 - [ ] Performance

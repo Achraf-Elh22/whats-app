@@ -10,6 +10,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../../public/styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="../../node_modules/intl-tel-input/build/css/intlTelInput.min.css"
+    />
     <title>Log In</title>
   </head>
   <body>
@@ -33,7 +37,9 @@
           </div>
 
           <button type="submit" class="button button-primary bg-primary">Login</button>
-          <p class="txt-centered forget-password"><a href="#"> Forget Password?</a></p>
+          <p class="txt-centered forget-password">
+            <a href="/dev-data/templates/resetPassword.html"> Forget Password?</a>
+          </p>
         </form>
 
         <div>
@@ -45,7 +51,7 @@
           </div>
         </div>
         <p class="txt-centered">
-          Don't have an account? <a href="/views/signup.html">Create New</a>
+          Don't have an account? <a href="/dev-data/templates/signup.html">Create New</a>
         </p>
       </div>
     </div>

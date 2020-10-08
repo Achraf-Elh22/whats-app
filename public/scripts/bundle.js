@@ -17867,19 +17867,27 @@ if (newUserForm) {
               return _context.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Phone Number'));
 
             case 6:
+              if (isEmail) {
+                _context.next = 8;
+                break;
+              }
+
+              return _context.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Email'));
+
+            case 8:
               passwordSecure = (0, _utils.isPasswordSecure)(_ctr, 'Please choose a strong password. Try a mix of letters, number, and symbols');
 
               if (passwordSecure) {
-                _context.next = 9;
+                _context.next = 11;
                 break;
               }
 
               return _context.abrupt("return");
 
-            case 9:
+            case 11:
               return _context.abrupt("return", newUserForm.submit());
 
-            case 10:
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -17945,7 +17953,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65378" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54192" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

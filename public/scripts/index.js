@@ -96,6 +96,10 @@ if (newUserForm) {
     if (!isTelValid) {
       return showAlert('error', 'Please provide a valid Phone Number');
     }
+    if (!isEmail) {
+      return showAlert('error', 'Please provide a valid Email');
+    }
+
     const passwordSecure = isPasswordSecure(
       ctr,
       'Please choose a strong password. Try a mix of letters, number, and symbols'
