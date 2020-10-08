@@ -3,11 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../public/styles/style.css" />
+    <link rel="stylesheet" href="../../public/styles/style.css" />
     <title>Verify Number</title>
     <style>
       body {
@@ -19,52 +15,56 @@
     <div class="container">
       <!-- Hero image -->
       <div class="hero-image bg-primary">
-        <img src="../../public/assets/images/whatsapp.svg" alt="whatsapp" />
+        <img src="../../../public/assets/images/whatsapp.svg" alt="whatsapp" />
         <h2>WhatsApp</h2>
       </div>
       <!-- Form -->
       <div class="form-primary txt-secondary">
         <h2>Verify +212 (622) 088-092</h2>
-        <form
-          class="digit-group"
-          data-group-name="digits"
-          data-autosubmit="false"
-          autocomplete="off"
-        >
+        <form class="digit-group" autocomplete="off">
           <div class="center">
-            <input type="text" id="digit-1" name="digit-1" data-next="digit-2" />
+            <input type="text" id="digit-1" data-next="digit-2" maxlength="1" required />
             <input
               type="text"
               id="digit-2"
-              name="digit-2"
               data-next="digit-3"
+              maxlength="1"
               data-previous="digit-1"
+              required
             />
             <input
               type="text"
               id="digit-3"
-              name="digit-3"
               data-next="digit-4"
+              maxlength="1"
               data-previous="digit-2"
+              required
             />
             <input
               type="text"
               id="digit-4"
-              name="digit-4"
               data-next="digit-5"
+              maxlength="1"
               data-previous="digit-3"
+              required
             />
             <input
               type="text"
               id="digit-5"
-              name="digit-5"
               data-next="digit-6"
+              maxlength="1"
               data-previous="digit-4"
+              required
             />
-            <input type="text" id="digit-6" name="digit-6" data-previous="digit-5" />
+            <input type="text" id="digit-6" maxlength="1" data-previous="digit-5" required />
           </div>
           <div class="center">
-            <button type="submit" class="button button-primary bg-primary" style="margin-bottom: 0">
+            <button
+              type="submit"
+              id="btn-submit"
+              class="button button-primary bg-primary"
+              style="margin-bottom: 0"
+            >
               Sign Up
             </button>
           </div>
@@ -76,11 +76,6 @@
       </div>
     </div>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-      integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
-      crossorigin="anonymous"
-    ></script>
-    <script src="../public/scripts/forms/inputs/otpInput.js"></script>
+    <script src="../../public/scripts/bundle.js"></script>
   </body>
 </html>

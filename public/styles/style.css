@@ -5,7 +5,7 @@
 
 FONT-WEIGHT:
   Thin 100    
-  Light 300
+  Light 200
   Regular 400
   Medium 500
   Bold 700 
@@ -142,7 +142,36 @@ p {
   height: 1px;
   width: 100%;
 }
+/* Description */
+#email-desc {
+  color: red;
+}
 
+/* alert  */
+.alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 9999;
+  color: #fff;
+  font-size: 1rem;
+  width: 90%;
+  font-weight: 400;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 1rem;
+  -webkit-box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.1);
+}
+.alert--success {
+  background-color: #20bf6b;
+}
+.alert--error {
+  background-color: #eb4d4b;
+}
 /* INPUT */
 .primary-input {
   background-color: transparent;
@@ -391,6 +420,10 @@ p {
     grid-template-columns: 1fr 2fr;
     height: 100vh;
   }
+  .alert {
+    left: 67%;
+    width: 25%;
+  }
   .hero-image img {
     width: 40%;
   }
@@ -421,6 +454,11 @@ p {
     margin: 10px auto;
   }
 
+  #email-desc,
+  #password-desc {
+    margin-top: 10px;
+    margin-left: auto;
+  }
   .socialmedia {
     width: 70%;
     margin: 2.5rem auto;

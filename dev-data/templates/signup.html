@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../public/styles/style.css" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero-image bg-primary">
+        <img src="../../../public/assets/images/whatsapp.svg" alt="whatsapp" />
+        <h2>WhatsApp</h2>
+      </div>
+      <div class="form-primary txt-secondary">
+        <h2>Create a New Account</h2>
+        <form id="newUser">
+          <div>
+            <label class="primary-label" for="tel"> Phone </label>
+            <input class="primary-input" type="tel" id="phone" required />
+          </div>
+          <label class="primary-label" for="email"> Email Address </label>
+          <div id="email-input">
+            <input class="primary-input" type="email" id="email" />
+            <p class="txt-secondary align-right hide" id="email-desc">
+              <i class="fas fa-times"></i>
+              <span class="strong" id="email-status"> Invalid </span>
+            </p>
+          </div>
+          <label class="primary-label" for="password"> Password </label>
+          <div class="password-field">
+            <input class="primary-input" type="password" id="password" autocomplete="on" required />
+            <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            <p class="txt-secondary align-right hide" id="password-desc">
+              Strength: <span class="strong" id="passwordStrength"></span>
+            </p>
+          </div>
+
+          <button type="submit" class="button button-primary bg-primary">Sign Up</button>
+        </form>
+
+        <div>
+          <p class="line-through"><span>or signup with</span></p>
+          <div class="socialmedia">
+            <a href="#"><img src="../../../public/assets/images/facebook.svg" alt="facebook" /></a>
+            <a href="#"
+              ><img src="../../../public/assets/images/instagram.png" alt="instagram"
+            /></a>
+            <a href="#"><img src="../../../public/assets/images/google.svg" alt="google" /></a>
+          </div>
+          <p class="txt-centered">
+            Already have an account? <a href="/views/login.html">Login Here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../public/scripts/bundle.js"></script>
+  </body>
+</html>

@@ -32,25 +32,55 @@
   - [ ] search icon in contact page
   - [ ] add favicon like in the real whatsapp
   - [ ]
-- [ ] implement parcel html and css and js
+- [x] implement parcel html and css and js
+- [x] Build the validators of:
+  - [x] intl-tel-input
+  - [x] Sign up
+  - [x] Login
+  - [x] Verify
+  - [x] reset password
+  - [x] add the email and password validator to validator.js
+- [x] Refacture js files to be server from nodejs server
+- [x] implement the error and success flags popup
+- [ ] Performance
 
 # Back-End
 
-- [x] implement the basix structure of express app
+- [x] implement the basic structure of express app
+- [ ] Build User Model "basic version"
 - [ ] refactor the pages to pug
   - [ ] signup page
   - [ ] login page
+- [ ] Build the logique of API:
+  - [ ] signup
+    - [ ] Get Data
+    - [ ] check if the user is already exist
+    - [ ] Encrypt Inforamtions
+    - [ ] save User
+    - [ ] Create a token
+    - [ ] Send him to the next stage "Verify"
+    - [ ] Send OTP in SMS
+    - [ ] Check the OTP
+    - [ ] Send him to the next Stage "Create Profile"
+    - [ ] implement the abality to save profile image and optimize it
+    - [ ] Save the User Information
+    - [ ] Sign in with google, facebook, instagram
+  - [ ] Login
+    - [ ]
+- [ ] Build the view controller:
+  - [ ] signup
+  - [ ] Login
 - [ ]
 - [ ]
-- [ ] implement the error and success flags popup
-- [ ] implement the validator of intl-tel-input
-- [ ] Refacture js files to be server from nodejs server
-  - [ ] add the email and password validator to validator.js
+- [ ]
+- [ ] Performance
 
 TODO: Learning version
 
+- [x] know more about Parcel and @babel/polyfill
+- [ ] know more about how to create perfict model in mongodb
 - [ ] Pug
+- [ ] Passportjs
 - [ ] Learn jquery
-- [ ] know more about Parcel and @babel/polyfill
 - [ ] connect-flash
 - [ ] learn more about [Production best practices: performance and reliability]("https://expressjs.com/th/advanced/best-practice-performance.html")

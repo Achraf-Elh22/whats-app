@@ -1,44 +1,27 @@
 /* eslint-disable */
-const newPassword = document.querySelector('#newPassword');
-const confirmPassword = document.querySelector('#confirmPassword');
-const passwordStrength = document.querySelector('#passwordStrength');
-const passwordMatch = document.querySelector('#passwordMatch');
-const desc = document.querySelectorAll('#desc');
 
-// Events
-newPassword.addEventListener('keyup', checkPasswordStrength);
-confirmPassword.addEventListener('keyup', checkConfirmPassword);
+import { passwordStrength } from '../utils';
+
+const pswdStrength = document.querySelector('#passwordStrength');
+const passwordMatch = document.querySelector('#passwordMatch');
+const desc = document.querySelectorAll('#password-desc');
 
 // Toggle Password
-$('.toggle-password').click(function () {
-  $(this).toggleClass('fa-eye fa-eye-slash');
-  var input = $($(this).attr('toggle'));
-  if (input.attr('type') == 'password') {
-    input.attr('type', 'text');
+
+exports.togglePassword = (toggle) => {
+  toggle.classList.toggle('fa-eye-slash');
+  const input = document.querySelector(toggle.getAttribute('toggle'));
+  if (input.getAttribute('type') === 'password') {
+    input.setAttribute('type', 'text');
   } else {
-    input.attr('type', 'password');
+    input.setAttribute('type', 'password');
   }
-});
+};
 
 // Check strength of password
 
-function checkPasswordStrength() {
-  const password = newPassword.value;
-
-  let matchedCases = [];
-  matchedCases.push('[$@$!%*#?&]'); // Special Charector
-  matchedCases.push('[A-Z]'); // Uppercase Alpabates
-  matchedCases.push('[0-9]'); // Numbers
-  matchedCases.push('[a-z]'); // Lowercase Alphabates
-
-  // Test the Password
-  let ctr = 0;
-  for (let i = 0; i < matchedCases.length; i++) {
-    if (RegExp(matchedCases[i]).test(password)) {
-      ctr++;
-    }
-  }
-
+exports.checkPasswordStrength = (password) => {
+  const ctr = passwordStrength(password);
   // Check the ctr
   let strength = '';
   let color = '';
@@ -59,30 +42,36 @@ function checkPasswordStrength() {
       strength = 'Strong';
       color = '#1bd741';
       break;
+    default:
+      strength = '';
+      color = '';
+      break;
   }
-  console.log(strength);
 
-  if (strength) {
+  if (strength === '') {
+    desc[0].classList.add('hide');
+  } else {
     desc[0].classList.remove('hide');
-    passwordStrength.style.color = color;
-    passwordStrength.innerHTML = strength;
+    pswdStrength.style.color = color;
+    pswdStrength.innerHTML = strength;
   }
-}
+  return ctr;
+};
 
 // Confirm Password
 
-function checkConfirmPassword() {
-  const passwordNew = newPassword.value;
-  console.log(passwordNew);
-  const passwordConfirm = confirmPassword.value;
-
-  if (passwordNew === passwordConfirm) {
-    desc[1].classList.remove('hide');
-    passwordMatch.style.color = '#1bd741';
-    passwordMatch.innerHTML = 'Matched';
+exports.checkConfirmPassword = (newPassword, confirmPassword) => {
+  if (confirmPassword === '') {
+    desc[1].classList.add('hide');
   } else {
-    desc[1].classList.remove('hide');
-    passwordMatch.style.color = 'red';
-    passwordMatch.innerHTML = 'Wrong';
+    if (newPassword === confirmPassword) {
+      desc[1].classList.remove('hide');
+      passwordMatch.style.color = '#1bd741';
+      passwordMatch.innerHTML = 'Matched';
+    } else {
+      desc[1].classList.remove('hide');
+      passwordMatch.style.color = 'red';
+      passwordMatch.innerHTML = 'Wrong';
+    }
   }
-}
+};
