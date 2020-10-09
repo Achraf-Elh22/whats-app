@@ -1,9 +1,6 @@
 const app = require('./app.js');
 const { PORT } = require('./config/index');
-
-const server = app.listen(PORT, () => {
-  console.log(`App Running on Port ${PORT} 👌👌`);
-});
+const connectDB = require('./config/db');
 
 process.on('unhandledRejection', (err) => {
   console.error(err.name, err.message);
@@ -11,4 +8,11 @@ process.on('unhandledRejection', (err) => {
   server.close(() => {
     process.exit();
   });
+});
+// Connect to DB
+connectDB();
+
+// Server
+const server = app.listen(PORT, () => {
+  console.log(`App Running on Port ${PORT} 👌👌`);
 });

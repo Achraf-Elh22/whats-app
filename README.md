@@ -47,6 +47,7 @@
 # Back-End
 
 - [x] implement the basic structure of express app
+- [x] Set up the mongodb DB
 - [ ] Build User Model "basic version"
 - [ ] refactor the pages to pug
   - [ ] signup page
@@ -78,7 +79,7 @@
 TODO: Learning version
 
 - [x] know more about Parcel and @babel/polyfill
-- [ ] know more about how to create perfict model in mongodb
+- [x] know more about how to create perfict model in mongodb
 - [ ] Pug
 - [ ] Passportjs
 - [ ] Learn jquery
