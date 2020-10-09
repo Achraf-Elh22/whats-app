@@ -1,0 +1,24 @@
+extends _form
+
+include mixins/input
+include mixins/button
+include mixins/accessWith
+
+append head
+    link(rel="stylesheet" href="/styles/intlTelInput.min.css")
+
+
+block inputs
+    +phoneInput
+    +emailInput
+    +passwordInput("Password","password")
+block button
+    +button("submit","Sign Up")
+
+block accessWith
+    +accessWith("signup","Already have an account?")
+
+
+
+
+

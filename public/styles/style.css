@@ -266,6 +266,11 @@ p {
   margin-bottom: 30px;
 }
 
+.digit-group button,
+#resetPassword button {
+  margin-bottom: 0 !important;
+}
+
 /* Line through  */
 .line-through {
   width: 100%;

@@ -1,0 +1,17 @@
+extends base
+
+
+block content
+    div(class="container")
+        div(class="hero-image bg-primary")
+            img(src="/assets/images/whatsapp.svg" alt="logo")
+            h2 WhatsApp
+        div(class="form-primary txt-secondary")
+            h2=formTitle
+            - let formValidation = formId === "newUser" ? novalidate : ""
+            form(id=`${formId}` formValidation )
+                block inputs
+                block button
+                block description
+
+            block accessWith

@@ -43,15 +43,18 @@
 - [x] Refacture js files to be server from nodejs server
 - [x] implement the error and success flags popup
 - [ ] Performance
+- [ ] Accessibility
 
 # Back-End
 
 - [x] implement the basic structure of express app
 - [x] Set up the mongodb DB
 - [x] Build User Model "basic version"
-- [ ] refactor the pages to pug
-  - [ ] signup page
-  - [ ] login page
+- [x] refactor the pages to pug
+  - [x] signup page
+  - [x] login page
+  - [ ] Verify
+  - [ ] reset password
 - [ ] Build the logique of API:
   - [ ] signup
     - [ ] Get Data
@@ -73,7 +76,7 @@
   - [ ] Login
 - [ ]
 - [ ]
-- [ ]
+- [ ] Compare the validation in backend with frontend
 - [ ] Performance
 
 TODO: Learning version

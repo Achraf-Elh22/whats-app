@@ -1,0 +1,19 @@
+mixin phoneInput
+    div
+        label(class="primary-label" for="tel") Phone 
+        input(class="primary-input" type="tel" id="phone" required)
+
+mixin emailInput
+    label(class="primary-label" for="email" ) Email Address 
+    div#email-input
+        input(class="primary-input" type="email" id="email")
+        p( class="txt-secondary align-right hide" id="email-desc")
+            span(class="strong" id="email-status" ) Invalid
+
+mixin passwordInput(label,inputId)
+    label(class="primary-label" for="password")=label
+    div.password-field
+        input(class="primary-input" type="password" id=`${inputId}` autocomplete="on" required) 
+        span(toggle=`${inputId}` class="fa fa-fw fa-eye field-icon toggle-password")
+        p(class="txt-secondary align-right hide" id="password-desc") Strength: 
+            span(class="strong" id="passwordStrength")

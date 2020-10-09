@@ -17118,7 +17118,8 @@ dotenv.config({
 module.exports = {
   PORT: undefined || 5000,
   NODE_ENV: "development",
-  IPINFOTOKEN: 'b896d8680909d3'
+  IPINFOTOKEN: 'b896d8680909d3',
+  MONGO_URI: undefined
 };
 },{"dotenv":"../../node_modules/dotenv/lib/main.js"}],"utils.js":[function(require,module,exports) {
 "use strict";
@@ -17953,7 +17954,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54192" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59684" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

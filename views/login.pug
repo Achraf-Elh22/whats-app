@@ -1,0 +1,23 @@
+extends _form
+
+include mixins/input
+include mixins/button
+include mixins/accessWith
+
+append head
+    link(rel="stylesheet" href="/styles/intlTelInput.min.css")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous")
+
+
+block inputs
+    +phoneInput
+    +passwordInput("Password","password")
+block button
+    +button("submit","Login")
+
+block description
+    p(class="txt-centered forget-password")
+            a(href="/resetPassword") Forget Password?
+
+block accessWith
+    +accessWith("login ","Don't have an account?")

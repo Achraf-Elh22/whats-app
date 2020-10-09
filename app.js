@@ -4,6 +4,7 @@ const morgan = require('morgan');
 
 // Routers
 const userRouter = require('./router/userRouter');
+const viewRouter = require('./router/viewRouter');
 
 const { NODE_ENV } = require('./config/index.js');
 
@@ -15,13 +16,14 @@ if (NODE_ENV === 'development') {
 }
 
 // Template engine
-app.set('views engine', 'pug');
+app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // Serve Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
-app.use('/api/v1/user/', userRouter);
+app.use('/api/v1/user', userRouter);
+app.use('/', viewRouter);
 
 module.exports = app;
