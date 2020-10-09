@@ -48,7 +48,7 @@
 
 - [x] implement the basic structure of express app
 - [x] Set up the mongodb DB
-- [ ] Build User Model "basic version"
+- [x] Build User Model "basic version"
 - [ ] refactor the pages to pug
   - [ ] signup page
   - [ ] login page
