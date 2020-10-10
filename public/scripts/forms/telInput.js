@@ -1,6 +1,7 @@
 /*eslint-disable*/
 import intlTelInput from 'intl-tel-input';
-import { AsYouType, parsePhoneNumber, ParseError } from 'libphonenumber-js/max';
+import { AsYouType } from 'libphonenumber-js/max';
+import { telNumber } from '../../../utils/validation';
 import { getUserInfo } from '../utils';
 
 const countryCode = async () => (await getUserInfo()).country;
@@ -25,16 +26,6 @@ export const formatTelInput = async (telInput) => {
 
 export const checkTelInput = async (telInput) => {
   const country = await countryCode();
-  try {
-    const phoneNumber = parsePhoneNumber(telInput, country);
-    const isValidTel = phoneNumber.isPossible();
-    return isValidTel;
-  } catch (error) {
-    if (error instanceof ParseError) {
-      // Not a phone number, non-existent country, etc.
-      console.log(error.message);
-    } else {
-      throw error;
-    }
-  }
+  const { isValidTel } = await telNumber(telInput, country);
+  return isValidTel;
 };

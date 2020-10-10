@@ -55,21 +55,22 @@
   - [x] login page
   - [ ] Verify
   - [ ] reset password
-- [ ] Build the logique of API:
-  - [ ] signup
-    - [ ] Get Data
-    - [ ] check if the user is already exist
+- Build the logique of API:
+  - signup
+    - [x] Get Data
+    - [x] validate the Data
+    - [x] check if the user is already exist
     - [ ] Encrypt Inforamtions
     - [ ] save User
     - [ ] Create a token
     - [ ] Send him to the next stage "Verify"
-    - [ ] Send OTP in SMS
+    - [ ] Send OTP in SMS or email
     - [ ] Check the OTP
     - [ ] Send him to the next Stage "Create Profile"
     - [ ] implement the abality to save profile image and optimize it
     - [ ] Save the User Information
     - [ ] Sign in with google, facebook, instagram
-  - [ ] Login
+  - Login
     - [ ]
 - [ ] Build the view controller:
   - [ ] signup
@@ -83,7 +84,8 @@ TODO: Learning version
 
 - [x] know more about Parcel and @babel/polyfill
 - [x] know more about how to create perfict model in mongodb
-- [ ] Pug
+- [x] Pug
+- [ ] Handle Errors
 - [ ] Passportjs
 - [ ] Learn jquery
 - [ ] connect-flash

@@ -21,7 +21,8 @@
     "mongoose": "^5.10.8",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
-    "pug": "^3.0.0"
+    "pug": "^3.0.0",
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.11.5",

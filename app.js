@@ -22,6 +22,10 @@ app.set('views', path.join(__dirname, 'views'));
 // Serve Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Middlewears
+app.use(express.json());
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+
 // Routes
 app.use('/api/v1/user', userRouter);
 app.use('/', viewRouter);

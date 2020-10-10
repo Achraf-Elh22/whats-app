@@ -14881,7 +14881,69 @@ function getExampleNumber() {
 function formatIncompletePhoneNumber() {
   return call(_index.formatIncompletePhoneNumber, arguments);
 }
-},{"../metadata.full.json.js":"../../node_modules/libphonenumber-js/metadata.full.json.js","../core/index":"../../node_modules/libphonenumber-js/core/index.js"}],"../../node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
+},{"../metadata.full.json.js":"../../node_modules/libphonenumber-js/metadata.full.json.js","../core/index":"../../node_modules/libphonenumber-js/core/index.js"}],"../../utils/validation.js":[function(require,module,exports) {
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var _require = require('libphonenumber-js/max'),
+    parsePhoneNumber = _require.parsePhoneNumber,
+    ParseError = _require.ParseError;
+
+exports.telNumber = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(phone, country) {
+    var phoneNumber, internationalFormat, isValidTel;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.prev = 0;
+            phoneNumber = parsePhoneNumber(phone, country);
+            _context.next = 4;
+            return phoneNumber.formatInternational();
+
+          case 4:
+            internationalFormat = _context.sent;
+            _context.next = 7;
+            return phoneNumber.isPossible();
+
+          case 7:
+            isValidTel = _context.sent;
+            return _context.abrupt("return", {
+              isValidTel: isValidTel,
+              internationalFormat: internationalFormat
+            });
+
+          case 11:
+            _context.prev = 11;
+            _context.t0 = _context["catch"](0);
+
+            if (!(_context.t0 instanceof ParseError)) {
+              _context.next = 17;
+              break;
+            }
+
+            // Not a phone number, non-existent country, etc.
+            console.log(_context.t0.message);
+            _context.next = 18;
+            break;
+
+          case 17:
+            throw _context.t0;
+
+          case 18:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[0, 11]]);
+  }));
+
+  return function (_x, _x2) {
+    return _ref.apply(this, arguments);
+  };
+}();
+},{"libphonenumber-js/max":"../../node_modules/libphonenumber-js/max/index.js"}],"../../node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -17261,6 +17323,8 @@ var _intlTelInput = _interopRequireDefault(require("intl-tel-input"));
 
 var _max = require("libphonenumber-js/max");
 
+var _validation = require("../../../utils/validation");
+
 var _utils = require("../utils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -17364,7 +17428,8 @@ exports.formatTelInput = formatTelInput;
 
 var checkTelInput = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(telInput) {
-    var country, phoneNumber, isValidTel;
+    var country, _yield$telNumber, isValidTel;
+
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
@@ -17374,34 +17439,20 @@ var checkTelInput = /*#__PURE__*/function () {
 
           case 2:
             country = _context4.sent;
-            _context4.prev = 3;
-            phoneNumber = (0, _max.parsePhoneNumber)(telInput, country);
-            isValidTel = phoneNumber.isPossible();
+            _context4.next = 5;
+            return (0, _validation.telNumber)(telInput, country);
+
+          case 5:
+            _yield$telNumber = _context4.sent;
+            isValidTel = _yield$telNumber.isValidTel;
             return _context4.abrupt("return", isValidTel);
 
-          case 9:
-            _context4.prev = 9;
-            _context4.t0 = _context4["catch"](3);
-
-            if (!(_context4.t0 instanceof _max.ParseError)) {
-              _context4.next = 15;
-              break;
-            }
-
-            // Not a phone number, non-existent country, etc.
-            console.log(_context4.t0.message);
-            _context4.next = 16;
-            break;
-
-          case 15:
-            throw _context4.t0;
-
-          case 16:
+          case 8:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[3, 9]]);
+    }, _callee4);
   }));
 
   return function checkTelInput(_x3) {
@@ -17410,7 +17461,7 @@ var checkTelInput = /*#__PURE__*/function () {
 }();
 
 exports.checkTelInput = checkTelInput;
-},{"intl-tel-input":"../../node_modules/intl-tel-input/index.js","libphonenumber-js/max":"../../node_modules/libphonenumber-js/max/index.js","../utils":"utils.js"}],"forms/passwords.js":[function(require,module,exports) {
+},{"intl-tel-input":"../../node_modules/intl-tel-input/index.js","libphonenumber-js/max":"../../node_modules/libphonenumber-js/max/index.js","../../../utils/validation":"../../utils/validation.js","../utils":"utils.js"}],"forms/passwords.js":[function(require,module,exports) {
 "use strict";
 
 var _utils = require("../utils");
@@ -17954,7 +18005,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59684" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51798" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
