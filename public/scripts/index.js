@@ -5,6 +5,7 @@ import { otpInput } from './forms/otpInput';
 import { telInput, formatTelInput, checkTelInput } from './forms/telInput';
 import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit } from './utils';
 import { togglePassword, checkPasswordStrength, checkConfirmPassword } from './forms/passwords';
+import { signup } from '../scripts/forms/signup';
 
 const resetPasswordForm = document.querySelector('#resetPassword');
 const newUserForm = document.querySelector('#newUser');
@@ -88,12 +89,14 @@ if (newUserForm) {
       desc.classList.add('hide');
     }
   });
+
   // Check before submit
   newUserForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const isTelValid = await checkTelInput(telinput.value);
-    if (!isTelValid) {
+    const { isValidTel, country } = await checkTelInput(telinput.value);
+
+    if (!isValidTel) {
       return showAlert('error', 'Please provide a valid Phone Number');
     }
     if (!isEmail) {
@@ -107,7 +110,7 @@ if (newUserForm) {
     if (!passwordSecure) {
       return;
     }
-    return newUserForm.submit();
+    return signup(telinput.value, emailInput.value, password.value, country);
   });
 }
 

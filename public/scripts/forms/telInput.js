@@ -27,5 +27,5 @@ export const formatTelInput = async (telInput) => {
 export const checkTelInput = async (telInput) => {
   const country = await countryCode();
   const { isValidTel } = await telNumber(telInput, country);
-  return isValidTel;
+  return { isValidTel, country };
 };

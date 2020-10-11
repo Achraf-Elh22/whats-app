@@ -62,7 +62,7 @@
     - [x] check if the user is already exist
     - [x] Encrypt Inforamtions
     - [x] save User
-    - [ ] POST the user data from form
+    - [x] POST the user data from form
     - [ ] Create a token store it in session and use connect-flash to show flags
     - [ ] show the flags in Ui
     - [ ] Send him to the next stage "Verify"

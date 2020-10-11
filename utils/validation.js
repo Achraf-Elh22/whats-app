@@ -1,5 +1,6 @@
 const { parsePhoneNumber, ParseError } = require('libphonenumber-js/max');
 
+// Check Phone Number and return is the number valid and the international format
 exports.telNumber = async (phone, country) => {
   try {
     let phoneNumber = parsePhoneNumber(phone, country);
@@ -16,6 +17,7 @@ exports.telNumber = async (phone, country) => {
   }
 };
 
+// check the strenght of password and retunr ctr that could contains scale of 1 ot 4
 exports.passwordStrength = (password) => {
   let matchedCases = [];
   matchedCases.push('[$@$!%*#?&]'); // Special Charector
