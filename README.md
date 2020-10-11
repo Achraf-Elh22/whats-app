@@ -60,9 +60,11 @@
     - [x] Get Data
     - [x] validate the Data
     - [x] check if the user is already exist
-    - [ ] Encrypt Inforamtions
-    - [ ] save User
-    - [ ] Create a token
+    - [x] Encrypt Inforamtions
+    - [x] save User
+    - [ ] POST the user data from form
+    - [ ] Create a token store it in session and use connect-flash to show flags
+    - [ ] show the flags in Ui
     - [ ] Send him to the next stage "Verify"
     - [ ] Send OTP in SMS or email
     - [ ] Check the OTP

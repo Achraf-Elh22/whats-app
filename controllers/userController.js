@@ -1,54 +1,25 @@
-const User = require('../models/userModel');
-const { isEmail } = require('validator');
-const { telNumber } = require('../utils/validation');
+const bcrypt = require('bcryptjs');
 
-// Check if the phoneNumber is Number
-const phone = async (phoneNumber, country) => {
-  if (isNaN(phoneNumber)) {
-    return { isValidTel: false, internationalFormat: '' };
-  }
-  return await telNumber(phoneNumber, country);
-};
+const User = require('../models/userModel');
 
 exports.signup = async (req, res, next) => {
   try {
-    const { phoneNumber, email, password, country } = req.body;
-
-    // check if the email, password,phoneNumber
-    if (!phoneNumber || !email || !password)
-      return res.status(400).json({
-        status: 'error',
-        message: `Please provide the necessary information "phoneNumber, email, password" `,
-      });
-
-    // Validate the phone Number number
-    const { isValidTel, internationalFormat } = await phone(phoneNumber, country);
-    if (!isValidTel)
-      return res
-        .status(400)
-        .json({ status: 'error', message: `Please provide a valid Phone Number` });
-
-    // Validate Email
-    if (!isEmail(email))
-      return res.status(400).json({ status: 'error', message: `Please provide a valid Email` });
-
-    // check if the user exist in DB
-    const user = await User.findOne({ 'profile.phoneNumber': phoneNumber });
-    if (user) return res.status(409).json({ status: 'error', message: 'This User already exist' });
-
     // Create User
-    const newUser = {
-      ...req.body,
-      phoneNumber: internationalFormat.replace(/\s/g, ''),
-      country: undefined,
-    };
+    const hashPassword = await bcrypt.hash(req.body.password, 10);
 
-    await User.create({ profile: newUser });
+    const newUser = await User.create({
+      profile: {
+        ...req.body,
+        password: hashPassword,
+        phoneNumber: req.body.internationalFormat,
+        country: undefined,
+      },
+    });
 
-    return res.status(200).json({ status: 'Success', data: newUser });
+    return res.status(200).json({ status: 'success', data: newUser });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err.message);
-    res.status(409).json({ status: 'error', message: err.message });
+    res.status(409).json({ status: 'error', message: err.message, error: err });
   }
 };
 

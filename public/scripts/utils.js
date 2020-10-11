@@ -32,23 +32,6 @@ export const showAlert = (type, msg, time = 7) => {
 
 // Validators
 
-// Strength of password
-export const passwordStrength = (password) => {
-  let matchedCases = [];
-  matchedCases.push('[$@$!%*#?&]'); // Special Charector
-  matchedCases.push('[A-Z]'); // Uppercase Alpabates
-  matchedCases.push('[0-9]'); // Numbers
-  matchedCases.push('[a-z]'); // Lowercase Alphabates
-  // Test the Password
-  let ctr = 0;
-  for (let i = 0; i < matchedCases.length; i++) {
-    if (RegExp(matchedCases[i]).test(password)) {
-      ctr++;
-    }
-  }
-
-  return ctr;
-};
 // is password secure
 export const isPasswordSecure = (ctr, errorMsg) => {
   if (ctr < 3) {

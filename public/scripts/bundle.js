@@ -14943,6 +14943,28 @@ exports.telNumber = /*#__PURE__*/function () {
     return _ref.apply(this, arguments);
   };
 }();
+
+exports.passwordStrength = function (password) {
+  var matchedCases = [];
+  matchedCases.push('[$@$!%*#?&]'); // Special Charector
+
+  matchedCases.push('[A-Z]'); // Uppercase Alpabates
+
+  matchedCases.push('[0-9]'); // Numbers
+
+  matchedCases.push('[a-z]'); // Lowercase Alphabates
+  // Test the Password
+
+  var ctr = 0;
+
+  for (var i = 0; i < matchedCases.length; i++) {
+    if (RegExp(matchedCases[i]).test(password)) {
+      ctr++;
+    }
+  }
+
+  return ctr;
+};
 },{"libphonenumber-js/max":"../../node_modules/libphonenumber-js/max/index.js"}],"../../node_modules/axios/lib/helpers/bind.js":[function(require,module,exports) {
 'use strict';
 
@@ -17189,7 +17211,7 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.checkEmail = exports.isPasswordSecure = exports.passwordStrength = exports.showAlert = exports.hideAlert = exports.checkBeforeSubmit = exports.getUserInfo = void 0;
+exports.checkEmail = exports.isPasswordSecure = exports.showAlert = exports.hideAlert = exports.checkBeforeSubmit = exports.getUserInfo = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -17260,35 +17282,10 @@ var showAlert = function showAlert(type, msg) {
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   window.setTimeout(hideAlert, time * 1000);
 }; // Validators
-// Strength of password
+// is password secure
 
 
 exports.showAlert = showAlert;
-
-var passwordStrength = function passwordStrength(password) {
-  var matchedCases = [];
-  matchedCases.push('[$@$!%*#?&]'); // Special Charector
-
-  matchedCases.push('[A-Z]'); // Uppercase Alpabates
-
-  matchedCases.push('[0-9]'); // Numbers
-
-  matchedCases.push('[a-z]'); // Lowercase Alphabates
-  // Test the Password
-
-  var ctr = 0;
-
-  for (var i = 0; i < matchedCases.length; i++) {
-    if (RegExp(matchedCases[i]).test(password)) {
-      ctr++;
-    }
-  }
-
-  return ctr;
-}; // is password secure
-
-
-exports.passwordStrength = passwordStrength;
 
 var isPasswordSecure = function isPasswordSecure(ctr, errorMsg) {
   if (ctr < 3) {
@@ -17464,7 +17461,7 @@ exports.checkTelInput = checkTelInput;
 },{"intl-tel-input":"../../node_modules/intl-tel-input/index.js","libphonenumber-js/max":"../../node_modules/libphonenumber-js/max/index.js","../../../utils/validation":"../../utils/validation.js","../utils":"utils.js"}],"forms/passwords.js":[function(require,module,exports) {
 "use strict";
 
-var _utils = require("../utils");
+var _validation = require("../../../utils/validation");
 
 /* eslint-disable */
 var pswdStrength = document.querySelector('#passwordStrength');
@@ -17484,7 +17481,7 @@ exports.togglePassword = function (toggle) {
 
 
 exports.checkPasswordStrength = function (password) {
-  var ctr = (0, _utils.passwordStrength)(password); // Check the ctr
+  var ctr = (0, _validation.passwordStrength)(password); // Check the ctr
 
   var strength = '';
   var color = '';
@@ -17543,7 +17540,7 @@ exports.checkConfirmPassword = function (newPassword, confirmPassword) {
     }
   }
 };
-},{"../utils":"utils.js"}],"index.js":[function(require,module,exports) {
+},{"../../../utils/validation":"../../utils/validation.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("core-js/modules/es6.array.copy-within");

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { passwordStrength } from '../utils';
+import { passwordStrength } from '../../../utils/validation';
 
 const pswdStrength = document.querySelector('#passwordStrength');
 const passwordMatch = document.querySelector('#passwordMatch');
