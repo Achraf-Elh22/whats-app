@@ -42,6 +42,7 @@
   - [x] add the email and password validator
 - [x] Refacture js files to be server from nodejs server
 - [x] implement the error and success flags popup
+- [ ] implement local storage
 - [ ] Performance
 - [ ] Accessibility
 
@@ -63,9 +64,8 @@
     - [x] Encrypt Inforamtions
     - [x] save User
     - [x] POST the user data from form
-    - [ ] Create a token store it in session and use connect-flash to show flags
-    - [ ] show the flags in Ui
-    - [ ] Send him to the next stage "Verify"
+    - [x] Send him to the next stage "Verify"
+    - [x] Generate Otp and Build the logique behind it
     - [ ] Send OTP in SMS or email
     - [ ] Check the OTP
     - [ ] Send him to the next Stage "Create Profile"
@@ -77,8 +77,11 @@
 - [ ] Build the view controller:
   - [ ] signup
   - [ ] Login
-- [ ]
-- [ ]
+- [ ] Build error handle controller and handle the message show to the user in more user friendly messages
+- [ ] Create a token store it in session and use connect-flash to show flags
+- [ ] show the flags in Ui
+- [ ] Security
+  - [ ] cookies
 - [ ] Compare the validation in backend with frontend
 - [ ] Performance
 

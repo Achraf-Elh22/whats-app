@@ -6,16 +6,18 @@ import { telInput, formatTelInput, checkTelInput } from './forms/telInput';
 import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit } from './utils';
 import { togglePassword, checkPasswordStrength, checkConfirmPassword } from './forms/passwords';
 import { signup } from '../scripts/forms/signup';
+import { startTimer } from '../scripts/forms/countDownTimer';
 
 const resetPasswordForm = document.querySelector('#resetPassword');
 const newUserForm = document.querySelector('#newUser');
-const digitGroup = document.querySelector('.digit-group');
+const digitGroup = document.querySelector('#digit-group');
 const togglePwd = document.querySelectorAll('.toggle-password');
 const password = document.querySelector('#password');
 const newPassword = document.querySelector('#newPassword');
 const confirmPassword = document.querySelector('#confirmPassword');
 const telinput = document.querySelector('#phone');
 const emailInput = document.querySelector('#email');
+const timer = document.querySelector('#timer');
 
 // OTP INPUT (verify.html)
 if (digitGroup) {
@@ -121,4 +123,11 @@ if (telinput) {
     let formatTel = await formatTelInput(telinput.value);
     this.value = formatTel;
   });
+}
+
+// timer
+
+if (timer) {
+  const fiveMinutes = 60 * 5;
+  startTimer(fiveMinutes, timer);
 }

@@ -224,10 +224,10 @@ p {
 
 /* OTP INPUT */
 
-.digit-group {
+#digit-group {
   margin-top: 30px;
 }
-.digit-group input {
+#digit-group input {
   width: 40px;
   height: 50px;
   border-radius: 10px;
@@ -241,6 +241,9 @@ p {
   color: #1bd741;
   margin: 0 3px;
   outline: none;
+}
+#digit-group a {
+  display: block;
 }
 
 /* Set the phone input to full width */
@@ -266,7 +269,7 @@ p {
   margin-bottom: 30px;
 }
 
-.digit-group button,
+#digit-group button,
 #resetPassword button {
   margin-bottom: 0 !important;
 }
@@ -446,7 +449,7 @@ p {
   .form-primary label {
     margin-top: 20px;
   }
-  .digit-group input {
+  #digit-group input {
     margin: 0 5px;
   }
 

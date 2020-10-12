@@ -17,11 +17,11 @@ export const signup = async (telNumber, email, password, country) => {
     if (res.data.status === 'success') {
       showAlert('success', 'Logged in successfully!!!');
       window.setTimeout(() => {
-        location.assign('/');
+        location.assign('/verify');
       }, 1500);
     }
   } catch (err) {
-    showAlert('error', err.message);
-    console.error(err.message);
+    showAlert('error', err.response.data.message);
+    console.error(err.response.data.message);
   }
 };
