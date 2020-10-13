@@ -11,8 +11,8 @@ const router = express.Router();
 // desc POST FORM INFO FOR SIGNUP => Phone, Email, Password
 router.post('/signup', signupValidation, signup);
 
-// Router
-// Desc
+// Router /api/v1/user/verify
+// Desc POST veerify the suer by send OTP code via Email or Phone number
 router.post('/verify', verify);
 
 // Route /api/v1/user/logIn'
