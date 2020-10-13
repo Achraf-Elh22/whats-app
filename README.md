@@ -95,3 +95,4 @@ TODO: Learning version
 - [ ] Learn jquery
 - [ ] connect-flash
 - [ ] learn more about [Production best practices: performance and reliability]("https://expressjs.com/th/advanced/best-practice-performance.html")
+- [ ] session best practices []("https://blog.jscrambler.com/best-practices-for-secure-session-management-in-node/")

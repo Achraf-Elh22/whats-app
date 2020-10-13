@@ -10,7 +10,7 @@ const phone = async (phoneNumber, country) => {
   return await telNumber(phoneNumber, country);
 };
 
-const signupValidation = async (req, res, next) => {
+exports.signup = async (req, res, next) => {
   const { phoneNumber, email, password, country } = req.body;
 
   // check if the email, password,phoneNumber
@@ -47,5 +47,3 @@ const signupValidation = async (req, res, next) => {
   req.body.internationalFormat = internationalFormat.replace(/\s/g, '');
   next();
 };
-
-module.exports = signupValidation;

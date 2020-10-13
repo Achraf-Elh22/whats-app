@@ -1,8 +1,7 @@
 const bcrypt = require('bcryptjs');
-const { decode } = require('jsonwebtoken');
 
 const User = require('../models/userModel');
-const { createToken, generateHash, verifyToken, generateOtp } = require('../utils/utils');
+const { createToken, generateHash, generateOtp } = require('../utils/utils');
 
 exports.signup = async (req, res, next) => {
   try {
@@ -39,59 +38,33 @@ exports.signup = async (req, res, next) => {
 // DB:
 // handle the deplicated key error
 
-const createOtpCode = (userOtp) => {
-  const otp = userOtp || Math.floor(Math.random() * (1000000 - 100000) + 100000);
-  return otp;
-};
-
 exports.verify = async (req, res, next) => {
   try {
-    let user = req.session.newUser;
-    // Check if there is user data in session
-    if (!user)
-      return res.status(401).json({
-        status: 'Error',
-        message: `unauthorized, Please login first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
-      });
-    // check if the user post his Otp
-    if (!req.body.otp || isNaN(req.body.otp))
-      return res.status(401).json({
-        status: 'Error',
-        message: `Please Provide a valid OTP code`,
-      });
-
-    // Check if the token in Session is valid
-    const decodeToken = await verifyToken(user.token);
-
-    if (!decodeToken)
-      return res.status(401).json({
-        status: 'Error',
-        message: `unauthorized, Please login first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`, // Find another message to show
-      });
-
-    // Timer
-    const unixTime = Math.floor(Date.now() / 1000);
-    const remainTime = decodeToken.exp - unixTime + 2;
-
     // OTP
-    let otp = createOtpCode(user.otp);
+    let user = req.session.newUser;
+    let { otp, otpFailure } = req.session.newUser;
 
-    let otpFailure = user.otpFailure || 0;
+    if (user.otp === req.body.otp) return res.status(401).json({ status: 'success' });
 
-    if (otp === req.body.otp) return res.status(401).json({ status: 'success' });
-
-    otpFailure = otpFailure + 1;
+    otpFailure = otpFailure + 1; // The first try give you only 2 chances if Giving correct OTP before regenarate another one
 
     if (otpFailure === 3) {
-      otp = createOtpCode();
+      otp = generateOtp();
       otpFailure = 0;
     }
 
     user = req.session.newUser = { ...user, otp, otpFailure };
 
+    // Timer
+    // const unixTime = Math.floor(Date.now() / 1000);
+    // const remainTime = decodeToken.exp - unixTime + 2;
+
     return res.status(200).json({
       status: 'error',
       message: "Wrong OTP, please repeat again if you didn't receive the OTP code Click Resend",
+      data: {
+        user,
+      },
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err.message, err);

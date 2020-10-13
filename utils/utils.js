@@ -17,6 +17,7 @@ exports.generateHash = (bytes) => {
   return hash;
 };
 
-exports.generateOtp = () => {
-  return Math.floor(Math.random() * (1000000 - 100000) + 100000);
+exports.generateOtp = (userOtp) => {
+  const otp = Math.floor(Math.random() * (1000000 - 100000) + 100000);
+  return otp;
 };
