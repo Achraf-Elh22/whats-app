@@ -1,7 +1,7 @@
 /* eslint-disable */
 import '@babel/polyfill';
 
-import { otpInput } from './forms/otpInput';
+import { otpInput, formatOtp, submitOtp } from './forms/otpInput';
 import { telInput, formatTelInput, checkTelInput } from './forms/telInput';
 import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit } from './utils';
 import { togglePassword, checkPasswordStrength, checkConfirmPassword } from './forms/passwords';
@@ -34,6 +34,13 @@ if (digitGroup) {
   });
   //Otp Functionality
   otpInput(digitGroup);
+
+  const digits = digitGroup.querySelectorAll('input');
+
+  digitGroup.addEventListener('submit', function (e) {
+    e.preventDefault();
+    submitOtp(formatOtp(digits));
+  });
 }
 
 // Password

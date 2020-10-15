@@ -7,7 +7,6 @@ exports.signup = (req, res, next) => {
 };
 
 exports.verify = (req, res, next) => {
-  console.log(req.session.newUser);
   res.status(200).render('verify', {
     title: 'Verify',
     formTitle: `Verify ${req.session.newUser.phoneNumber}`,

@@ -1,4 +1,5 @@
 /* eslint-disable */
+import axios from 'axios';
 
 exports.otpInput = (digitGroup) => {
   const digits = digitGroup.querySelectorAll('input');
@@ -24,4 +25,23 @@ exports.otpInput = (digitGroup) => {
       }
     });
   });
+};
+
+exports.formatOtp = (fields) => {
+  let otps = [];
+  fields.forEach((el) => otps.push(el.value));
+  const otp = otps.join().replace(/,/g, '');
+  return otp;
+};
+
+exports.submitOtp = async (data) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: '/api/v1/user/verify',
+      data: { otp: data },
+    });
+  } catch (error) {
+    console.error(data);
+  }
 };

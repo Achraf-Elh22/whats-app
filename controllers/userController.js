@@ -41,6 +41,7 @@ exports.signup = async (req, res, next) => {
 exports.verify = async (req, res, next) => {
   try {
     // OTP
+    console.log(req.body);
     let user = req.session.newUser;
     let { otp, otpFailure } = req.session.newUser;
 

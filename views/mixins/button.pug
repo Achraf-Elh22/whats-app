@@ -2,5 +2,5 @@
 //- type : Submit,...
 //- btnLabel : String
 
-mixin button(type,btnLabel)
-    button( type=`${type}` class="button button-primary bg-primary")=btnLabel
+mixin button(type,btnLabel,btnId)
+    button( type=`${type}` class="button button-primary bg-primary" id=`${btnId}`)=btnLabel
