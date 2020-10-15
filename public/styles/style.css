@@ -430,7 +430,7 @@ p {
   }
   .alert {
     left: 67%;
-    width: 25%;
+    width: auto;
   }
   .hero-image img {
     width: 40%;

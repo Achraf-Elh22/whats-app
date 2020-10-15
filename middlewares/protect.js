@@ -2,6 +2,7 @@ const { verifyToken } = require('../utils/utils');
 
 exports.verify = async (req, res, next) => {
   let user = req.session.newUser;
+  console.log('Protect');
   // Check if there is user data in session
   if (!user)
     return res.status(401).json({

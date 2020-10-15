@@ -41,17 +41,26 @@ exports.signup = async (req, res, next) => {
 exports.verify = async (req, res, next) => {
   try {
     // OTP
-    console.log(req.body);
     let user = req.session.newUser;
     let { otp, otpFailure } = req.session.newUser;
 
-    if (user.otp === req.body.otp) return res.status(401).json({ status: 'success' });
+    console.log('Verify');
+    if (user.otp === req.body.otp)
+      return res.status(200).json({ status: 'success', message: 'OTP CORRECT 👌👌👌' });
 
     otpFailure = otpFailure + 1; // The first try give you only 2 chances if Giving correct OTP before regenarate another one
 
     if (otpFailure === 3) {
       otp = generateOtp();
       otpFailure = 0;
+      user = req.session.newUser = { ...user, otp, otpFailure };
+      return res.status(401).json({
+        status: 'error',
+        message: 'You made 3 consecutive Wrong OTP, we will resend to you new OTP code',
+        data: {
+          user,
+        },
+      });
     }
 
     user = req.session.newUser = { ...user, otp, otpFailure };
@@ -59,8 +68,8 @@ exports.verify = async (req, res, next) => {
     // Timer
     // const unixTime = Math.floor(Date.now() / 1000);
     // const remainTime = decodeToken.exp - unixTime + 2;
-
-    return res.status(200).json({
+    console.log(user.otp, req.body.otp);
+    return res.status(401).json({
       status: 'error',
       message: "Wrong OTP, please repeat again if you didn't receive the OTP code Click Resend",
       data: {

@@ -1,5 +1,6 @@
 /* eslint-disable */
 import axios from 'axios';
+import { showAlert } from '../utils';
 
 exports.otpInput = (digitGroup) => {
   const digits = digitGroup.querySelectorAll('input');
@@ -30,7 +31,7 @@ exports.otpInput = (digitGroup) => {
 exports.formatOtp = (fields) => {
   let otps = [];
   fields.forEach((el) => otps.push(el.value));
-  const otp = otps.join().replace(/,/g, '');
+  const otp = parseInt(otps.join().replace(/,/g, ''));
   return otp;
 };
 
@@ -41,7 +42,10 @@ exports.submitOtp = async (data) => {
       url: '/api/v1/user/verify',
       data: { otp: data },
     });
+    if (res.data.status === 'success') {
+      showAlert('success', res.data.message);
+    }
   } catch (error) {
-    console.error(data);
+    showAlert('error', error.response.data.message);
   }
 };

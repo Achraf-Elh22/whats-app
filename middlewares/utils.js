@@ -2,6 +2,7 @@ const { generateOtp } = require('../utils/utils');
 
 exports.generateOtp = (req, res, next) => {
   const user = req.session.newUser;
+  console.log('generate Otp');
   otp = user.otp || generateOtp();
 
   let otpFailure = user.otpFailure || 0;

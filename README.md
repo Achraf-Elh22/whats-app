@@ -66,8 +66,9 @@
     - [x] POST the user data from form
     - [x] Send him to the next stage "Verify"
     - [x] Generate Otp and Build the logique behind it
+    - [x] Check the OTP
+    - [x] send the otp from the front end
     - [ ] Send OTP in SMS or email
-    - [ ] Check the OTP
     - [ ] Send him to the next Stage "Create Profile"
     - [ ] implement the abality to save profile image and optimize it
     - [ ] Save the User Information
