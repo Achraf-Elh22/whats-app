@@ -68,7 +68,12 @@
     - [x] Generate Otp and Build the logique behind it
     - [x] Check the OTP
     - [x] send the otp from the front end
-    - [ ] Send OTP in SMS or email
+    - [x] Send OTP in SMS
+    - [ ] Protect the verify view
+    - [ ] remove the token from session and replace it with simple property of time
+    - [ ] Implement the time still for the otp in back and front end
+    - [ ] implement the feature of send the otp in email if his phone isn't near him
+    - [ ] Implement the ability to resend otp in phone & email
     - [ ] Send him to the next Stage "Create Profile"
     - [ ] implement the abality to save profile image and optimize it
     - [ ] Save the User Information
@@ -85,6 +90,7 @@
   - [ ] cookies
 - [ ] Compare the validation in backend with frontend
 - [ ] Performance
+- [ ] copyrights
 
 TODO: Learning version
 

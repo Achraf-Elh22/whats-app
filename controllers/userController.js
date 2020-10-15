@@ -3,14 +3,14 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/userModel');
 const { createToken, generateHash, generateOtp } = require('../utils/utils');
 
-exports.signup = async (req, res, next) => {
+exports.signup = async (req, res) => {
   try {
     // Create User
     const hashPassword = await bcrypt.hash(req.body.password, 10);
 
     // Create Token
     const hash = generateHash(30);
-    const token = createToken(hash, '15m');
+    const token = createToken(hash, '5m');
 
     const newUser = {
       ...req.body,
@@ -26,7 +26,6 @@ exports.signup = async (req, res, next) => {
     return res.status(200).json({
       status: 'success',
       message: `Please verify your account in ${req.protocol}://${req.headers.host}/api/v1/user/verify`,
-      data: newUser,
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err);
@@ -38,7 +37,7 @@ exports.signup = async (req, res, next) => {
 // DB:
 // handle the deplicated key error
 
-exports.verify = async (req, res, next) => {
+exports.verify = async (req, res) => {
   try {
     // OTP
     let user = req.session.newUser;
@@ -48,7 +47,7 @@ exports.verify = async (req, res, next) => {
     if (user.otp === req.body.otp)
       return res.status(200).json({ status: 'success', message: 'OTP CORRECT 👌👌👌' });
 
-    otpFailure = otpFailure + 1; // The first try give you only 2 chances if Giving correct OTP before regenarate another one
+    otpFailure = otpFailure + 1; // The first try give you only 2 chances of Giving correct OTP before regenarate another one
 
     if (otpFailure === 3) {
       otp = generateOtp();
@@ -57,9 +56,6 @@ exports.verify = async (req, res, next) => {
       return res.status(401).json({
         status: 'error',
         message: 'You made 3 consecutive Wrong OTP, we will resend to you new OTP code',
-        data: {
-          user,
-        },
       });
     }
 
@@ -72,9 +68,6 @@ exports.verify = async (req, res, next) => {
     return res.status(401).json({
       status: 'error',
       message: "Wrong OTP, please repeat again if you didn't receive the OTP code Click Resend",
-      data: {
-        user,
-      },
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err.message, err);

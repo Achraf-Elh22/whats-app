@@ -44,6 +44,9 @@ exports.submitOtp = async (data) => {
     });
     if (res.data.status === 'success') {
       showAlert('success', res.data.message);
+      window.setTimeout(() => {
+        location.assign('/profile');
+      }, 1500);
     }
   } catch (error) {
     showAlert('error', error.response.data.message);

@@ -9,4 +9,6 @@ module.exports = {
   MONGO_URI: process.env.MONGO_URI,
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRESIN: process.env.JWT_EXPIRESIN,
+  NEXMO_APIKEY: process.env.NEXMO_APIKEY,
+  NEXMO_APISECRET: process.env.NEXMO_APISECRET,
 };
