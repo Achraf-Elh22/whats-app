@@ -69,8 +69,8 @@
     - [x] Check the OTP
     - [x] send the otp from the front end
     - [x] Send OTP in SMS
-    - [ ] Protect the verify view
-    - [ ] Build the error page
+    - [x] Protect the verify view
+    - [x] Build the error page
     - [ ] remove the token from session and replace it with simple property of time
     - [ ] Implement the time still for the otp in back and front end
     - [ ] implement the feature of send the otp in email if his phone isn't near him
