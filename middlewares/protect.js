@@ -17,7 +17,7 @@ exports.verify = async (req, res, next) => {
 
   // Check if the Session expired
 
-  if (isSessionExpired(req.session, user.initDate))
+  if (isSessionExpired(req.session, user.expDate))
     return res.status(401).json({
       status: 'Error',
       message: `Time Out, Please re-signup Again at ${req.protocol}://${req.headers.host}/api/v1/user/signup`, // Find another message to show

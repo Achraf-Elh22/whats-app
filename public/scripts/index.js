@@ -135,6 +135,6 @@ if (telinput) {
 // timer
 
 if (timer) {
-  const fiveMinutes = 60 * 5;
-  startTimer(fiveMinutes, timer);
+  console.log(timer.value);
+  // startTimer(timer.value, timer);
 }

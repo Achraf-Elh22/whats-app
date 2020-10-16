@@ -9,12 +9,13 @@ exports.signup = async (req, res) => {
 
     // Initialize the time of session
     const initDate = Math.floor(Date.now() / 1000);
+    const expDate = initDate + 5 * 60 * 1000;
 
     const newUser = {
       ...req.body,
       password: hashPassword,
       phoneNumber: req.body.internationalFormat,
-      initDate,
+      expDate,
       country: undefined,
     };
 
@@ -58,9 +59,6 @@ exports.verify = async (req, res) => {
 
     user = req.session.newUser = { ...user, otp, otpFailure };
 
-    // Timer
-    // const unixTime = Math.floor(Date.now() / 1000);
-    // const remainTime = decodeToken.exp - unixTime + 2;
     console.log(user.otp, req.body.otp);
     return res.status(401).json({
       status: 'error',

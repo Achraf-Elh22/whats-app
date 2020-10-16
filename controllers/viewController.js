@@ -21,7 +21,7 @@ exports.verify = (req, res) => {
       errorText: 'sign up',
     });
 
-  if (isSessionExpired(req.session, user.initDate)) {
+  if (isSessionExpired(req.session, user.expDate)) {
     return res.status(401).render('error', {
       title: 'Error',
       errorCode: 401,
@@ -32,10 +32,16 @@ exports.verify = (req, res) => {
     });
   }
 
+  // Timer
+  const timeNow = Math.floor(Date.now() / 1000);
+  const remainTime = user.expDate - timeNow;
+  console.log(remainTime);
+
   res.status(200).render('verify', {
     title: 'Verify',
     formTitle: `Verify ${req.session.newUser.phoneNumber}`,
     formId: 'digit-group',
+    remainTime: 50 * 60,
   });
 };
 

@@ -35,12 +35,11 @@ exports.passwordStrength = (password) => {
   return ctr;
 };
 
-exports.isSessionExpired = (session, initDate) => {
+exports.isSessionExpired = (session, expDate) => {
   // Check if the Session expired
   const timeNow = Math.floor(Date.now() / 1000);
 
-  const isExpired = initDate + 5 * 60 * 1000 < timeNow;
-  console.log(isExpired, initDate);
+  const isExpired = expDate < timeNow;
   if (isExpired) {
     session.destroy(function () {
       console.log('TIMEOUT, SESSION HAS BEEN DESTROYED');
