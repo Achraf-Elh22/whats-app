@@ -1,4 +1,4 @@
-exports.signup = (req, res, next) => {
+exports.signup = (req, res) => {
   res.status(200).render('signup', {
     title: 'Sign Up',
     formTitle: 'Create a New Account',
@@ -6,7 +6,19 @@ exports.signup = (req, res, next) => {
   });
 };
 
-exports.verify = (req, res, next) => {
+exports.verify = (req, res) => {
+  let user = req.session.newUser;
+  // Check if there is user data in session
+  if (!user)
+    return res.status(401).render('error', {
+      title: 'Error',
+      errorCode: 401,
+      errorHeader: 'Sign Up First',
+      errorDesc: `Unauthorized, Please Sign Up First`,
+      errorLink: `${req.protocol}://${req.headers.host}/signup`,
+      errorText: 'sign up',
+    });
+
   res.status(200).render('verify', {
     title: 'Verify',
     formTitle: `Verify ${req.session.newUser.phoneNumber}`,
@@ -14,9 +26,7 @@ exports.verify = (req, res, next) => {
   });
 };
 
-exports.verify;
-
-exports.login = (req, res, next) => {
+exports.login = (req, res) => {
   res.status(200).render('login', {
     title: 'Log In',
     formTitle: 'Login to Your Account',

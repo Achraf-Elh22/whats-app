@@ -1,0 +1,11 @@
+extends base
+
+block content
+	div#error
+			div.error
+				div.error-symbol
+					div
+					h1=errorCode
+				h2=errorHeader
+				p!=errorDesc
+				a(href=`${errorLink}`)= errorText

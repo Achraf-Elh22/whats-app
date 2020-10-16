@@ -7,7 +7,7 @@ exports.verify = async (req, res, next) => {
   if (!user)
     return res.status(401).json({
       status: 'Error',
-      message: `unauthorized, Please login first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+      message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
     });
   // check if the user post his Otp
   if (!req.body.otp || isNaN(req.body.otp))
@@ -22,7 +22,7 @@ exports.verify = async (req, res, next) => {
   if (!decodeToken)
     return res.status(401).json({
       status: 'Error',
-      message: `unauthorized, Please login first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`, // Find another message to show
+      message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`, // Find another message to show
     });
 
   next();
