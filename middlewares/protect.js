@@ -1,8 +1,7 @@
-const { verifyToken } = require('../utils/utils');
+const { isSessionExpired } = require('../utils/validation');
 
 exports.verify = async (req, res, next) => {
   let user = req.session.newUser;
-  console.log('Protect');
   // Check if there is user data in session
   if (!user)
     return res.status(401).json({
@@ -16,13 +15,12 @@ exports.verify = async (req, res, next) => {
       message: `Please Provide a valid OTP code`,
     });
 
-  // Check if the token in Session is valid
-  const decodeToken = await verifyToken(user.token);
+  // Check if the Session expired
 
-  if (!decodeToken)
+  if (isSessionExpired(req.session, user.initDate))
     return res.status(401).json({
       status: 'Error',
-      message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`, // Find another message to show
+      message: `Time Out, Please re-signup Again at ${req.protocol}://${req.headers.host}/api/v1/user/signup`, // Find another message to show
     });
 
   next();

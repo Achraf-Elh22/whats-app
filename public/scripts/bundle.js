@@ -8837,7 +8837,9 @@ module.exports = {
   IPINFOTOKEN: 'b896d8680909d3',
   MONGO_URI: undefined,
   JWT_SECRET: undefined,
-  JWT_EXPIRESIN: undefined
+  JWT_EXPIRESIN: undefined,
+  NEXMO_APIKEY: undefined,
+  NEXMO_APISECRET: undefined
 };
 },{"dotenv":"../../node_modules/dotenv/lib/main.js"}],"utils.js":[function(require,module,exports) {
 "use strict";
@@ -9009,6 +9011,9 @@ exports.submitOtp = /*#__PURE__*/function () {
 
             if (res.data.status === 'success') {
               (0, _utils.showAlert)('success', res.data.message);
+              window.setTimeout(function () {
+                location.assign('/profile');
+              }, 1500);
             }
 
             _context.next = 10;
@@ -17377,6 +17382,21 @@ exports.passwordStrength = function (password) {
 
   return ctr;
 };
+
+exports.isSessionExpired = function (session, initDate) {
+  // Check if the Session expired
+  var timeNow = Math.floor(Date.now() / 1000);
+  var isExpired = initDate + 5 * 60 * 1000 < timeNow;
+  console.log(isExpired, initDate);
+
+  if (isExpired) {
+    session.destroy(function () {
+      console.log('TIMEOUT, SESSION HAS BEEN DESTROYED');
+    });
+  }
+
+  return isExpired;
+};
 },{"libphonenumber-js/max":"../../node_modules/libphonenumber-js/max/index.js"}],"forms/telInput.js":[function(require,module,exports) {
 "use strict";
 
@@ -18182,7 +18202,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58625" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60085" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

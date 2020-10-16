@@ -1,3 +1,5 @@
+const { isSessionExpired } = require('../utils/validation');
+
 exports.signup = (req, res) => {
   res.status(200).render('signup', {
     title: 'Sign Up',
@@ -18,6 +20,17 @@ exports.verify = (req, res) => {
       errorLink: `${req.protocol}://${req.headers.host}/signup`,
       errorText: 'sign up',
     });
+
+  if (isSessionExpired(req.session, user.initDate)) {
+    return res.status(401).render('error', {
+      title: 'Error',
+      errorCode: 401,
+      errorHeader: 'TIMEOUT',
+      errorDesc: `Unauthorized, Please Resign Up `,
+      errorLink: `${req.protocol}://${req.headers.host}/signup`,
+      errorText: 'Resign up',
+    });
+  }
 
   res.status(200).render('verify', {
     title: 'Verify',

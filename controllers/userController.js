@@ -1,22 +1,20 @@
 const bcrypt = require('bcryptjs');
 
-const User = require('../models/userModel');
-const { createToken, generateHash, generateOtp } = require('../utils/utils');
+const { generateOtp } = require('../utils/utils');
 
 exports.signup = async (req, res) => {
   try {
     // Create User
     const hashPassword = await bcrypt.hash(req.body.password, 10);
 
-    // Create Token
-    const hash = generateHash(30);
-    const token = createToken(hash, '5m');
+    // Initialize the time of session
+    const initDate = Math.floor(Date.now() / 1000);
 
     const newUser = {
       ...req.body,
       password: hashPassword,
       phoneNumber: req.body.internationalFormat,
-      token,
+      initDate,
       country: undefined,
     };
 
@@ -43,7 +41,6 @@ exports.verify = async (req, res) => {
     let user = req.session.newUser;
     let { otp, otpFailure } = req.session.newUser;
 
-    console.log('Verify');
     if (user.otp === req.body.otp)
       return res.status(200).json({ status: 'success', message: 'OTP CORRECT 👌👌👌' });
 
