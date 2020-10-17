@@ -1,4 +1,5 @@
 const { isSessionExpired } = require('../utils/validation');
+const { diffTime } = require('../utils/utils');
 
 exports.signup = (req, res) => {
   res.status(200).render('signup', {
@@ -33,15 +34,13 @@ exports.verify = (req, res) => {
   }
 
   // Timer
-  const timeNow = Math.floor(Date.now() / 1000);
-  const remainTime = user.expDate - timeNow;
-  console.log(remainTime);
-
+  const formatTime = diffTime(user.expDate).format;
+  const formatPhoneNumber = req.session.newUser.phoneNumber.match(/.{1,4}/g).join(' ');
   res.status(200).render('verify', {
     title: 'Verify',
-    formTitle: `Verify ${req.session.newUser.phoneNumber}`,
+    formTitle: `Verify ${formatPhoneNumber}`,
     formId: 'digit-group',
-    remainTime: 50 * 60,
+    remainTime: formatTime,
   });
 };
 

@@ -9,7 +9,7 @@ exports.signup = async (req, res) => {
 
     // Initialize the time of session
     const initDate = Math.floor(Date.now() / 1000);
-    const expDate = initDate + 5 * 60 * 1000;
+    const expDate = initDate + 5 * 60 + 1;
 
     const newUser = {
       ...req.body,

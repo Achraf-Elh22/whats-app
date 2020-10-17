@@ -72,9 +72,9 @@
     - [x] Protect the verify view
     - [x] Build the error page
     - [x] remove the token from session and replace it with simple property of time
-    - [ ] Implement the time still for the otp in back and front end
+    - [x] Implement the time still for the otp in back and front end
     - [ ] implement the feature of send the otp in email if his phone isn't near him
-    - [ ] Implement the ability to resend otp in phone & email
+    - [ ] Implement the ability to resend otp in phone & email and reset the timer
     - [ ] Send him to the next Stage "Create Profile"
     - [ ] implement the abality to save profile image and optimize it
     - [ ] Save the User Information

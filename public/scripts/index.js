@@ -135,6 +135,8 @@ if (telinput) {
 // timer
 
 if (timer) {
-  console.log(timer.value);
-  // startTimer(timer.value, timer);
+  const time = timer.innerText.split(':'); // for exemple if the input is 2:10  it will return ["2","10"]
+  const remainTime = time[0] * 60 + time[1] * 1; // multiple the minutes 2 by 60 to have seconds value
+  console.log(remainTime, time);
+  startTimer(remainTime, timer);
 }
