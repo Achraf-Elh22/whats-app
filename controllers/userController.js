@@ -16,6 +16,7 @@ exports.signup = async (req, res) => {
       password: hashPassword,
       phoneNumber: req.body.internationalFormat,
       expDate,
+      sendBy: 'EMAIL', // default value is SMS, but could change by the user to Email
       country: undefined,
     };
 
@@ -25,6 +26,7 @@ exports.signup = async (req, res) => {
     return res.status(200).json({
       status: 'success',
       message: `Please verify your account in ${req.protocol}://${req.headers.host}/api/v1/user/verify`,
+      data: newUser,
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err);
@@ -40,7 +42,7 @@ exports.verify = async (req, res) => {
   try {
     // OTP
     let user = req.session.newUser;
-    let { otp, otpFailure } = req.session.newUser;
+    let { otp, otpFailure, consecutiveFailure } = req.session.newUser;
 
     if (user.otp === req.body.otp)
       return res.status(200).json({ status: 'success', message: 'OTP CORRECT 👌👌👌' });
@@ -50,7 +52,8 @@ exports.verify = async (req, res) => {
     if (otpFailure === 3) {
       otp = generateOtp();
       otpFailure = 0;
-      user = req.session.newUser = { ...user, otp, otpFailure };
+      consecutiveFailure += 1;
+      user = req.session.newUser = { ...user, otp, otpFailure, consecutiveFailure };
       return res.status(401).json({
         status: 'error',
         message: 'You made 3 consecutive Wrong OTP, we will resend to you new OTP code',
@@ -63,6 +66,7 @@ exports.verify = async (req, res) => {
     return res.status(401).json({
       status: 'error',
       message: "Wrong OTP, please repeat again if you didn't receive the OTP code Click Resend",
+      data: user,
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err.message, err);

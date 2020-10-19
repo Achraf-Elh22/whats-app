@@ -73,8 +73,12 @@
     - [x] Build the error page
     - [x] remove the token from session and replace it with simple property of time
     - [x] Implement the time still for the otp in back and front end
-    - [ ] implement the feature of send the otp in email if his phone isn't near him
+    - [x] implement the feature of send the otp in email if his phone isn't near him
+    - [ ] create token to send in Email
+    - [ ] Build function that will be able to change the Sendby property and delete the information that was related to the previeus one
+    - [ ] Encrypt OTP code
     - [ ] Implement the ability to resend otp in phone & email and reset the timer
+    - [ ] Fix the Otp Failure
     - [ ] Send him to the next Stage "Create Profile"
     - [ ] implement the abality to save profile image and optimize it
     - [ ] Save the User Information

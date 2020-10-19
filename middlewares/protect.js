@@ -22,6 +22,10 @@ exports.verify = async (req, res, next) => {
       status: 'Error',
       message: `Time Out, Please re-signup Again at ${req.protocol}://${req.headers.host}/api/v1/user/signup`, // Find another message to show
     });
-
+  if (user.consecutiveFailure >= 3)
+    return res.status(401).json({
+      status: 'Error',
+      message: `You made alot of attempts, Please re-Check your informatiin by re-sign in  ${req.protocol}://${req.headers.host}/api/v1/user/signup`, // Find another message to show
+    });
   next();
 };

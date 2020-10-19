@@ -13,7 +13,7 @@ const {
 module.exports = class Email {
   constructor(user, url) {
     this.to = user.email;
-    this.firstName = user.name.split(' ')[0];
+    this.firstName = user.name || ' ';
     this.url = url;
     this.from = `ACHRAF ELHAMZAOUI <${EMAIL_FROM}>`;
   }
@@ -38,7 +38,7 @@ module.exports = class Email {
     // 1) Render HTML based on pug template
     const html = pug.renderFile(`${__dirname}/../views/emails/${template}.pug`, {
       subject,
-      firstName: this.firstName,
+      firstName: this.firstName.split(' ')[0],
       url: this.url,
     });
     // 2) Define Email options
