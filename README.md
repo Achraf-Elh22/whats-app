@@ -78,6 +78,7 @@
     - [ ] Send him to the next Stage "Create Profile"
     - [ ] implement the abality to save profile image and optimize it
     - [ ] Save the User Information
+    - [ ] Send welcome email to the user
     - [ ] Sign in with google, facebook, instagram
   - Login
     - [ ]

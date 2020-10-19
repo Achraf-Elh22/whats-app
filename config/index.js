@@ -7,8 +7,11 @@ module.exports = {
   NODE_ENV: process.env.NODE_ENV,
   IPINFOTOKEN: 'b896d8680909d3',
   MONGO_URI: process.env.MONGO_URI,
-  JWT_SECRET: process.env.JWT_SECRET,
-  JWT_EXPIRESIN: process.env.JWT_EXPIRESIN,
   NEXMO_APIKEY: process.env.NEXMO_APIKEY,
   NEXMO_APISECRET: process.env.NEXMO_APISECRET,
+  EMAIL_FROM: process.env.EMAIL_FROM,
+  MAILTRAP_HOST: process.env.MAILTRAP_HOST,
+  MAILTRAP_PORT: process.env.MAILTRAP_PORT,
+  MAILTRAP_AUTH_USER: process.env.MAILTRAP_AUTH_USER,
+  MAILTRAP_AUTH_PASS: process.env.MAILTRAP_AUTH_PASS,
 };

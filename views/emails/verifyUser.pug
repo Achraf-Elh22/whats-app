@@ -1,0 +1,17 @@
+extends baseEmail
+
+block content
+  p Hi #{firstName},
+  p Welcome to Whats-App, we're glad to have you 🎉🙏
+  p We're still just one more step to have the ultimate experience with your friend so buckle up 😎😎😎
+  table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+    tbody
+      tr
+        td(align='left')
+          table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+            tbody
+              tr
+                td
+                  a(href=`${url}`, target='_blank') Verify Me
+  p If you need any help with your account, please don't hesitate to contact me!
+  p - Achraf Elhamzaoui, CEO
