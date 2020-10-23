@@ -1,5 +1,6 @@
 const { isSessionExpired } = require('../utils/validation');
 const { diffTime } = require('../utils/utils');
+const { send } = require('../middlewares/utils');
 
 exports.signup = (req, res) => {
   res.status(200).render('signup', {
@@ -32,6 +33,16 @@ exports.verify = (req, res) => {
       errorText: 'Resign up',
     });
   }
+
+  if (user.consecutiveFailure >= 3)
+    return res.status(401).render('error', {
+      title: 'Error',
+      errorCode: 401,
+      errorHeader: 'YOU MADE ALOT OF ATTEMPTS ',
+      errorDesc: `You made alot of attempts, Please re-Check your informatiin by re-sign`,
+      errorLink: `${req.protocol}://${req.headers.host}/signup`,
+      errorText: 'Resign up',
+    });
 
   // Timer
   const formatTime = diffTime(user.expDate).format;

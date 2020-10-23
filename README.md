@@ -74,7 +74,10 @@
     - [x] remove the token from session and replace it with simple property of time
     - [x] Implement the time still for the otp in back and front end
     - [x] implement the feature of send the otp in email if his phone isn't near him
-    - [ ] create token to send in Email
+    - [x] Finish building verify process
+    - [ ] Pass the User to Stage 3
+    - [ ] Build the Stage 3 UI
+    - [ ] Handle the Errors of sign up
     - [ ] Build function that will be able to change the Sendby property and delete the information that was related to the previeus one
     - [ ] Encrypt OTP code
     - [ ] Implement the ability to resend otp in phone & email and reset the timer
@@ -97,6 +100,10 @@
 - [ ] Compare the validation in backend with frontend
 - [ ] Performance
 - [ ] copyrights
+
+## Errors To handle
+
+- [ ] JWT expired
 
 TODO: Learning version
 

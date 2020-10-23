@@ -1,32 +1,11 @@
-const bcrypt = require('bcryptjs');
-
-const { generateOtp } = require('../utils/utils');
+const { generateOtp, generateHash, createToken, verifyToken } = require('../utils/utils');
 
 exports.signup = async (req, res) => {
   try {
-    // Create User
-    const hashPassword = await bcrypt.hash(req.body.password, 10);
-
-    // Initialize the time of session
-    const initDate = Math.floor(Date.now() / 1000);
-    const expDate = initDate + 5 * 60 + 1;
-
-    const newUser = {
-      ...req.body,
-      password: hashPassword,
-      phoneNumber: req.body.internationalFormat,
-      expDate,
-      sendBy: 'EMAIL', // default value is SMS, but could change by the user to Email
-      country: undefined,
-    };
-
-    // save the user in session
-    req.session.newUser = newUser;
-
     return res.status(200).json({
       status: 'success',
       message: `Please verify your account in ${req.protocol}://${req.headers.host}/api/v1/user/verify`,
-      data: newUser,
+      data: req.session.newUser,
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err);
@@ -42,27 +21,43 @@ exports.verify = async (req, res) => {
   try {
     // OTP
     let user = req.session.newUser;
-    let { otp, otpFailure, consecutiveFailure } = req.session.newUser;
+    let { otpCode, otpFailure, consecutiveFailure } = req.session.newUser;
 
-    if (user.otp === req.body.otp)
+    console.log(user.otpCode);
+
+    if (user.otpCode === req.body.otpCode) {
+      req.session.newUser = {
+        ...user,
+        otpCode: undefined,
+        otpFailure: undefined,
+        consecutiveFailure: undefined,
+      };
       return res.status(200).json({ status: 'success', message: 'OTP CORRECT 👌👌👌' });
+    }
 
     otpFailure = otpFailure + 1; // The first try give you only 2 chances of Giving correct OTP before regenarate another one
 
     if (otpFailure === 3) {
-      otp = generateOtp();
+      otpCode = generateOtp();
+
       otpFailure = 0;
       consecutiveFailure += 1;
-      user = req.session.newUser = { ...user, otp, otpFailure, consecutiveFailure };
+      user = req.session.newUser = { ...user, otpCode, otpFailure, consecutiveFailure };
+
       return res.status(401).json({
         status: 'error',
         message: 'You made 3 consecutive Wrong OTP, we will resend to you new OTP code',
       });
     }
 
-    user = req.session.newUser = { ...user, otp, otpFailure };
+    if (user.consecutiveFailure >= 3) {
+      session.destroy(function () {
+        console.log('TIMEOUT, SESSION HAS BEEN DESTROYED');
+      });
+    }
 
-    console.log(user.otp, req.body.otp);
+    user = req.session.newUser = { ...user, otpCode, otpFailure };
+
     return res.status(401).json({
       status: 'error',
       message: "Wrong OTP, please repeat again if you didn't receive the OTP code Click Resend",
@@ -73,6 +68,7 @@ exports.verify = async (req, res) => {
     res.status(409).json({ status: 'error', message: err.message, error: err });
   }
 };
+
 // verify Error:
 // JWT expired
 

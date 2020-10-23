@@ -40,7 +40,7 @@ exports.submitOtp = async (data) => {
     const res = await axios({
       method: 'POST',
       url: '/api/v1/user/verify',
-      data: { otp: data },
+      data: { otpCode: data },
     });
     if (res.data.status === 'success') {
       showAlert('success', res.data.message);
@@ -50,5 +50,10 @@ exports.submitOtp = async (data) => {
     }
   } catch (error) {
     showAlert('error', error.response.data.message);
+    if (error.response.data.message.startsWith('You made alot of attempts')) {
+      window.setTimeout(() => {
+        location.reload();
+      }, 1000);
+    }
   }
 };

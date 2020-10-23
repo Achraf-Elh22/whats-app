@@ -11,10 +11,10 @@ const {
 } = require('../config/index');
 
 module.exports = class Email {
-  constructor(user, url) {
+  constructor(user, otpCode) {
     this.to = user.email;
     this.firstName = user.name || ' ';
-    this.url = url;
+    this.otpCode = otpCode;
     this.from = `ACHRAF ELHAMZAOUI <${EMAIL_FROM}>`;
   }
 
@@ -39,8 +39,9 @@ module.exports = class Email {
     const html = pug.renderFile(`${__dirname}/../views/emails/${template}.pug`, {
       subject,
       firstName: this.firstName.split(' ')[0],
-      url: this.url,
+      otpCode: this.otpCode.split(''),
     });
+    console.log(this.otpCode);
     // 2) Define Email options
     const mailOptions = {
       from: this.from,
