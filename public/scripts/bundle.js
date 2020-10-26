@@ -8850,7 +8850,7 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.checkEmail = exports.isPasswordSecure = exports.showAlert = exports.hideAlert = exports.checkBeforeSubmit = exports.getUserInfo = void 0;
+exports.resend = exports.checkEmail = exports.isPasswordSecure = exports.showAlert = exports.hideAlert = exports.checkBeforeSubmit = exports.getUserInfo = void 0;
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -8944,9 +8944,39 @@ var checkEmail = function checkEmail(email) {
     var isEmail = regex.test(email);
     return isEmail;
   }
-};
+}; // Send
+
 
 exports.checkEmail = checkEmail;
+
+var resend = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+    var sendBy,
+        _args2 = arguments;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            sendBy = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : 'EMAIL';
+            _context2.next = 3;
+            return _axios.default.post('/api/v1/user/send', {
+              sendBy: sendBy
+            });
+
+          case 3:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function resend() {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+exports.resend = resend;
 },{"axios":"../../node_modules/axios/index.js","../../config/index":"../../config/index.js"}],"forms/otpInput.js":[function(require,module,exports) {
 "use strict";
 
@@ -18033,6 +18063,38 @@ if (digitGroup) {
 
   (0, _otpInput.otpInput)(digitGroup);
   var digits = digitGroup.querySelectorAll('input');
+  var resendOtpBtn = document.querySelectorAll('.resendOtp-btn');
+  console.log(resendOtpBtn);
+  resendOtpBtn.forEach(function (btn) {
+    btn.addEventListener('click', /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+        var sendBy;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e.preventDefault(); // button clickable just for 5 seconds
+
+                sendBy = this.id.split('-')[1];
+                _context.next = 4;
+                return (0, _utils.resend)(sendBy);
+
+              case 4:
+                location.reload();
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+  });
   digitGroup.addEventListener('submit', function (e) {
     e.preventDefault();
     (0, _otpInput.submitOtp)((0, _otpInput.formatOtp)(digits));
@@ -18095,60 +18157,60 @@ if (newUserForm) {
   }); // Check before submit
 
   newUserForm.addEventListener('submit', /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
       var _yield$checkTelInput, isValidTel, country, passwordSecure;
 
-      return regeneratorRuntime.wrap(function _callee$(_context) {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context.prev = _context.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               e.preventDefault();
-              _context.next = 3;
+              _context2.next = 3;
               return (0, _telInput.checkTelInput)(telinput.value);
 
             case 3:
-              _yield$checkTelInput = _context.sent;
+              _yield$checkTelInput = _context2.sent;
               isValidTel = _yield$checkTelInput.isValidTel;
               country = _yield$checkTelInput.country;
 
               if (isValidTel) {
-                _context.next = 8;
+                _context2.next = 8;
                 break;
               }
 
-              return _context.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Phone Number'));
+              return _context2.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Phone Number'));
 
             case 8:
               if (isEmail) {
-                _context.next = 10;
+                _context2.next = 10;
                 break;
               }
 
-              return _context.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Email'));
+              return _context2.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Email'));
 
             case 10:
               passwordSecure = (0, _utils.isPasswordSecure)(_ctr, 'Please choose a strong password. Try a mix of letters, number, and symbols');
 
               if (passwordSecure) {
-                _context.next = 13;
+                _context2.next = 13;
                 break;
               }
 
-              return _context.abrupt("return");
+              return _context2.abrupt("return");
 
             case 13:
-              return _context.abrupt("return", (0, _signup.signup)(telinput.value, emailInput.value, password.value, country));
+              return _context2.abrupt("return", (0, _signup.signup)(telinput.value, emailInput.value, password.value, country));
 
             case 14:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
-      }, _callee);
+      }, _callee2);
     }));
 
-    return function (_x) {
-      return _ref.apply(this, arguments);
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
     };
   }());
 } // Tell Input
@@ -18156,25 +18218,25 @@ if (newUserForm) {
 
 if (telinput) {
   (0, _telInput.telInput)(telinput);
-  telinput.addEventListener('focusout', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+  telinput.addEventListener('focusout', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
     var formatTel;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
-            _context2.next = 2;
+            _context3.next = 2;
             return (0, _telInput.formatTelInput)(telinput.value);
 
           case 2:
-            formatTel = _context2.sent;
+            formatTel = _context3.sent;
             this.value = formatTel;
 
           case 4:
           case "end":
-            return _context2.stop();
+            return _context3.stop();
         }
       }
-    }, _callee2, this);
+    }, _callee3, this);
   })));
 } // timer
 
@@ -18214,7 +18276,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52045" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53433" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

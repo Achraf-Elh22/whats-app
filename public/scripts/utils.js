@@ -49,3 +49,8 @@ export const checkEmail = (email) => {
     return isEmail;
   }
 };
+
+// Send
+export const resend = async (sendBy = 'EMAIL') => {
+  await axios.post('/api/v1/user/send', { sendBy });
+};

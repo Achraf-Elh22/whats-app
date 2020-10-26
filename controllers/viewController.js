@@ -49,9 +49,10 @@ exports.verify = (req, res) => {
   const formatPhoneNumber = req.session.newUser.phoneNumber.match(/.{1,4}/g).join(' ');
   res.status(200).render('verify', {
     title: 'Verify',
-    formTitle: `Verify ${formatPhoneNumber}`,
+    formTitle: `Verify ${user.sendBy === 'SMS' ? formatPhoneNumber : user.email}`,
     formId: 'digit-group',
     remainTime: formatTime,
+    sendBy: user.sendBy === 'SMS' ? 'EMAIL' : 'SMS',
   });
 };
 

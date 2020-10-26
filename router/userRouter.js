@@ -14,18 +14,20 @@ const router = express.Router();
 router.post('/signup', validation.signup, saveUserInSession, generateCode, send, signup);
 
 // Router /api/v1/user/verify
-// Desc POST veerify the suer by send OTP code via Email or Phone number
-router.post('/verify', protect.verify, send, verify);
+// Desc POST verify the suer by send OTP code via Email or Phone number
+router.use(protect.verify);
+
+router.post('/verify', send, verify);
+
+router.post('/send', (req, res, next) => {
+  const sendIt = true;
+  const user = req.session.newUser;
+  user.sendBy === req.body.sendBy;
+  send(req, res, next, sendIt);
+});
 
 // Route /api/v1/user/logIn
 // desc POST FORM INFO FOR Login => Phone, Password
 router.post('/login', login);
 
 module.exports = router;
-
-// TODO
-//  - Finish buildin verify process
-//! -Solve the probleme wiht email send twice
-//  - Pass the User to Stage 3
-//  - Build the Stage 3 UI
-//  - Handle the Errors of sign up

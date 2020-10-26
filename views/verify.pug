@@ -17,6 +17,8 @@ block button
 
 block description
     p(class="descption-text txt-centered small-txt") You can send request again, if you have not received OTP sent on your registered device.
-        a(href="#" class="txt-primary") Resend OTP
+        a(href="#" class="txt-primary resendOtp-btn") Resend OTP
+    p(class="descption-text txt-centered small-txt")=`If your have problem with ${sendBy==="SMS" ? "EMAIL" : "SMS"} we could always send you the verify code in` 
+        a(href="#" class="txt-primary resendOtp-btn" id=`sendBy-${sendBy}`)= sendBy
     h2(class="descption-text txt-centered" id='timer')= remainTime
         

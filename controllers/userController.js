@@ -1,4 +1,4 @@
-const { generateOtp, generateHash, createToken, verifyToken } = require('../utils/utils');
+const { generateOtp } = require('../utils/utils');
 
 exports.signup = async (req, res) => {
   try {
@@ -24,6 +24,14 @@ exports.verify = async (req, res) => {
     let { otpCode, otpFailure, consecutiveFailure } = req.session.newUser;
 
     console.log(user.otpCode);
+
+    // check if the user post his Otp
+
+    if (!req.body.otpCode || isNaN(req.body.otpCode))
+      return res.status(401).json({
+        status: 'Error',
+        message: `Please Provide a valid Verify code`,
+      });
 
     if (user.otpCode === req.body.otpCode) {
       req.session.newUser = {

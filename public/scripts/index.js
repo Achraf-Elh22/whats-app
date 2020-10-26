@@ -3,7 +3,7 @@ import '@babel/polyfill';
 
 import { otpInput, formatOtp, submitOtp } from './forms/otpInput';
 import { telInput, formatTelInput, checkTelInput } from './forms/telInput';
-import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit } from './utils';
+import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit, resend } from './utils';
 import { togglePassword, checkPasswordStrength, checkConfirmPassword } from './forms/passwords';
 import { signup } from '../scripts/forms/signup';
 import { startTimer } from '../scripts/forms/countDownTimer';
@@ -36,6 +36,18 @@ if (digitGroup) {
   otpInput(digitGroup);
 
   const digits = digitGroup.querySelectorAll('input');
+  const resendOtpBtn = document.querySelectorAll('.resendOtp-btn');
+
+  console.log(resendOtpBtn);
+  resendOtpBtn.forEach((btn) => {
+    btn.addEventListener('click', async function (e) {
+      e.preventDefault();
+      // button clickable just for 5 seconds
+      const sendBy = this.id.split('-')[1];
+      await resend(sendBy);
+      location.reload();
+    });
+  });
 
   digitGroup.addEventListener('submit', function (e) {
     e.preventDefault();

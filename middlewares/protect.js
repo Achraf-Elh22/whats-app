@@ -26,12 +26,5 @@ exports.verify = async (req, res, next) => {
       message: `You made alot of attempts, Please re-Check your informatiin by re-sign in  ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
     });
 
-  // check if the user post his Otp
-
-  if (!req.body.otpCode || isNaN(req.body.otpCode))
-    return res.status(401).json({
-      status: 'Error',
-      message: `Please Provide a valid Verify code`,
-    });
   next();
 };

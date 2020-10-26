@@ -50,16 +50,27 @@ exports.generateCode = async (req, res, next) => {
   }
 };
 
-exports.send = async (req, res, next) => {
+exports.send = async (req, res, next, sendIt = false) => {
   try {
-    const user = req.session.newUser;
-    if (user.otpFailure === 0) {
+    let user = req.session.newUser;
+    const { sendBy } = req.body || user;
+
+    let SMSTextTemplete = `WHATSAPP Demo OTP code : ${user.otpCode} valid for 5 min`;
+    const email = new Email(user, `${user.otpCode}`);
+
+    if (user.otpFailure === 0 || sendIt === true) {
       console.log('SEND');
-      let SMSTextTemplete = `WHATSAPP Demo OTP code : ${user.otpCode} valid for 5 min`;
-      const email = new Email(user, `${user.otpCode}`);
-      user.sendBy === 'SMS'
+      sendBy === 'SMS'
         ? sendSMS(user.phoneNumber, SMSTextTemplete)
         : email.sendMail('verify', 'Verify User');
+    }
+    if (sendIt === true) {
+      user.sendBy = sendBy;
+      req.session.newUser = { ...user };
+      return res.status(200).json({
+        status: 'success',
+        message: `Check your ${sendBy === 'SMS' ? 'Phone' : 'Email'} The Code has been Send`,
+      });
     }
     next();
   } catch (err) {
