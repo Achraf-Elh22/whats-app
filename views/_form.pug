@@ -6,7 +6,7 @@ block content
         div(class="hero-image bg-primary")
             img(src="/assets/images/whatsapp.svg" alt="logo")
             h2 WhatsApp
-        div(class="form-primary txt-secondary")
+        div(class=`form-primary txt-secondary ${formId}`)
             h2=formTitle
             if formId === "newUser"
                 form(id=`${formId}` novalidate)

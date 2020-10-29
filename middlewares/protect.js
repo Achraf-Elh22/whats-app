@@ -1,6 +1,6 @@
 const { isSessionExpired } = require('../utils/validation');
 
-exports.verify = async (req, res, next) => {
+exports.signIn = async (req, res, next) => {
   let user = req.session.newUser;
   // Check if there is user data in session
 

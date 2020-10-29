@@ -7,6 +7,7 @@ import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit, resend } fr
 import { togglePassword, checkPasswordStrength, checkConfirmPassword } from './forms/passwords';
 import { signup } from '../scripts/forms/signup';
 import { startTimer } from '../scripts/forms/countDownTimer';
+import { readURL } from './forms/fileInput';
 
 const resetPasswordForm = document.querySelector('#resetPassword');
 const newUserForm = document.querySelector('#newUser');
@@ -18,6 +19,8 @@ const confirmPassword = document.querySelector('#confirmPassword');
 const telinput = document.querySelector('#phone');
 const emailInput = document.querySelector('#email');
 const timer = document.querySelector('#timer');
+
+// document.querySelector('#profilePicture').addEventListener('onChange', readURL(this));
 
 // OTP INPUT (verify.html)
 if (digitGroup) {

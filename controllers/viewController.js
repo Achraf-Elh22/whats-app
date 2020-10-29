@@ -1,6 +1,5 @@
 const { isSessionExpired } = require('../utils/validation');
 const { diffTime } = require('../utils/utils');
-const { send } = require('../middlewares/utils');
 
 exports.signup = (req, res) => {
   res.status(200).render('signup', {
@@ -53,6 +52,14 @@ exports.verify = (req, res) => {
     formId: 'digit-group',
     remainTime: formatTime,
     sendBy: user.sendBy === 'SMS' ? 'EMAIL' : 'SMS',
+  });
+};
+
+exports.profile = (req, res, next) => {
+  res.status(200).render('profile', {
+    title: 'Create Profile',
+    formId: 'profile',
+    formTitle: 'Create Your Profile',
   });
 };
 

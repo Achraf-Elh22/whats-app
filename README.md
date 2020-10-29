@@ -42,6 +42,7 @@
   - [x] add the email and password validator
 - [x] Refacture js files to be server from nodejs server
 - [x] implement the error and success flags popup
+- [ ] Build the Intro
 - [ ] implement local storage
 - [ ] Performance
 - [ ] Accessibility
@@ -75,18 +76,15 @@
     - [x] Implement the time still for the otp in back and front end
     - [x] implement the feature of send the otp in email if his phone isn't near him
     - [x] Finish building verify process
-    - [ ] Pass the User to Stage 3
-    - [ ] Build the Stage 3 UI
-    - [ ] Handle the Errors of sign up
-    - [ ] Build function that will be able to change the Sendby property and delete the information that was related to the previeus one
-    - [ ] Encrypt OTP code
-    - [ ] Implement the ability to resend otp in phone & email and reset the timer
-    - [ ] Fix the Otp Failure
-    - [ ] Send him to the next Stage "Create Profile"
-    - [ ] implement the abality to save profile image and optimize it
-    - [ ] Save the User Information
-    - [ ] Send welcome email to the user
+    - [x] Pass the User to Stage 3
+    - [ ] Build the Stage 3 UI "Create Profile"
+    - [ ] implement the functionality to upload profile image (multer)
+    - [ ] optimize the picture with (sharp)
+    - [ ] Save the User Information in Db and destroy session and Pass user to contact Page
+    - [ ] Send welcome email to the user via Email
     - [ ] Sign in with google, facebook, instagram
+    - [ ] Handle the Errors of sign up
+    - [ ]
   - Login
     - [ ]
 - [ ] Build the view controller:

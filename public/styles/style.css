@@ -20,6 +20,7 @@ body {
   font-size: 16px;
   line-height: 1.4;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
 }
 
 /* utils */
@@ -521,10 +522,56 @@ p {
   background-color: #20bf6b;
 }
 
+/* Create Profile */
+.profile {
+  text-align: center;
+}
+.profile h2 {
+  font-size: 1.8rem;
+}
+.profile label {
+  text-align: left;
+  font-size: 1rem;
+}
+
+.profile input {
+  margin: 10px 0;
+}
+
+#profilePicture {
+  color: transparent;
+  outline: none;
+  width: 100px;
+  display: block;
+  margin-top: 25px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+#profilePicture::-webkit-file-upload-button {
+  visibility: hidden;
+}
+#profilePicture::before {
+  content: '';
+  display: block;
+  border-radius: 45%;
+  background: url('/assets/icons/createProfile.svg') no-repeat center center/cover;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  margin: 0px;
+}
+
+@media screen and (max-height: 750px) and (max-width: 500px) {
+  body {
+    overflow: scroll;
+  }
+}
+
 @media screen and (min-width: 700px) {
   body {
     line-height: 1.6;
     font-size: 18px;
+    overflow: hidden;
   }
   .container {
     grid-template-rows: 1fr;
@@ -577,5 +624,9 @@ p {
   .socialmedia img {
     width: 80px;
     height: 80px;
+  }
+  /* Create Profile */
+  .profile {
+    width: 50%;
   }
 }

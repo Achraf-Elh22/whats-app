@@ -13,9 +13,9 @@ exports.signup = async (req, res) => {
   }
 };
 
-// Sign up Error
-// DB:
-// handle the deplicated key error
+//! Sign up Error
+//! DB:
+//! handle the deplicated key error
 
 exports.verify = async (req, res) => {
   try {
@@ -77,8 +77,15 @@ exports.verify = async (req, res) => {
   }
 };
 
-// verify Error:
-// JWT expired
+//! verify Error:
+//! JWT expired
+
+exports.profile = (req, res, next) => {
+  res.status(501).json({
+    status: 'Not Implemented',
+    data: null,
+  });
+};
 
 exports.login = (req, res, next) => {
   res.status(501).json({
