@@ -77,7 +77,8 @@
     - [x] implement the feature of send the otp in email if his phone isn't near him
     - [x] Finish building verify process
     - [x] Pass the User to Stage 3
-    - [ ] Build the Stage 3 UI "Create Profile"
+    - [x] Build the Stage 3 UI "Create Profile"
+    - [ ] Build the overlayout to show the user his contact (ui)
     - [ ] implement the functionality to upload profile image (multer)
     - [ ] optimize the picture with (sharp)
     - [ ] Save the User Information in Db and destroy session and Pass user to contact Page

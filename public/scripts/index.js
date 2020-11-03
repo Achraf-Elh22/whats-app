@@ -10,6 +10,7 @@ import { startTimer } from '../scripts/forms/countDownTimer';
 import { readURL } from './forms/fileInput';
 
 const resetPasswordForm = document.querySelector('#resetPassword');
+const container = document.querySelector('.container');
 const newUserForm = document.querySelector('#newUser');
 const digitGroup = document.querySelector('#digit-group');
 const togglePwd = document.querySelectorAll('.toggle-password');
@@ -19,8 +20,39 @@ const confirmPassword = document.querySelector('#confirmPassword');
 const telinput = document.querySelector('#phone');
 const emailInput = document.querySelector('#email');
 const timer = document.querySelector('#timer');
+const profile = document.querySelector('#profile');
+const submitButton = document.querySelector('button[type=submit]');
+const profilePicture = document.querySelector('#profilePicture');
 
-// document.querySelector('#profilePicture').addEventListener('onChange', readURL(this));
+if (profile) {
+  profilePicture.addEventListener('change', function () {
+    readURL(this);
+  });
+
+  profile.addEventListener('submit', function (e) {
+    e.preventDefault();
+  });
+
+  submitButton.addEventListener('click', async function () {
+    console.log('click');
+    const overall = document.querySelector('.overall');
+    const ishinding = overall.classList.contains('hide');
+
+    if (ishinding) {
+      overall.classList.remove('hide');
+      container.classList.add('hide');
+
+      overall.classList.add('animate__fadeInDown');
+    }
+    await setTimeout(() => {
+      overall.classList.remove('animate__fadeInDown');
+      overall.classList.add('animate__fadeOutDown', 'animate__slow');
+    }, 5000);
+    await setTimeout(() => {
+      location.assign('/contact');
+    }, 6000);
+  });
+}
 
 // OTP INPUT (verify.html)
 if (digitGroup) {

@@ -1,13 +1,15 @@
-// exports.readURL = (input) => {
-//   if (input.files && input.files[0]) {
-//     var reader = new FileReader();
-//     const img = document.querySelector('#blah');
+exports.readURL = (input) => {
+  console.log(input);
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-//     reader.onload = function (e) {
-//       img.setAttribute('src', e.target.result);
-//       img.styles = 'width:150;height:200;';
-//     };
+    var slidingTagLiAfterStyle = document.createElement('style');
 
-//     reader.readAsDataURL(input.files[0]);
-//   }
-// };
+    reader.onload = function (e) {
+      slidingTagLiAfterStyle.innerHTML = `#profilePicture::before {background:url(${e.target.result}) no-repeat center center/cover;}`;
+      document.head.appendChild(slidingTagLiAfterStyle);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+};

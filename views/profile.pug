@@ -1,11 +1,30 @@
 extends _form
 
+include mixins/button
+include mixins/overallAnimation
+
+block append head  
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
+
+block overall
+    +overallAnimation
+        div(class="contact__chat-msg p-2")
+            img(src="/assets/images/user (1).png" alt="user" )
+            div(class="contact__chat-msg--name")
+                span Rosa Welch
+                div
+                    svg(xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18" width="16" height="16")
+                        path(
+                        fill="#34B7F1"
+                        d="M17.394 5.035l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-.427-.388a.381.381 0 0 0-.578.038l-.451.576a.497.497 0 0 0 .043.645l1.575 1.51a.38.38 0 0 0 .577-.039l7.483-9.602a.436.436 0 0 0-.076-.609zm-4.892 0l-.57-.444a.434.434 0 0 0-.609.076l-6.39 8.198a.38.38 0 0 1-.577.039l-2.614-2.556a.435.435 0 0 0-.614.007l-.505.516a.435.435 0 0 0 .007.614l3.887 3.8a.38.38 0 0 0 .577-.039l7.483-9.602a.435.435 0 0 0-.075-.609z")
+                    p ....
 
 block inputs
     input(type="file" id="profilePicture" name="profilePicture")
-    img(id="blah" src="#" alt="your image")
     label Add Your Profile Picture
     label(class="primary-label" for="userName"  ) Enter Your Name :
     input(type="text" class="primary-input" id="userName" name="userName" placeholder="Enter Your Name")
     label(class="primary-label" for="description" ) About :
     input(type="text" class="primary-input" id="description" name="description" placeholder="Description about Yourself")
+block button
+    +button("submit","Save","saveUser")

@@ -13,6 +13,7 @@
   "author": "Achraf Elhamzaoui",
   "license": "ISC",
   "dependencies": {
+    "animate.css": "^4.1.1",
     "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",

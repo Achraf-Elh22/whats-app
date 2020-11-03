@@ -17761,17 +17761,21 @@ exports.startTimer = function (duration, display) {
   }, 1000);
 };
 },{}],"forms/fileInput.js":[function(require,module,exports) {
-// exports.readURL = (input) => {
-//   if (input.files && input.files[0]) {
-//     var reader = new FileReader();
-//     const img = document.querySelector('#blah');
-//     reader.onload = function (e) {
-//       img.setAttribute('src', e.target.result);
-//       img.styles = 'width:150;height:200;';
-//     };
-//     reader.readAsDataURL(input.files[0]);
-//   }
-// };
+exports.readURL = function (input) {
+  console.log(input);
+
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    var slidingTagLiAfterStyle = document.createElement('style');
+
+    reader.onload = function (e) {
+      slidingTagLiAfterStyle.innerHTML = "#profilePicture::before {background:url(".concat(e.target.result, ") no-repeat center center/cover;}");
+      document.head.appendChild(slidingTagLiAfterStyle);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+};
 },{}],"index.js":[function(require,module,exports) {
 "use strict";
 
@@ -18050,6 +18054,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var resetPasswordForm = document.querySelector('#resetPassword');
+var container = document.querySelector('.container');
 var newUserForm = document.querySelector('#newUser');
 var digitGroup = document.querySelector('#digit-group');
 var togglePwd = document.querySelectorAll('.toggle-password');
@@ -18058,8 +18063,55 @@ var newPassword = document.querySelector('#newPassword');
 var confirmPassword = document.querySelector('#confirmPassword');
 var telinput = document.querySelector('#phone');
 var emailInput = document.querySelector('#email');
-var timer = document.querySelector('#timer'); // document.querySelector('#profilePicture').addEventListener('onChange', readURL(this));
-// OTP INPUT (verify.html)
+var timer = document.querySelector('#timer');
+var profile = document.querySelector('#profile');
+var submitButton = document.querySelector('button[type=submit]');
+var profilePicture = document.querySelector('#profilePicture');
+
+if (profile) {
+  profilePicture.addEventListener('change', function () {
+    (0, _fileInput.readURL)(this);
+  });
+  profile.addEventListener('submit', function (e) {
+    e.preventDefault();
+  });
+  submitButton.addEventListener('click', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+    var overall, ishinding;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            console.log('click');
+            overall = document.querySelector('.overall');
+            ishinding = overall.classList.contains('hide');
+
+            if (ishinding) {
+              overall.classList.remove('hide');
+              container.classList.add('hide');
+              overall.classList.add('animate__fadeInDown');
+            }
+
+            _context.next = 6;
+            return setTimeout(function () {
+              overall.classList.remove('animate__fadeInDown');
+              overall.classList.add('animate__fadeOutDown', 'animate__slow');
+            }, 5000);
+
+          case 6:
+            _context.next = 8;
+            return setTimeout(function () {
+              location.assign('/contact');
+            }, 6000);
+
+          case 8:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  })));
+} // OTP INPUT (verify.html)
+
 
 if (digitGroup) {
   // Check if the input is number
@@ -18082,16 +18134,16 @@ if (digitGroup) {
   console.log(resendOtpBtn);
   resendOtpBtn.forEach(function (btn) {
     btn.addEventListener('click', /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
         var sendBy;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 e.preventDefault(); // button clickable just for 5 seconds
 
                 sendBy = this.id.split('-')[1];
-                _context.next = 4;
+                _context2.next = 4;
                 return (0, _utils.resend)(sendBy);
 
               case 4:
@@ -18099,14 +18151,14 @@ if (digitGroup) {
 
               case 5:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       return function (_x) {
-        return _ref.apply(this, arguments);
+        return _ref2.apply(this, arguments);
       };
     }());
   });
@@ -18172,60 +18224,60 @@ if (newUserForm) {
   }); // Check before submit
 
   newUserForm.addEventListener('submit', /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
       var _yield$checkTelInput, isValidTel, country, passwordSecure;
 
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
               e.preventDefault();
-              _context2.next = 3;
+              _context3.next = 3;
               return (0, _telInput.checkTelInput)(telinput.value);
 
             case 3:
-              _yield$checkTelInput = _context2.sent;
+              _yield$checkTelInput = _context3.sent;
               isValidTel = _yield$checkTelInput.isValidTel;
               country = _yield$checkTelInput.country;
 
               if (isValidTel) {
-                _context2.next = 8;
+                _context3.next = 8;
                 break;
               }
 
-              return _context2.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Phone Number'));
+              return _context3.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Phone Number'));
 
             case 8:
               if (isEmail) {
-                _context2.next = 10;
+                _context3.next = 10;
                 break;
               }
 
-              return _context2.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Email'));
+              return _context3.abrupt("return", (0, _utils.showAlert)('error', 'Please provide a valid Email'));
 
             case 10:
               passwordSecure = (0, _utils.isPasswordSecure)(_ctr, 'Please choose a strong password. Try a mix of letters, number, and symbols');
 
               if (passwordSecure) {
-                _context2.next = 13;
+                _context3.next = 13;
                 break;
               }
 
-              return _context2.abrupt("return");
+              return _context3.abrupt("return");
 
             case 13:
-              return _context2.abrupt("return", (0, _signup.signup)(telinput.value, emailInput.value, password.value, country));
+              return _context3.abrupt("return", (0, _signup.signup)(telinput.value, emailInput.value, password.value, country));
 
             case 14:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
 
     return function (_x2) {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }());
 } // Tell Input
@@ -18233,25 +18285,25 @@ if (newUserForm) {
 
 if (telinput) {
   (0, _telInput.telInput)(telinput);
-  telinput.addEventListener('focusout', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
+  telinput.addEventListener('focusout', /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
     var formatTel;
-    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
-        switch (_context3.prev = _context3.next) {
+        switch (_context4.prev = _context4.next) {
           case 0:
-            _context3.next = 2;
+            _context4.next = 2;
             return (0, _telInput.formatTelInput)(telinput.value);
 
           case 2:
-            formatTel = _context3.sent;
+            formatTel = _context4.sent;
             this.value = formatTel;
 
           case 4:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3, this);
+    }, _callee4, this);
   })));
 } // timer
 
@@ -18291,7 +18343,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61285" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
