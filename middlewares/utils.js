@@ -20,6 +20,7 @@ exports.saveUserInSession = async (req, res, next) => {
       expDate,
       sendBy: 'EMAIL', // default value is SMS, but could change by the user to Email
       country: undefined,
+      stage: 'verify',
     };
 
     // save the user in session

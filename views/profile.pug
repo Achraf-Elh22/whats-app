@@ -20,10 +20,11 @@ block overall
                     p ....
 
 block inputs
-    input(type="file" id="profilePicture" name="profilePicture")
+    input(type="file" accept="image/*" id="profilePicture" name="photo")
     label Add Your Profile Picture
     label(class="primary-label" for="userName"  ) Enter Your Name :
     input(type="text" class="primary-input" id="userName" name="userName" placeholder="Enter Your Name")
+    p(class="small-txt" style="text-align:left; opacity:.8;") This is the name that your friends will use to find you.
     label(class="primary-label" for="description" ) About :
     input(type="text" class="primary-input" id="description" name="description" placeholder="Description about Yourself")
 block button

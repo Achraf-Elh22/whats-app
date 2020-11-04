@@ -24,9 +24,14 @@ exports.verify = async (req, res) => {
     let { otpCode, otpFailure, consecutiveFailure } = req.session.newUser;
 
     console.log(user.otpCode);
+    // Check if  the user is in the right stage
+    if (user.stage !== 'verify')
+      return res.status(401).json({
+        status: 'Error',
+        message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+      });
 
     // check if the user post his Otp
-
     if (!req.body.otpCode || isNaN(req.body.otpCode))
       return res.status(401).json({
         status: 'Error',
@@ -39,6 +44,7 @@ exports.verify = async (req, res) => {
         otpCode: undefined,
         otpFailure: undefined,
         consecutiveFailure: undefined,
+        stage: 'createProfile',
       };
       return res.status(200).json({ status: 'success', message: 'OTP CORRECT 👌👌👌' });
     }
@@ -81,9 +87,28 @@ exports.verify = async (req, res) => {
 //! JWT expired
 
 exports.profile = (req, res, next) => {
-  res.status(501).json({
-    status: 'Not Implemented',
-    data: null,
+  let user = req.session.newUser;
+  const { userName, description } = req.body;
+
+  // Check if there is user data in session and if the user is in the right stage
+  if (user.stage !== 'createProfile')
+    return res.status(401).json({
+      status: 'Error',
+      message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+    });
+
+  if (!req.body || !userName)
+    return res.status(400).json({
+      status: 'Error',
+      message: `Please provide a valid Information`,
+    });
+
+  res.status(200).json({
+    status: 'Every Thing is good, Now you could try to find a friend.',
+    data: {
+      userName,
+      description,
+    },
   });
 };
 

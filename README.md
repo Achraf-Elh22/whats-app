@@ -78,7 +78,8 @@
     - [x] Finish building verify process
     - [x] Pass the User to Stage 3
     - [x] Build the Stage 3 UI "Create Profile"
-    - [ ] Build the overlayout to show the user his contact (ui)
+    - [x] Build the overlayout to show the user his contact (ui)
+    - [x] Protect the profile route and get the username, photo and description
     - [ ] implement the functionality to upload profile image (multer)
     - [ ] optimize the picture with (sharp)
     - [ ] Save the User Information in Db and destroy session and Pass user to contact Page

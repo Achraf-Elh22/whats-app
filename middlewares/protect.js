@@ -2,13 +2,15 @@ const { isSessionExpired } = require('../utils/validation');
 
 exports.signIn = async (req, res, next) => {
   let user = req.session.newUser;
-  // Check if there is user data in session
 
+  // Check if there is user data in session and if the user is in the right stage
   if (!user)
     return res.status(401).json({
       status: 'Error',
       message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
     });
+
+  if (user.stage === 'createProfile') next();
 
   // Check if the Session expired
 

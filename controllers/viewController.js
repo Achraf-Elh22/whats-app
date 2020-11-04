@@ -11,8 +11,8 @@ exports.signup = (req, res) => {
 
 exports.verify = (req, res) => {
   let user = req.session.newUser;
-  // Check if there is user data in session
-  if (!user)
+  // Check if there is user data in session and if the user is in the right stage
+  if (!user || user.stage !== 'verify')
     return res.status(401).render('error', {
       title: 'Error',
       errorCode: 401,
