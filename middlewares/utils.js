@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const multer = require('multer');
 
 const { generateOtp } = require('../utils/utils');
 const Email = require('../utils/Email');
@@ -79,3 +80,17 @@ exports.send = async (req, res, next, sendIt = false) => {
     res.status(409).json({ status: 'error', message: err.message });
   }
 };
+
+const multerStorage = multer.memoryStorage();
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    return cb(null, true);
+  }
+  returncb(new Error('Not an image! Please upload only image'), false);
+};
+
+exports.uploadPhoto = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});

@@ -80,7 +80,7 @@
     - [x] Build the Stage 3 UI "Create Profile"
     - [x] Build the overlayout to show the user his contact (ui)
     - [x] Protect the profile route and get the username, photo and description
-    - [ ] implement the functionality to upload profile image (multer)
+    - [x] implement the functionality to upload profile image (multer)
     - [ ] optimize the picture with (sharp)
     - [ ] Save the User Information in Db and destroy session and Pass user to contact Page
     - [ ] Send welcome email to the user via Email

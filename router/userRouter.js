@@ -5,7 +5,7 @@ const { signup, verify, profile, login } = require('../controllers/userControlle
 
 const validation = require('../middlewares/validation');
 const protect = require('../middlewares/protect');
-const { generateCode, send, saveUserInSession } = require('../middlewares/utils');
+const { generateCode, send, saveUserInSession, uploadPhoto } = require('../middlewares/utils');
 
 const router = express.Router();
 
@@ -28,7 +28,7 @@ router.post('/send', (req, res, next) => {
 
 // Router /api/v1/user/profile (STAGE 3)
 // Desc POST Create the user profile
-router.post('/profile', profile);
+router.post('/profile', uploadPhoto.single('photo'), profile);
 
 // Route /api/v1/user/logIn
 // desc POST FORM INFO FOR Login => Phone, Password
