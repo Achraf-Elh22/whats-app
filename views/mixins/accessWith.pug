@@ -8,10 +8,10 @@ mixin accessWith(accessWithType,accessWithDesc)
             span=`or ${accessWithType} with`
         div( class="socialmedia")
             a( href="#")
-                img( src="/assets/images/facebook.svg" alt="facebook")
+                img( src="/assets/icons/socialMedia/facebook.svg" alt="facebook")
             a( href="#")
-                img( src="/assets/images/instagram.png" alt="instagram")
+                img( src="/assets/icons/socialMedia/instagram.png" alt="instagram")
             a(href="#")
-                img( src="/assets/images/google.svg" alt="google")
+                img( src="/assets/icons/socialMedia/google.svg" alt="google")
         p(class="txt-centered")=accessWithDesc
             a( href=`/${accessWithType==="signup"? "login" : "signup" }`)=` ${accessWithType === "signup" ? "Login" : "Create New Account"} Here`

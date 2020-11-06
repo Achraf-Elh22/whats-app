@@ -1,5 +1,5 @@
 .iti-flag {
-  background-image: url('../../node_modules/intl-tel-input/build/img/flags.png');
+  background-image: url('/assets/images/flags.png');
 }
 /* 
 
@@ -200,7 +200,8 @@ p {
   padding: 50px 0;
 }
 
-.hero-image img {
+.hero-image img,
+.hero-image svg {
   width: 20%;
   margin-bottom: 10px;
 }
@@ -622,7 +623,8 @@ p {
     left: 67%;
     width: auto;
   }
-  .hero-image img {
+  .hero-image img,
+  .hero-image svg {
     width: 40%;
   }
   .hero-image h2 {

@@ -89,7 +89,6 @@ exports.verify = async (req, res) => {
 exports.profile = (req, res, next) => {
   let user = req.session.newUser;
   const { userName, description } = req.body;
-  console.log(req.file);
 
   // Check if there is user data in session and if the user is in the right stage
   if (user.stage !== 'createProfile')

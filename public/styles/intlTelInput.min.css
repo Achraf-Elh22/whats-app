@@ -1222,14 +1222,14 @@
 .iti__flag {
   height: 15px;
   box-shadow: 0 0 1px 0 #888;
-  background-image: url(/assets/images/flags.png);
+  background-image: url(/assets/icons/flags.png);
   background-repeat: no-repeat;
   background-color: #dbdbdb;
   background-position: 20px 0;
 }
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .iti__flag {
-    background-image: url(/assets/images/flags@2x.png);
+    background-image: url(/assets/icons/flags@2x.png);
   }
 }
 .iti__flag.iti__np {

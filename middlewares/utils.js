@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const multer = require('multer');
+const sharp = require('sharp');
 
 const { generateOtp } = require('../utils/utils');
 const Email = require('../utils/Email');
@@ -87,10 +88,28 @@ const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
     return cb(null, true);
   }
-  returncb(new Error('Not an image! Please upload only image'), false);
+  return cb(new Error('Not an image! Please upload only image'), false);
 };
 
 exports.uploadPhoto = multer({
   storage: multerStorage,
   fileFilter: multerFilter,
 });
+
+exports.resizeUserPhoto = async (req, res, next) => {
+  // Check if the file exist
+  if (!req.file) next();
+
+  console.log(req.file);
+
+  req.file.filename = `user-${req.session.userName}-${Date.now()}.jpeg`;
+
+  // Resize the image
+  await sharp(req.file.buffer)
+    .resize(100, 100)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/assets/images/users/${req.file.filename}`);
+
+  next();
+};

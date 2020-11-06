@@ -81,9 +81,10 @@
     - [x] Build the overlayout to show the user his contact (ui)
     - [x] Protect the profile route and get the username, photo and description
     - [x] implement the functionality to upload profile image (multer)
-    - [ ] optimize the picture with (sharp)
+    - [x] optimize the picture with (sharp)
     - [ ] Save the User Information in Db and destroy session and Pass user to contact Page
     - [ ] Send welcome email to the user via Email
+    - [ ] implement the Create profile api with the UI
     - [ ] Sign in with google, facebook, instagram
     - [ ] Handle the Errors of sign up
     - [ ]
@@ -115,4 +116,4 @@ TODO: Learning version
 - [ ] Learn jquery
 - [ ] connect-flash
 - [ ] learn more about [Production best practices: performance and reliability]("https://expressjs.com/th/advanced/best-practice-performance.html")
-- [ ] session best practices []("https://blog.jscrambler.com/best-practices-for-secure-session-management-in-node/")
+- [ ] session best practices [session best practices]("https://blog.jscrambler.com/best-practices-for-secure-session-management-in-node/")
