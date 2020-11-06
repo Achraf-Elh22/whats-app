@@ -100,9 +100,7 @@ exports.resizeUserPhoto = async (req, res, next) => {
   // Check if the file exist
   if (!req.file) next();
 
-  console.log(req.file);
-
-  req.file.filename = `user-${req.session.userName}-${Date.now()}.jpeg`;
+  req.file.filename = `user-${Date.now()}.jpeg`;
 
   // Resize the image
   await sharp(req.file.buffer)

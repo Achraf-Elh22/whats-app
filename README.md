@@ -82,7 +82,7 @@
     - [x] Protect the profile route and get the username, photo and description
     - [x] implement the functionality to upload profile image (multer)
     - [x] optimize the picture with (sharp)
-    - [ ] Save the User Information in Db and destroy session and Pass user to contact Page
+    - [ ] Save the User Information in Db and destroy session and Pass user to contact Page <!-- !  Fix the validation of check if the user exist in DB in validation.js-->
     - [ ] Send welcome email to the user via Email
     - [ ] implement the Create profile api with the UI
     - [ ] Sign in with google, facebook, instagram
@@ -102,9 +102,13 @@
 - [ ] Performance
 - [ ] copyrights
 
+## Error to fix
+
+- fix the bug in profile middleweare
+
 ## Errors To handle
 
-- [ ] JWT expired
+- [ ] Mongo DB Errors
 
 TODO: Learning version
 

@@ -1,4 +1,5 @@
 const { generateOtp } = require('../utils/utils');
+const User = require('../models/userModel');
 
 exports.signup = async (req, res) => {
   try {
@@ -83,33 +84,40 @@ exports.verify = async (req, res) => {
   }
 };
 
-//! verify Error:
-//! JWT expired
-
-exports.profile = (req, res, next) => {
-  let user = req.session.newUser;
-  const { userName, description } = req.body;
+exports.profile = async (req, res, next) => {
+  let { email, phoneNumber, password, stage } = req.session.newUser;
+  const { username, description } = req.body;
 
   // Check if there is user data in session and if the user is in the right stage
-  if (user.stage !== 'createProfile')
+  if (stage !== 'createProfile')
     return res.status(401).json({
       status: 'Error',
       message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
     });
 
-  if (!req.body || !userName)
+  if (!req.body || !username)
     return res.status(400).json({
       status: 'Error',
       message: `Please provide a valid Information`,
     });
 
-  res.status(200).json({
-    status: 'Every Thing is good, Now you could try to find a friend.',
-    data: {
-      userName,
-      description,
-    },
-  });
+  // Check if the username allready exist
+  if (await User.findOne({ 'profile.username': username }))
+    // return res.status(400).json({
+    //   status: 'Error',
+    //   message: `User Name is all ready exists, choose another one.`,
+    // });
+
+    // create The newUser
+
+    const newUser = await User.create({
+      profile: { email, phoneNumber, password, username, photo: req.file.filename, description },
+    });
+
+  // res.status(200).json({
+  //   status: 'Every Thing is good, Now you could try to find a friend.',
+  //   data: newUser,
+  // });
 };
 
 exports.login = (req, res, next) => {

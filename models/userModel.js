@@ -22,24 +22,24 @@ const userSchema = new mongoose.Schema({
       required: [true, 'Please Provide a Password'],
       select: false,
     },
-    // userName: {
-    //   type: String,
-    //   trim: true,
-    //   lowercase: true,
-    //   minlength: 5,
-    //   maxlength: 25,
-    //   unique: true,
-    //   required: [true, 'Please Provide a User Name'],
-    // },
-    // photo: {
-    //   type: String,
-    //   default: 'default.jpg',
-    // },
-    // description: {
-    //   type: String,
-    //   maxlength: 50,
-    //   default: "Can't talk, WhatsApp only",
-    // },
+    username: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      minlength: 5,
+      maxlength: 25,
+      unique: true,
+      required: [true, 'Please Provide a User Name'],
+    },
+    photo: {
+      type: String,
+      default: 'default.jpg',
+    },
+    description: {
+      type: String,
+      maxlength: 50,
+      default: "Can't talk, WhatsApp only",
+    },
   },
   createdAt: {
     type: Date,
