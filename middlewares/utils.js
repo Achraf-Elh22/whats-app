@@ -86,9 +86,10 @@ const multerStorage = multer.memoryStorage();
 
 const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
-    return cb(null, true);
+    cb(null, true);
+  } else {
+    cb(new Error('Not an image! Please upload only image'), false);
   }
-  return cb(new Error('Not an image! Please upload only image'), false);
 };
 
 exports.uploadPhoto = multer({

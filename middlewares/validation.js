@@ -20,10 +20,6 @@ exports.signup = async (req, res, next) => {
       message: `Please provide the necessary information "phoneNumber, email, password" `,
     });
 
-  // check if the user exist in DB
-  const user = await User.findOne({ 'profile.phoneNumber': phoneNumber });
-  if (user) return res.status(409).json({ status: 'error', message: 'This User already exist' });
-
   // Validate the phone Number number
   const { isValidTel, internationalFormat } = await phone(phoneNumber, country);
   if (!isValidTel)
@@ -35,6 +31,17 @@ exports.signup = async (req, res, next) => {
   if (!isEmail(email))
     return res.status(400).json({ status: 'error', message: `Please provide a valid Email` });
 
+  // Add International number format (+212622088092)
+  const formatTel = internationalFormat.replace(/\s/g, '');
+  req.body.internationalFormat = formatTel;
+
+  // check if the user exist in DB
+  const user = await User.findOne({
+    'profile.phoneNumber': formatTel,
+    'profile.email': email,
+  });
+  if (user) return res.status(409).json({ status: 'error', message: 'This User already exist' });
+
   // Check the strenght of password
   const ctr = passwordStrength(password);
   if (password.length < 8 || ctr < 3)
@@ -43,7 +50,5 @@ exports.signup = async (req, res, next) => {
       message: `Please choose a strong password it need to be at least 8 characters and contains letters, number, and symbols`,
     });
 
-  // Add International number format (+212622088092)
-  req.body.internationalFormat = internationalFormat.replace(/\s/g, '');
   next();
 };

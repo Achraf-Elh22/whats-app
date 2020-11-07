@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
     },
     description: {
       type: String,
-      maxlength: 50,
+      maxlength: 150,
       default: "Can't talk, WhatsApp only",
     },
   },

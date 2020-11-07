@@ -4,16 +4,18 @@ exports.signIn = async (req, res, next) => {
   let user = req.session.newUser;
 
   // Check if there is user data in session and if the user is in the right stage
-  if (!user)
+  if (!user) {
     return res.status(401).json({
       status: 'Error',
       message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
     });
+  }
 
-  if (user.stage === 'createProfile') next();
+  if (user.stage === 'createProfile') {
+    return next();
+  }
 
   // Check if the Session expired
-
   if (isSessionExpired(req.session, user.expDate))
     return res.status(401).json({
       status: 'Error',
