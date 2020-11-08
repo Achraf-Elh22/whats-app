@@ -1,5 +1,6 @@
 const { generateOtp } = require('../utils/utils');
 const User = require('../models/userModel');
+const Email = require('../utils/Email');
 
 exports.signup = async (req, res) => {
   try {
@@ -85,49 +86,59 @@ exports.verify = async (req, res) => {
 };
 
 exports.profile = async (req, res, next) => {
-  let { email, phoneNumber, password, stage } = req.session.newUser;
-  const { username, description } = req.body;
+  try {
+    let { email, phoneNumber, password, stage } = req.session.newUser;
+    const { username, description } = req.body;
 
-  // Check if there is user data in session and if the user is in the right stage
-  if (stage !== 'createProfile') {
-    console.log('stage');
-    return res.status(401).json({
-      status: 'Error',
-      message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+    // Check if there is user data in session and if the user is in the right stage
+    if (stage !== 'createProfile') {
+      console.log('stage');
+      return res.status(401).json({
+        status: 'Error',
+        message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+      });
+    }
+
+    if (!username) {
+      console.log('username');
+      return res.status(400).json({
+        status: 'Error',
+        message: `username is a required field`,
+      });
+    }
+
+    // Check if the username allready exist
+    if (await User.findOne({ 'profile.username': username })) {
+      console.log('check if the user exist');
+      return res.status(400).json({
+        status: 'Error',
+        message: `username is all ready exists, choose another one.`,
+      });
+    }
+
+    // create The newUser
+    const newUser = await User.create({
+      profile: { email, phoneNumber, password, username, photo: req.file.filename, description },
     });
-  }
 
-  if (!username) {
-    console.log('username');
-    return res.status(400).json({
-      status: 'Error',
-      message: `username is a required field`,
+    // Send Welcome Email to User
+    const sendEmail = new Email(newUser.profile, `${req.protocol}://${req.headers.host}/contact`);
+
+    await sendEmail.welcome();
+
+    // Destroy the session
+    req.session.destroy(function () {
+      console.log('SIGN UP PROCESS HAS BEEN FINISHED, SESSION IS DESTROYED');
     });
-  }
 
-  // Check if the username allready exist
-  if (await User.findOne({ 'profile.username': username })) {
-    console.log('check if the user exist');
-    return res.status(400).json({
-      status: 'Error',
-      message: `username is all ready exists, choose another one.`,
+    return res.status(200).json({
+      status: 'Every Thing is good, Now you could try to find a friend.',
+      data: newUser,
     });
+  } catch (err) {
+    console.error('something wrong happen 💣💣💣', err.message, err);
+    res.status(409).json({ status: 'error', message: err.message, error: err });
   }
-
-  // create The newUser
-
-  const newUser = await User.create({
-    profile: { email, phoneNumber, password, username, photo: req.file.filename, description },
-  });
-
-  session.destroy(function () {
-    console.log('SIGN UP PROCESS HAS BEEN FINISHED, SESSION IS DESTROYED');
-  });
-
-  return res.status(200).json({
-    status: 'Every Thing is good, Now you could try to find a friend.',
-    data: newUser,
-  });
 };
 
 exports.login = (req, res, next) => {

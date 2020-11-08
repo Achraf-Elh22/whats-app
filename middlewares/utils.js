@@ -59,13 +59,13 @@ exports.send = async (req, res, next, sendIt = false) => {
     const { sendBy } = req.body || user;
 
     let SMSTextTemplete = `WHATSAPP Demo OTP code : ${user.otpCode} valid for 5 min`;
-    const email = new Email(user, `${user.otpCode}`);
+    const email = new Email(user);
 
     if (user.otpFailure === 0 || sendIt === true) {
       console.log('SEND');
       sendBy === 'SMS'
         ? sendSMS(user.phoneNumber, SMSTextTemplete)
-        : email.sendMail('verify', 'Verify User');
+        : email.verifyUser(`${user.otpCode}`);
     }
     if (sendIt === true) {
       user.sendBy = sendBy;

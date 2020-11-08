@@ -3,7 +3,7 @@ extends baseEmail
 block content
   p Hi #{firstName},
   p Welcome to Whats-App, we're glad to have you 🎉🙏
-  p We're still just one more step to have the ultimate experience with your friend so buckle up 😎😎😎
+  p We're all a big familiy here, so make sure to say Hi in our welcome group!
   table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
     tbody(align='center')
       tr
@@ -12,10 +12,6 @@ block content
             tbody
               tr
                 td
-                  div(id="digit-group" style="display: flex; align-items: center;") 
-                    each val in verifyCode
-                      div=val
-                  p(style="color:#1bd741; margin-top:20px;") Verify is Valid for 5 min
+                  a(href=`${url}`, target='_blank' ) Go to Contact
   p If you need any help with your account, please don't hesitate to contact me!
   p - Achraf Elhamzaoui, CEO
-  p(style="font-size:.7rem; color:#646464;") If you didn't do this action please ignore this message

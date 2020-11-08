@@ -11,10 +11,10 @@ const {
 } = require('../config/index');
 
 module.exports = class Email {
-  constructor(user, otpCode) {
+  constructor(user, url = '') {
     this.to = user.email;
-    this.firstName = user.name || ' ';
-    this.otpCode = otpCode;
+    this.firstName = user.username || ' ';
+    this.url = url;
     this.from = `ACHRAF ELHAMZAOUI <${EMAIL_FROM}>`;
   }
 
@@ -34,14 +34,15 @@ module.exports = class Email {
     });
   }
 
-  async sendMail(template, subject) {
+  async sendMail(template, subject, verifyCode = '') {
     // 1) Render HTML based on pug template
     const html = pug.renderFile(`${__dirname}/../views/emails/${template}.pug`, {
       subject,
       firstName: this.firstName.split(' ')[0],
-      otpCode: this.otpCode.split(''),
+      verifyCode: verifyCode.split(''),
+      url: this.url,
     });
-    console.log(this.otpCode);
+
     // 2) Define Email options
     const mailOptions = {
       from: this.from,
@@ -51,5 +52,12 @@ module.exports = class Email {
     };
     // 3)create and send Email
     await this.createTransporter().sendMail(mailOptions);
+  }
+
+  async verifyUser(verifyCode) {
+    await this.sendMail('verify', 'verify User', verifyCode);
+  }
+  async welcome(url) {
+    await this.sendMail('welcome', 'WELCOME');
   }
 };

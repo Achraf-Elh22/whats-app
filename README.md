@@ -83,7 +83,7 @@
     - [x] implement the functionality to upload profile image (multer)
     - [x] optimize the picture with (sharp)
     - [x] Save the User Information in Db and destroy session
-    - [ ] Send welcome email to the user via Email
+    - [x] Send welcome email to the user via Email
     - [ ] Sign in the User using passportjs
     - [ ] redirect the suer every time accessing the signup process (/signup, /verify, /profile)
     - [ ] implement the Create profile api with the UI
