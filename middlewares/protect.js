@@ -8,6 +8,7 @@ exports.signIn = async (req, res, next) => {
     return res.status(401).json({
       status: 'Error',
       message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+      data: null,
     });
   }
 
@@ -20,6 +21,7 @@ exports.signIn = async (req, res, next) => {
     return res.status(401).json({
       status: 'Error',
       message: `Time Out, Please re-signup Again at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+      data: null,
     });
 
   // Check if the user did more than 9 attempts
@@ -28,6 +30,7 @@ exports.signIn = async (req, res, next) => {
     return res.status(401).json({
       status: 'Error',
       message: `You made alot of attempts, Please re-Check your informatiin by re-sign in  ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+      data: null,
     });
 
   next();

@@ -11,7 +11,7 @@ exports.signup = async (req, res) => {
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err);
-    res.status(409).json({ status: 'error', message: err.message });
+    res.status(409).json({ status: 'error', message: err.message, data: null });
   }
 };
 
@@ -31,6 +31,7 @@ exports.verify = async (req, res) => {
       return res.status(401).json({
         status: 'Error',
         message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+        data: null,
       });
 
     // check if the user post his Otp
@@ -38,6 +39,7 @@ exports.verify = async (req, res) => {
       return res.status(401).json({
         status: 'Error',
         message: `Please Provide a valid Verify code`,
+        data: null,
       });
 
     if (user.otpCode === req.body.otpCode) {
@@ -63,6 +65,7 @@ exports.verify = async (req, res) => {
       return res.status(401).json({
         status: 'error',
         message: 'You made 3 consecutive Wrong OTP, we will resend to you new OTP code',
+        data: null,
       });
     }
 
@@ -81,7 +84,7 @@ exports.verify = async (req, res) => {
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err.message, err);
-    res.status(409).json({ status: 'error', message: err.message, error: err });
+    res.status(409).json({ status: 'error', message: err.message, error: err, data: null });
   }
 };
 
@@ -127,21 +130,30 @@ exports.profile = async (req, res, next) => {
     await sendEmail.welcome();
 
     // Destroy the session
-    req.session.destroy(function () {
-      console.log('SIGN UP PROCESS HAS BEEN FINISHED, SESSION IS DESTROYED');
-    });
 
-    return res.status(200).json({
-      status: 'Every Thing is good, Now you could try to find a friend.',
-      data: newUser,
+    //
+    req.login(newUser, function (err) {
+      if (err) {
+        return next(err);
+      } else {
+        req.session.newUser = undefined;
+        return res.redirect(`${req.protocol}://${req.headers.host}/api/v1/user/contact`);
+      }
     });
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err.message, err);
-    res.status(409).json({ status: 'error', message: err.message, error: err });
+    res.status(409).json({ status: 'error', message: err.message, error: err, data: null });
   }
 };
 
 exports.login = (req, res, next) => {
+  res.status(501).json({
+    status: 'Not Implemented',
+    data: null,
+  });
+};
+
+exports.contact = (req, res, next) => {
   res.status(501).json({
     status: 'Not Implemented',
     data: null,

@@ -84,8 +84,8 @@
     - [x] optimize the picture with (sharp)
     - [x] Save the User Information in Db and destroy session
     - [x] Send welcome email to the user via Email
-    - [ ] Sign in the User using passportjs
-    - [ ] redirect the suer every time accessing the signup process (/signup, /verify, /profile)
+    - [ ] Sign in the User using passportjs and protect the contact route
+    - [ ] redirect the user every time accessing the signup process (/signup, /verify, /profile)
     - [ ] implement the Create profile api with the UI
     - [ ] Sign in with google, facebook, instagram
     - [ ] Handle the Errors of sign up

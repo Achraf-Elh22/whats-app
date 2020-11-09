@@ -18,6 +18,7 @@ exports.signup = async (req, res, next) => {
     return res.status(400).json({
       status: 'error',
       message: `Please provide the necessary information "phoneNumber, email, password" `,
+      data: null,
     });
 
   // Validate the phone Number number
@@ -25,11 +26,13 @@ exports.signup = async (req, res, next) => {
   if (!isValidTel)
     return res
       .status(400)
-      .json({ status: 'error', message: `Please provide a valid Phone Number` });
+      .json({ status: 'error', message: `Please provide a valid Phone Number`, data: null });
 
   // Validate Email
   if (!isEmail(email))
-    return res.status(400).json({ status: 'error', message: `Please provide a valid Email` });
+    return res
+      .status(400)
+      .json({ status: 'error', message: `Please provide a valid Email`, data: null });
 
   // Add International number format (+212622088092)
   const formatTel = internationalFormat.replace(/\s/g, '');
@@ -40,7 +43,10 @@ exports.signup = async (req, res, next) => {
     'profile.phoneNumber': formatTel,
     'profile.email': email,
   });
-  if (user) return res.status(409).json({ status: 'error', message: 'This User already exist' });
+  if (user)
+    return res
+      .status(409)
+      .json({ status: 'error', message: 'This User already exist', data: null });
 
   // Check the strenght of password
   const ctr = passwordStrength(password);
@@ -48,6 +54,7 @@ exports.signup = async (req, res, next) => {
     return res.status(400).json({
       status: 'error',
       message: `Please choose a strong password it need to be at least 8 characters and contains letters, number, and symbols`,
+      data: null,
     });
 
   next();

@@ -1,10 +1,12 @@
 const express = require('express');
+const passport = require('passport');
 
 // Controllers
-const { signup, verify, profile, login } = require('../controllers/userController');
+const { signup, verify, profile, login, contact } = require('../controllers/userController');
 
 const validation = require('../middlewares/validation');
 const protect = require('../middlewares/protect');
+const auth = require('../middlewares/auth');
 const {
   generateCode,
   send,
@@ -17,13 +19,19 @@ const router = express.Router();
 
 // Route /api/v1/user/signUp (STAGE 1)
 // desc POST FORM INFO FOR SIGNUP => Phone, Email, Password
-router.post('/signup', validation.signup, saveUserInSession, generateCode, send, signup);
+router.post(
+  '/signup',
+  auth.ensureGuest,
+  validation.signup,
+  saveUserInSession,
+  generateCode,
+  send,
+  signup
+);
 
 // Router /api/v1/user/verify (STAGE 2)
-// Desc POST verify the user by send OTP code via Email or Phone number
-router.use(protect.signIn);
-
-router.post('/verify', send, verify);
+// Desc POST verify the user by send OTP code via Email or Phone numbers
+router.post('/verify', auth.ensureGuest, protect.signIn, send, verify);
 
 router.post('/send', (req, res, next) => {
   const sendIt = true;
@@ -34,7 +42,23 @@ router.post('/send', (req, res, next) => {
 
 // Router /api/v1/user/profile (STAGE 3)
 // Desc POST Create the user profile
-router.post('/profile', uploadPhoto.single('photo'), resizeUserPhoto, profile);
+router.post(
+  '/profile',
+  auth.ensureGuest,
+  protect.signIn,
+  uploadPhoto.single('photo'),
+  resizeUserPhoto,
+  profile
+);
+// passport.authenticate('local', {
+//   successRedirect: '/contact',
+//   failureRedirect: '/signup',
+//   successMessage: 'Every Thing is good, Now you could try to find a friend.',
+//   successFlash: true,
+//   failureFlash: true,
+// })
+
+router.get('/contact', auth.ensureAuth, contact);
 
 // Route /api/v1/user/logIn
 // desc POST FORM INFO FOR Login => Phone, Password

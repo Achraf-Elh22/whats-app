@@ -31,7 +31,7 @@ exports.saveUserInSession = async (req, res, next) => {
     next();
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err);
-    res.status(409).json({ status: 'error', message: err.message });
+    res.status(409).json({ status: 'error', message: err.message, data: null });
   }
 };
 
@@ -49,7 +49,7 @@ exports.generateCode = async (req, res, next) => {
     next();
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err);
-    res.status(409).json({ status: 'error', message: err.message });
+    res.status(409).json({ status: 'error', message: err.message, data: null });
   }
 };
 
@@ -78,7 +78,7 @@ exports.send = async (req, res, next, sendIt = false) => {
     next();
   } catch (err) {
     console.error('something wrong happen 💣💣💣', err);
-    res.status(409).json({ status: 'error', message: err.message });
+    res.status(409).json({ status: 'error', message: err.message, data: null });
   }
 };
 
