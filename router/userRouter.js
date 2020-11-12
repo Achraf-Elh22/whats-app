@@ -50,13 +50,6 @@ router.post(
   resizeUserPhoto,
   profile
 );
-// passport.authenticate('local', {
-//   successRedirect: '/contact',
-//   failureRedirect: '/signup',
-//   successMessage: 'Every Thing is good, Now you could try to find a friend.',
-//   successFlash: true,
-//   failureFlash: true,
-// })
 
 router.get('/contact', auth.ensureAuth, contact);
 

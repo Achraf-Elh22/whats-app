@@ -1,14 +1,36 @@
 module.exports = {
-  ensureAuth: (req, res, next) => {
+  ensureAuthUi: (req, res, next) => {
     if (req.isAuthenticated()) {
       next();
     } else {
       res.redirect(`${req.protocol}://${req.headers.host}/api/v1/user/signup`);
     }
   },
-  ensureGuest: (req, res, next) => {
+  ensureGuestUi: (req, res, next) => {
     if (req.isAuthenticated()) {
       res.redirect(`${req.protocol}://${req.headers.host}/api/v1/user/contact`);
+    } else {
+      next();
+    }
+  },
+  ensureAuth: (req, res, next) => {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.status(401).json({
+        status: 'error',
+        message: `Please sign ot log in first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+        data: null,
+      });
+    }
+  },
+  ensureGuest: (req, res, next) => {
+    if (req.isAuthenticated()) {
+      res.status(401).json({
+        status: 'error',
+        message: `You are already signin, to access your contact visit this link ${req.protocol}://${req.headers.host}/api/v1/user/contact`,
+        data: null,
+      });
     } else {
       next();
     }

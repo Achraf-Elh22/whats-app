@@ -93,9 +93,13 @@ exports.profile = async (req, res, next) => {
     let { email, phoneNumber, password, stage } = req.session.newUser;
     const { username, description } = req.body;
 
+    let photo;
+    if (req.file) {
+      photo = req.file.filename;
+    }
+
     // Check if there is user data in session and if the user is in the right stage
     if (stage !== 'createProfile') {
-      console.log('stage');
       return res.status(401).json({
         status: 'Error',
         message: `unauthorized, Please signup first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
@@ -103,7 +107,6 @@ exports.profile = async (req, res, next) => {
     }
 
     if (!username) {
-      console.log('username');
       return res.status(400).json({
         status: 'Error',
         message: `username is a required field`,
@@ -112,7 +115,6 @@ exports.profile = async (req, res, next) => {
 
     // Check if the username allready exist
     if (await User.findOne({ 'profile.username': username })) {
-      console.log('check if the user exist');
       return res.status(400).json({
         status: 'Error',
         message: `username is all ready exists, choose another one.`,
@@ -121,7 +123,7 @@ exports.profile = async (req, res, next) => {
 
     // create The newUser
     const newUser = await User.create({
-      profile: { email, phoneNumber, password, username, photo: req.file.filename, description },
+      profile: { email, phoneNumber, password, username, photo, description },
     });
 
     // Send Welcome Email to User
@@ -137,7 +139,11 @@ exports.profile = async (req, res, next) => {
         return next(err);
       } else {
         req.session.newUser = undefined;
-        return res.redirect(`${req.protocol}://${req.headers.host}/api/v1/user/contact`);
+        console.log(req.session);
+        return res.status(200).json({
+          status: 'success',
+          message: `Every thing is setup now you can try the ultimate expirence ${req.protocol}://${req.headers.host}/api/v1/user/contact`,
+        });
       }
     });
   } catch (err) {

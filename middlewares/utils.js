@@ -99,7 +99,9 @@ exports.uploadPhoto = multer({
 
 exports.resizeUserPhoto = async (req, res, next) => {
   // Check if the file exist
-  if (!req.file) next();
+  if (!req.file) {
+    return next();
+  }
 
   req.file.filename = `user-${Date.now()}.jpeg`;
 
