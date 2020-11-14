@@ -1,8 +1,7 @@
 const express = require('express');
-const passport = require('passport');
 
 // Controllers
-const { signup, verify, profile, login, contact } = require('../controllers/userController');
+const { signup, verify, profile, login } = require('../controllers/userController');
 
 const validation = require('../middlewares/validation');
 const protect = require('../middlewares/protect');
@@ -50,8 +49,6 @@ router.post(
   resizeUserPhoto,
   profile
 );
-
-router.get('/contact', auth.ensureAuth, contact);
 
 // Route /api/v1/user/logIn
 // desc POST FORM INFO FOR Login => Phone, Password

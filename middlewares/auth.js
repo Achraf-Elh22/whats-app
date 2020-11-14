@@ -3,12 +3,12 @@ module.exports = {
     if (req.isAuthenticated()) {
       next();
     } else {
-      res.redirect(`${req.protocol}://${req.headers.host}/api/v1/user/signup`);
+      res.redirect(`${req.protocol}://${req.headers.host}/signup`);
     }
   },
   ensureGuestUi: (req, res, next) => {
     if (req.isAuthenticated()) {
-      res.redirect(`${req.protocol}://${req.headers.host}/api/v1/user/contact`);
+      res.redirect(`${req.protocol}://${req.headers.host}/contact`);
     } else {
       next();
     }

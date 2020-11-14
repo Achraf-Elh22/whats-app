@@ -5,9 +5,9 @@ import { otpInput, formatOtp, submitOtp } from './forms/otpInput';
 import { telInput, formatTelInput, checkTelInput } from './forms/telInput';
 import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit, resend } from './utils';
 import { togglePassword, checkPasswordStrength, checkConfirmPassword } from './forms/passwords';
-import { signup } from '../scripts/forms/signup';
-import { startTimer } from '../scripts/forms/countDownTimer';
-import { readURL } from './forms/fileInput';
+import { signup } from './forms/signup';
+import { startTimer } from './forms/countDownTimer';
+import { readURL, createProfile } from './forms/profile';
 
 const resetPasswordForm = document.querySelector('#resetPassword');
 const container = document.querySelector('.container');
@@ -31,6 +31,15 @@ if (profile) {
 
   profile.addEventListener('submit', function (e) {
     e.preventDefault();
+
+    const username = profile.querySelector('#username').value;
+    const descValue = profile.querySelector('#description').value;
+    let description;
+    if (descValue !== '') {
+      description = descValue;
+    }
+
+    createProfile(profilePicture.files[0], username, description);
   });
 
   submitButton.addEventListener('click', async function () {
@@ -48,9 +57,6 @@ if (profile) {
       overall.classList.remove('animate__fadeInDown');
       overall.classList.add('animate__fadeOutDown', 'animate__slow');
     }, 5000);
-    await setTimeout(() => {
-      location.assign('/contact');
-    }, 6000);
   });
 }
 

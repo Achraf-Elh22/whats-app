@@ -8,6 +8,7 @@ const flash = require('flash');
 // Routers
 const userRouter = require('./router/userRouter');
 const viewRouter = require('./router/viewRouter');
+const contactRouter = require('./router/contactRouter');
 
 // configs
 require('./config/passport')(passport);
@@ -48,6 +49,7 @@ app.use(passport.session());
 
 // Routes
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/contact', contactRouter);
 app.use('/', viewRouter);
 
 module.exports = app;

@@ -1,24 +1,31 @@
 const express = require('express');
 
+// utils
+const { ensureAuthUi, ensureGuestUi } = require('../middlewares/auth');
+
 // Controllers
-const { signup, login, profile, verify } = require('../controllers/viewController');
+const { signup, login, profile, verify, contact } = require('../controllers/viewController');
 
 const router = express.Router();
 
 // Route /signUp' (STAGE 2)
 // desc GET signUp View
-router.get('/signup', signup);
+router.get('/signup', ensureGuestUi, signup);
 
 // Route /verify' (STAGE 2)
 // desc GET verify View
-router.get('/verify', verify);
+router.get('/verify', ensureGuestUi, verify);
 
 // Route /verify' (STAGE 2)
 // desc GET profile View
-router.get('/profile', profile);
+router.get('/profile', ensureGuestUi, profile);
 
-// Route /logIn'
+// Route /login'
 // desc GET logIn View
-router.get('/login', login);
+router.get('/login', ensureGuestUi, login);
+
+// Route /contact'
+// desc GET contact View
+router.get('/contact', ensureAuthUi, contact);
 
 module.exports = router;

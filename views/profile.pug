@@ -9,7 +9,7 @@ block append head
 block overall
     +overallAnimation
         div(class="contact__chat-msg p-2")
-            img(src="/assets/images/users/user (1).png" alt="user" )
+            img(src="/assets/images/users/default.png" class="profileImage" alt="profile ")
             div(class="contact__chat-msg--name")
                 span Rosa Welch
                 div
@@ -22,8 +22,8 @@ block overall
 block inputs
     input(type="file" accept="image/*" id="profilePicture" name="photo")
     label Add Your Profile Picture
-    label(class="primary-label" for="userName"  ) Enter Your Name :
-    input(type="text" class="primary-input" id="userName" name="userName" placeholder="Enter Your Name")
+    label(class="primary-label" for="username"  ) Enter Your Name :
+    input(type="text" class="primary-input" id="username" name="username" placeholder="Enter Your Name")
     p(class="small-txt" style="text-align:left; opacity:.8;") This is the name that your friends will use to find you.
     label(class="primary-label" for="description" ) About :
     input(type="text" class="primary-input" id="description" name="description" placeholder="Description about Yourself")

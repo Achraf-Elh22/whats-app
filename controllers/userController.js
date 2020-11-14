@@ -131,9 +131,7 @@ exports.profile = async (req, res, next) => {
 
     await sendEmail.welcome();
 
-    // Destroy the session
-
-    //
+    // Log User in
     req.login(newUser, function (err) {
       if (err) {
         return next(err);
@@ -153,13 +151,6 @@ exports.profile = async (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  res.status(501).json({
-    status: 'Not Implemented',
-    data: null,
-  });
-};
-
-exports.contact = (req, res, next) => {
   res.status(501).json({
     status: 'Not Implemented',
     data: null,
