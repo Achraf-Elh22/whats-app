@@ -58,15 +58,15 @@ exports.verify = (req, res) => {
 exports.profile = (req, res, next) => {
   let user = req.session.newUser;
   // Check if there is user data in session and if the user is in the right stage
-  // if (!user || user.stage !== 'createProfile')
-  //   return res.status(401).render('error', {
-  //     title: 'Error',
-  //     errorCode: 401,
-  //     errorHeader: 'Sign Up First',
-  //     errorDesc: `Unauthorized, Please Sign Up First`,
-  //     errorLink: `${req.protocol}://${req.headers.host}/signup`,
-  //     errorText: 'sign up',
-  //   });
+  if (!user || user.stage !== 'createProfile')
+    return res.status(401).render('error', {
+      title: 'Error',
+      errorCode: 401,
+      errorHeader: 'Sign Up First',
+      errorDesc: `Unauthorized, Please Sign Up First`,
+      errorLink: `${req.protocol}://${req.headers.host}/signup`,
+      errorText: 'sign up',
+    });
 
   res.status(200).render('profile', {
     title: 'Create Profile',

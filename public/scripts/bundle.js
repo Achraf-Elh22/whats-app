@@ -18159,7 +18159,6 @@ if (profile) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('click');
             overall = document.querySelector('.overall');
             ishinding = overall.classList.contains('hide');
 
@@ -18169,13 +18168,13 @@ if (profile) {
               overall.classList.add('animate__fadeInDown');
             }
 
-            _context.next = 6;
+            _context.next = 5;
             return setTimeout(function () {
               overall.classList.remove('animate__fadeInDown');
               overall.classList.add('animate__fadeOutDown', 'animate__slow');
             }, 5000);
 
-          case 6:
+          case 5:
           case "end":
             return _context.stop();
         }
@@ -18415,7 +18414,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54216" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64357" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

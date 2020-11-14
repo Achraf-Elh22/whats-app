@@ -43,8 +43,7 @@ if (profile) {
   });
 
   submitButton.addEventListener('click', async function () {
-    console.log('click');
-    const overall = document.querySelector('.overall');
+     const overall = document.querySelector('.overall');
     const ishinding = overall.classList.contains('hide');
 
     if (ishinding) {
