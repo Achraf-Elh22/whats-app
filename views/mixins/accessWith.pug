@@ -11,7 +11,7 @@ mixin accessWith(accessWithType,accessWithDesc)
                 img( src="/assets/icons/socialMedia/facebook.svg" alt="facebook")
             a( href="#")
                 img( src="/assets/icons/socialMedia/instagram.png" alt="instagram")
-            a(href="#")
+            a(href="/api/v1/user/auth/google")
                 img( src="/assets/icons/socialMedia/google.svg" alt="google")
         p(class="txt-centered")=accessWithDesc
             a( href=`/${accessWithType==="signup"? "login" : "signup" }`)=` ${accessWithType === "signup" ? "Login" : "Create New Account"} Here`

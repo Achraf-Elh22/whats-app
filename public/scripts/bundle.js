@@ -8842,7 +8842,9 @@ module.exports = {
   MAILTRAP_HOST: undefined,
   MAILTRAP_PORT: undefined,
   MAILTRAP_AUTH_USER: undefined,
-  MAILTRAP_AUTH_PASS: undefined
+  MAILTRAP_AUTH_PASS: undefined,
+  GOOGLE_CLIENT_ID: undefined,
+  GOOGLE_CLIENT_SECRET: undefined
 };
 },{"dotenv":"../../node_modules/dotenv/lib/main.js"}],"utils.js":[function(require,module,exports) {
 "use strict";
@@ -18414,7 +18416,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64357" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44643" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

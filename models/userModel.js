@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
   profile: {
+    googleId:String,
     email: {
       type: String,
       trim: true,
@@ -14,7 +15,6 @@ const userSchema = new mongoose.Schema({
       type: String,
       unique: true,
       trim: true,
-      required: [true, 'Please Provide a Number Phone'],
     },
     password: {
       type: String,

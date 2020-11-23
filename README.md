@@ -86,9 +86,9 @@
     - [x] Send welcome email to the user via Email
     - [x] Sign in the User using passportjs and protect the contact route
     - [x] redirect the user every time accessing the signup process (/signup, /verify, /profile)
-    - [ ] implement the Create profile api with the UI
-    - [ ] implement flash in the UI
+    - [x] implement the Create profile api with the UI
     - [ ] Sign in with google, facebook, instagram
+    - [ ] implement flash in the UI
     - [ ] Handle the Errors of sign up
     - [ ]
   - Login
