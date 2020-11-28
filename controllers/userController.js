@@ -150,9 +150,9 @@ exports.profile = async (req, res, next) => {
   }
 };
 
-exports.login = (req, res, next) => {
-  res.status(501).json({
-    status: 'Not Implemented',
-    data: null,
+exports.login =async (req, res, next) => {
+  res.status(401).json({
+    status:"Error",
+    data: req.flash("error")[0],
   });
 };

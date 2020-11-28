@@ -53,13 +53,17 @@ router.post(
 
 // Route /api/v1/user/logIn
 // desc POST FORM INFO FOR Login => Phone, Password
-router.post('/login', login);
+router.post('/login', passport.authenticate("local",{successRedirect:"/api/v1/contact",failureRedirect:"/api/v1/user/login",failureFlash:true}));
+
+router.get("/login",login)
+
+// login by Google 
 
 router.get("/auth/google", passport.authenticate("google", {
   scope: ["profile", "email"]
 }));
 
-router.get("/auth/google/redirect",passport.authenticate('google',{failureRedirect:"/signup"}),(req,res)=>{
+router.get("/auth/google/redirect",passport.authenticate('google',{failureRedirect:"/login",failureFlash:true}),(req,res)=>{
   res.redirect("/contact");
 });
 

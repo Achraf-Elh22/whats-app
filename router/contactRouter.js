@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', auth.ensureAuth, (req, res, next) => {
   res.status(501).json({
-    status: 'Not Implemented',
+    status: 'Not Implemented (contact)',
     data: null,
   });
 });

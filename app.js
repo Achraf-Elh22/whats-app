@@ -3,7 +3,7 @@ const path = require('path');
 const morgan = require('morgan');
 const session = require('express-session');
 const passport = require('passport');
-const flash = require('flash');
+const flash = require('connect-flash');
 
 // Routers
 const userRouter = require('./router/userRouter');
@@ -53,3 +53,6 @@ app.use('/api/v1/contact', contactRouter);
 app.use('/', viewRouter);
 
 module.exports = app;
+
+
+"#$fxc3EeNW4cbFg^cY@J"
