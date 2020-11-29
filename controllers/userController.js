@@ -149,10 +149,3 @@ exports.profile = async (req, res, next) => {
     res.status(409).json({ status: 'error', message: err.message, error: err, data: null });
   }
 };
-
-exports.login =async (req, res, next) => {
-  res.status(401).json({
-    status:"Error",
-    data: req.flash("error")[0],
-  });
-};

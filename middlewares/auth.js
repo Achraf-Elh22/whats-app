@@ -19,7 +19,7 @@ module.exports = {
     } else {
       res.status(401).json({
         status: 'error',
-        message: `Please sign ot log in first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
+        message: `Please sign or log in first at ${req.protocol}://${req.headers.host}/api/v1/user/signup`,
         data: null,
       });
     }
@@ -28,7 +28,7 @@ module.exports = {
     if (req.isAuthenticated()) {
       res.status(401).json({
         status: 'error',
-        message: `You are already signin, to access your contact visit this link ${req.protocol}://${req.headers.host}/api/v1/user/contact`,
+        message: `You are already login, to access your contact visit this link ${req.protocol}://${req.headers.host}/api/v1/user/contact`,
         data: null,
       });
     } else {

@@ -53,9 +53,37 @@ router.post(
 
 // Route /api/v1/user/logIn
 // desc POST FORM INFO FOR Login => Phone, Password
-router.post('/login', passport.authenticate("local",{successRedirect:"/api/v1/contact",failureRedirect:"/api/v1/user/login",failureFlash:true}));
+router.get('/login',auth.ensureGuest, (req,res,next) => {
 
-router.get("/login",login)
+  passport.authenticate("local", (err,user,info)=>{
+  
+    if (err) { return next(err); }
+    console.log(req.flash("message"))
+    
+    if (!user) {
+      const error_msg = "Incorrect user email or password"
+        req.flash("error_msg",error_msg)
+        return res.status(401).json({
+          status:"error",
+          message:error_msg
+        })
+    }
+
+   
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      const success_msg = "Your are logged in"
+        req.flash("success_msg",success_msg)
+        return res.status(401).json({
+          status:"success",
+          message:success_msg
+        })
+    });
+  
+  })(req,res,next)}
+  
+  );
+
 
 // login by Google 
 

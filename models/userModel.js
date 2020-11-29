@@ -50,9 +50,7 @@ userSchema.pre('save', async function (next) {
   this.profile.password = await bcrypt.hash(this.profile.password, 12);
 });
 
-userSchema.methods.validPassword = async function (password) {
-  console.log(password, this.profile.password)
-  
+userSchema.methods.validPassword = async function (password) {  
   return await bcrypt.compare(password, this.profile.password);
 };
 
