@@ -1,5 +1,5 @@
 const express = require('express');
-const passport = require("passport");
+const passport = require('passport');
 
 // Controllers
 const { signup, verify, profile, login } = require('../controllers/userController');
@@ -53,46 +53,51 @@ router.post(
 
 // Route /api/v1/user/logIn
 // desc POST FORM INFO FOR Login => Phone, Password
-router.get('/login',auth.ensureGuest, (req,res,next) => {
+router.post('/login', auth.ensureGuest, (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    console.log(req.body);
 
-  passport.authenticate("local", (err,user,info)=>{
-  
-    if (err) { return next(err); }
-    console.log(req.flash("message"))
-    
     if (!user) {
-      const error_msg = "Incorrect user email or password"
-        req.flash("error_msg",error_msg)
-        return res.status(401).json({
-          status:"error",
-          message:error_msg
-        })
+      const error_msg = 'Incorrect user email or password';
+      req.flash('error_msg', error_msg);
+      return res.status(401).json({
+        status: 'error',
+        message: error_msg,
+      });
     }
 
-   
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      const success_msg = "Your are logged in"
-        req.flash("success_msg",success_msg)
-        return res.status(401).json({
-          status:"success",
-          message:success_msg
-        })
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      const success_msg = 'Your are logged in';
+      req.flash('success_msg', success_msg);
+      return res.status(200).json({
+        status: 'success',
+        message: success_msg,
+      });
     });
-  
-  })(req,res,next)}
-  
-  );
-
-
-// login by Google 
-
-router.get("/auth/google", passport.authenticate("google", {
-  scope: ["profile", "email"]
-}));
-
-router.get("/auth/google/redirect",passport.authenticate('google',{failureRedirect:"/login",failureFlash:true}),(req,res)=>{
-  res.redirect("/contact");
+  })(req, res, next);
 });
+
+// login by Google
+
+router.get(
+  '/auth/google',
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  })
+);
+
+router.get(
+  '/auth/google/redirect',
+  passport.authenticate('google', { failureRedirect: '/login', failureFlash: true }),
+  (req, res) => {
+    res.redirect('/contact');
+  }
+);
 
 module.exports = router;

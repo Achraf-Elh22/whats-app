@@ -79,6 +79,7 @@ exports.login = (req, res) => {
   res.status(200).render('login', {
     title: 'Log In',
     formTitle: 'Login to Your Account',
+    formId: 'login',
   });
 };
 

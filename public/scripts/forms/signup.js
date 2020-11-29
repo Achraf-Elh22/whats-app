@@ -15,13 +15,12 @@ export const signup = async (telNumber, email, password, country) => {
       },
     });
     if (res.data.status === 'success') {
-      showAlert('success', 'Logged in successfully!!!');
+      showAlert('success', 'Signin successfully!!!');
       window.setTimeout(() => {
         location.assign('/verify');
       }, 1500);
     }
   } catch (err) {
     showAlert('error', err.response.data.message);
-    console.error(err.response.data.message);
   }
 };

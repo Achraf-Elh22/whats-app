@@ -6,6 +6,7 @@ import { telInput, formatTelInput, checkTelInput } from './forms/telInput';
 import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit, resend } from './utils';
 import { togglePassword, checkPasswordStrength, checkConfirmPassword } from './forms/passwords';
 import { signup } from './forms/signup';
+import { login } from './forms/login';
 import { startTimer } from './forms/countDownTimer';
 import { readURL, createProfile } from './forms/profile';
 
@@ -23,6 +24,7 @@ const timer = document.querySelector('#timer');
 const profile = document.querySelector('#profile');
 const submitButton = document.querySelector('button[type=submit]');
 const profilePicture = document.querySelector('#profilePicture');
+const loginForm = document.querySelector('#login');
 
 if (profile) {
   profilePicture.addEventListener('change', function () {
@@ -43,7 +45,7 @@ if (profile) {
   });
 
   submitButton.addEventListener('click', async function () {
-     const overall = document.querySelector('.overall');
+    const overall = document.querySelector('.overall');
     const ishinding = overall.classList.contains('hide');
 
     if (ishinding) {
@@ -133,14 +135,9 @@ if (resetPasswordForm) {
   });
 }
 
-// Check the strength of password and Check email  Signup.html
-if (newUserForm) {
-  let ctr = 0;
+if (emailInput) {
   let isEmail;
   const desc = document.querySelector('#email-desc');
-  password.addEventListener('keyup', function () {
-    ctr = checkPasswordStrength(password.value);
-  });
 
   emailInput.addEventListener('focusout', function () {
     isEmail = checkEmail(emailInput.value);
@@ -149,6 +146,22 @@ if (newUserForm) {
     } else {
       desc.classList.add('hide');
     }
+  });
+  const form = emailInput.parentElement.parentElement;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!isEmail) {
+      return showAlert('error', 'Please provide a valid Email');
+    }
+  });
+}
+
+// Check the strength of password and Check email  Signup.html
+if (newUserForm) {
+  let ctr = 0;
+  password.addEventListener('keyup', function () {
+    ctr = checkPasswordStrength(password.value);
   });
 
   // Check before submit
@@ -159,9 +172,6 @@ if (newUserForm) {
 
     if (!isValidTel) {
       return showAlert('error', 'Please provide a valid Phone Number');
-    }
-    if (!isEmail) {
-      return showAlert('error', 'Please provide a valid Email');
     }
 
     const passwordSecure = isPasswordSecure(
@@ -190,4 +200,15 @@ if (timer) {
   const time = timer.innerText.split(':'); // for exemple if the input is 2:10  it will return ["2","10"]
   const remainTime = time[0] * 60 + time[1] * 1; // multiple the minutes 2 by 60 to have seconds value
   startTimer(remainTime, timer);
+}
+
+// Login Form
+
+if (loginForm) {
+  loginForm.addEventListener('submit', () => {
+    const email = document.querySelector('#email').value;
+    const password = document.querySelector('#password').value;
+
+    login(email, password);
+  });
 }
