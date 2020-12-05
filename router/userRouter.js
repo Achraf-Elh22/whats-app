@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 
 // Controllers
-const { signup, verify, profile, login } = require('../controllers/userController');
+const { signup, verify, profile } = require('../controllers/userController');
 
 const validation = require('../middlewares/validation');
 const protect = require('../middlewares/protect');
@@ -92,12 +92,27 @@ router.get(
   })
 );
 
-router.get(
-  '/auth/google/redirect',
-  passport.authenticate('google', { failureRedirect: '/login', failureFlash: true }),
-  (req, res) => {
-    res.redirect('/contact');
-  }
-);
+router.get('/auth/google/redirect', (req, res, next) => {
+  passport.authenticate('google', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      const error_msg = "User doesn't exist, Please signin ";
+      req.flash('error_msg', error_msg);
+      return res.redirect('/signup');
+    }
+
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      const success_msg = 'Your are logged in';
+      req.flash('success_msg', success_msg);
+      return res.redirect('/contact');
+    });
+  })(req, res, next);
+});
 
 module.exports = router;

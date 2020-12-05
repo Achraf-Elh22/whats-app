@@ -3,7 +3,14 @@ import '@babel/polyfill';
 
 import { otpInput, formatOtp, submitOtp } from './forms/otpInput';
 import { telInput, formatTelInput, checkTelInput } from './forms/telInput';
-import { checkEmail, showAlert, isPasswordSecure, checkBeforeSubmit, resend } from './utils';
+import {
+  checkEmail,
+  showAlert,
+  isPasswordSecure,
+  checkBeforeSubmit,
+  resend,
+  hideAlert,
+} from './utils';
 import { togglePassword, checkPasswordStrength, checkConfirmPassword } from './forms/passwords';
 import { signup } from './forms/signup';
 import { login } from './forms/login';
@@ -212,3 +219,9 @@ if (loginForm) {
     login(email, password);
   });
 }
+
+// the only purpose of this is to remove the alert after 7s when using flash to pass the msg from back to front
+window.addEventListener('load', () => {
+  const alertMsg = document.querySelector('.alert');
+  if (alertMsg) window.setTimeout(hideAlert, 7000);
+});

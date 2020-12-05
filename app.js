@@ -42,6 +42,11 @@ const sessionOptions = {
 };
 app.use(session(sessionOptions));
 app.use(flash());
+app.use(function (req, res, next) {
+  res.locals.success = req.flash('success_msg');
+  res.locals.error = req.flash('error_msg');
+  next();
+});
 
 // passport
 app.use(passport.initialize());
@@ -54,5 +59,4 @@ app.use('/', viewRouter);
 
 module.exports = app;
 
-
-"#$fxc3EeNW4cbFg^cY@J"
+('#$fxc3EeNW4cbFg^cY@J');

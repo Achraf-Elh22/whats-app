@@ -8,6 +8,10 @@ html(lang="en")
                 title Whatsapp | #{title}
                 link(rel="stylesheet")
         body
+            - var alertMsg = success == "" ? error : success ; 
+            if alertMsg != ""
+                div(class=`alert alert--${success == "" ? "error" : "success" }`  )= alertMsg
+
             block content
 
             block scripts
