@@ -12,6 +12,7 @@ exports.readURL = (input) => {
     profileImageParentElement.removeChild(profileImage);
 
     reader.onload = function (e) {
+      // for the profile image of the overflow
       profileImageParentElement.innerHTML =
         `<img src="${e.target.result}" alt="profile "/>` + profileImageParentElement.innerHTML;
       style.innerHTML = `#profilePicture::before {background:url(${e.target.result}) no-repeat center center/cover;}`;

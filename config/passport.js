@@ -9,7 +9,7 @@ module.exports = (passport) => {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
       try {
-        await User.findOne({ 'profile.email': username }, async (err, user) => {
+        await User.findOne({ email: username }, async (err, user) => {
           if (err) done(err);
 
           if (!user) return done(null, false, { message: 'Incorrect Email or password' });
@@ -37,7 +37,7 @@ module.exports = (passport) => {
       async (accessToken, refreshToken, profile, done) => {
         let userEmail = profile.emails[0].value;
 
-        let user = await User.findOne({ 'profile.email': userEmail });
+        let user = await User.findOne({ email: userEmail });
 
         if (user) {
           done(null, user);

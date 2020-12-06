@@ -58,7 +58,6 @@ router.post('/login', auth.ensureGuest, (req, res, next) => {
     if (err) {
       return next(err);
     }
-    console.log(req.body);
 
     if (!user) {
       const error_msg = 'Incorrect user email or password';

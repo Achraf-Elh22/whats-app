@@ -17851,6 +17851,7 @@ exports.readURL = function (input) {
     profileImageParentElement.removeChild(profileImage);
 
     reader.onload = function (e) {
+      // for the profile image of the overflow
       profileImageParentElement.innerHTML = "<img src=\"".concat(e.target.result, "\" alt=\"profile \"/>") + profileImageParentElement.innerHTML;
       style.innerHTML = "#profilePicture::before {background:url(".concat(e.target.result, ") no-repeat center center/cover;}");
       document.head.appendChild(style);
@@ -18232,7 +18233,9 @@ if (profile) {
         switch (_context.prev = _context.next) {
           case 0:
             overall = document.querySelector('.overall');
-            ishinding = overall.classList.contains('hide');
+            ishinding = overall.classList.contains('hide'); // set the user name of the overflow animation
+
+            document.querySelector('.username').innerHTML = profile.querySelector('#username').value;
 
             if (ishinding) {
               overall.classList.remove('hide');
@@ -18240,13 +18243,13 @@ if (profile) {
               overall.classList.add('animate__fadeInDown');
             }
 
-            _context.next = 5;
+            _context.next = 6;
             return setTimeout(function () {
               overall.classList.remove('animate__fadeInDown');
               overall.classList.add('animate__fadeOutDown', 'animate__slow');
             }, 5000);
 
-          case 5:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -18524,7 +18527,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44433" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45559" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

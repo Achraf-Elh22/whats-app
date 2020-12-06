@@ -62,7 +62,6 @@ exports.send = async (req, res, next, sendIt = false) => {
     const email = new Email(user);
 
     if (user.otpFailure === 0 || sendIt === true) {
-      console.log('SEND');
       sendBy === 'SMS'
         ? sendSMS(user.phoneNumber, SMSTextTemplete)
         : email.verifyUser(`${user.otpCode}`);

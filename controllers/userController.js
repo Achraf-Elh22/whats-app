@@ -114,7 +114,7 @@ exports.profile = async (req, res, next) => {
     }
 
     // Check if the username allready exist
-    if (await User.findOne({ 'profile.username': username })) {
+    if (await User.findOne({ username: username })) {
       return res.status(400).json({
         status: 'Error',
         message: `username is all ready exists, choose another one.`,
@@ -123,11 +123,16 @@ exports.profile = async (req, res, next) => {
 
     // create The newUser
     const newUser = await User.create({
-      profile: { email, phoneNumber, password, username, photo, description },
+      email,
+      phoneNumber,
+      password,
+      username,
+      photo,
+      description,
     });
 
     // Send Welcome Email to User
-    const sendEmail = new Email(newUser.profile, `${req.protocol}://${req.headers.host}/contact`);
+    const sendEmail = new Email(newUser, `${req.protocol}://${req.headers.host}/contact`);
 
     await sendEmail.welcome();
 
@@ -137,7 +142,6 @@ exports.profile = async (req, res, next) => {
         return next(err);
       } else {
         req.session.newUser = undefined;
-        console.log(req.session);
         return res.status(200).json({
           status: 'success',
           message: `Every thing is setup now you can try the ultimate expirence ${req.protocol}://${req.headers.host}/api/v1/user/contact`,

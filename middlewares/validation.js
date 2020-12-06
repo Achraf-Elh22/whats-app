@@ -40,8 +40,8 @@ exports.signup = async (req, res, next) => {
 
   // check if the user exist in DB
   const user = await User.findOne({
-    'profile.phoneNumber': formatTel,
-    'profile.email': email,
+    phoneNumber: formatTel,
+    email: email,
   });
   if (user)
     return res

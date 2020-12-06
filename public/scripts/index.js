@@ -43,6 +43,7 @@ if (profile) {
 
     const username = profile.querySelector('#username').value;
     const descValue = profile.querySelector('#description').value;
+
     let description;
     if (descValue !== '') {
       description = descValue;
@@ -54,6 +55,9 @@ if (profile) {
   submitButton.addEventListener('click', async function () {
     const overall = document.querySelector('.overall');
     const ishinding = overall.classList.contains('hide');
+
+    // set the user name of the overflow animation
+    document.querySelector('.username').innerHTML = profile.querySelector('#username').value;
 
     if (ishinding) {
       overall.classList.remove('hide');
