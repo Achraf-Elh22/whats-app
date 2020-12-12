@@ -52,12 +52,16 @@
 - [x] implement the basic structure of express app
 - [x] Set up the mongodb DB
 - [x] Build User Model "basic version"
-- [x] refactor the pages to pug
+- refactor the pages to pug
   - [x] signup page
   - [x] login page
-  - [ ] Verify
-  - [ ] reset password
+  - [x] Verify
+  - [x] reset password
+- Build the view controller:
+  - [x] signup
+  - [x] Login
 - Build the logique of API:
+
   - signup
     - [x] Get Data
     - [x] validate the Data
@@ -87,22 +91,29 @@
     - [x] Sign in the User using passportjs and protect the contact route
     - [x] redirect the user every time accessing the signup process (/signup, /verify, /profile)
     - [x] implement the Create profile api with the UI
-    - [ ] Sign in with google, facebook, instagram
-    - [ ] implement flash in the UI
-    - [ ] Handle the Errors of sign up
-    - [ ]
+    - [x] implement flash in the UI
   - Login
-    - [ ]
-- [ ] Build the view controller:
-  - [ ] signup
-  - [ ] Login
-- [ ] Build error handle controller and handle the message show to the user in more user friendly messages
-- [ ] Create a token store it in session and use connect-flash to show flags
-- [ ] show the flags in Ui
-- [ ] Security
-  - [ ] cookies
-- [ ] Compare the validation in backend with frontend
-- [ ] Performance
+    - [x] local strategy
+    - [ ] login in with:
+      - [x] google
+      - [ ] facebook
+      - [ ] instagram
+  - Contact:
+
+    - [x] Build the UI
+    - [x] Refactor to Pug
+    - [ ] Create get all users route
+    - [ ] get all user a show them in Ui
+    - [ ] Sort the contact by the time of lastMsg
+    - [ ] add functionality of search of users
+
+  - [x] show the flags in Ui
+  - [ ] Build error handle controller and handle the message show to the user in more user friendly messagess
+  - [ ] Security
+    - [ ] cookies
+  - [ ] Compare the validation in backend with frontend
+  - [ ] Performance
+
 - [ ] copyrights
 
 ## Error to fix

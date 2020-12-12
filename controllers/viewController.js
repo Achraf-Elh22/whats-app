@@ -84,11 +84,15 @@ exports.login = (req, res) => {
 };
 
 exports.contact = (req, res, next) => {
-  return res.status(501).render('error', {
-    title: 'Error',
-    errorCode: 501,
-    errorHeader: 'Not implemented',
-    errorLink: `${req.protocol}://${req.headers.host}/signup`,
-    errorText: 'sign up',
+  // return res.status(501).render('error', {
+  //   title: 'Error',
+  //   errorCode: 501,
+  //   errorHeader: 'Not implemented',
+  //   errorLink: `${req.protocol}://${req.headers.host}/signup`,
+  //   errorText: 'sign up',
+  // });
+
+  return res.status(200).render('contact', {
+    title: 'CONTACT',
   });
 };

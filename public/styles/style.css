@@ -419,6 +419,35 @@ p {
   margin-top: -1px;
 }
 
+.messages {
+  background-color: #e7ecef3d;
+}
+
+.messages__default {
+  padding: 0 50px;
+  display: grid;
+  place-items: center;
+  color: #727272;
+  text-align: center;
+}
+.messages__default--intro {
+  border-radius: 50%;
+  object-fit: contain;
+  height: 300px;
+}
+
+.messages__default--heading {
+  font-weight: 500;
+  padding: 15px 0;
+  font-size: 1.75rem;
+  color: #525252;
+}
+
+.messages__deafult--description {
+  width: 60%;
+  margin: auto;
+}
+
 /* Error Page */
 
 #error {

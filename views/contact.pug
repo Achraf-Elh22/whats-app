@@ -1,0 +1,41 @@
+extends base
+
+include mixins/contactSideChat
+
+block content
+    div.container
+        div.contact
+            header(class="contact__options bg-gray")
+                //- header
+                div(class="contact__options-profile px-1")
+                    img(class="contact__options-profile--img" src="/assets/images/users/profile.jpg" alt="user")
+            
+                div(class="contact__options-option")
+                    div(class="contact__options-option--addfriend px-1")
+                    img( src="/assets/icons/options-dots.svg" alt="options-dots")
+                
+                    div(class="contact__options-option--options px-2")
+                    img(src="/assets/icons/plus.svg" alt="plus")
+                    
+                //- Search bar
+            section(class="contact__search bg-gray-light p-1")
+                form(class="contact__search-bar")
+                    div(class="bg-secondary")
+                    img(src="/assets/icons/search.svg" alt="search")
+                    input(type="text" class="search-input" id="search-input" placeholder="Search or start new chat")
+
+            section.contact__chat
+                //- +contactSideChat => userName,photoName,lastMsg,lastMsgDate,lastMsgStatus = "received,send,seeing"
+                +contactSideChat("Rosa Welch","user (1)",'hi','12:50',"seeing")
+                +contactSideChat("Caitlin Paul","user (4)",'what about u ?','12:50',"send")
+                +contactSideChat('Amber Price',"user (5)", "meet tonight?","10:15","send")
+                +contactSideChat('Hugo Morrison',"user (6)", "see u tonight","09:15","received")
+                +contactSideChat('Eric Klein',"default", "what's up ?","19:15","received")
+                +contactSideChat('Olivia Anderson',"user (8)", "HI","09:15","received")
+                +contactSideChat('Charles Jones',"user (9)", "By","09:15","seeing")
+
+        div.messages.messages__default
+            div
+                img(class="messages__default--intro" src="/assets/images/intro-connection.jpg" alt="intro connection")
+                h1(class="messages__default--heading") Keep your phone connected
+                p(class="messages__deafult--description") WhatsApp connects to your phone to sync messages. To reduce data usage, connect your phone to Wi-Fi.
