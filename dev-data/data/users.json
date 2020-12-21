@@ -1,0 +1,77 @@
+[
+    {
+        "email": "user-1@exemple.com",
+        "username":"Rosa Welch",
+        "phoneNumber": "+441632960065",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "user-1",
+        "description": "Every new day is a chance to change your life."
+    },
+    {
+        "email": "user-2@exemple.com",
+        "username":"Caitlin Paul",
+        "phoneNumber": "+441632960740",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "user-2",
+        "description": "My weakness is that I care too much."
+    },
+    {
+        "email": "user-3@exemple.com",
+        "username":"Amber Price",
+        "phoneNumber": "+611900654321",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "user-3",
+        "description": "Be FREE like a BIRD."
+    },
+    {
+        "email": "user-4@exemple.com",
+        "username":"Olivia Anderson",
+        "phoneNumber": "+12025550196",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "user-4",
+        "description": "Smile and the world smiles with you."
+    },
+    {
+        "email": "user-5@exemple.com",
+        "username":"Hugo Morrison",
+        "phoneNumber": "+12025550121",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "user-5",
+        "description": "I’m born to express, not to impress."
+    },
+    {
+        "email": "user-6@exemple.com",
+        "username":"Eric Klein",
+        "phoneNumber": "+12025550124",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "user-6",
+        "description": "My life ,my rule,that’s my attitude… "
+    },
+    {
+        "email": "user-7@exemple.com",
+        "username":"Charles Jones",
+        "phoneNumber": "+12025550140",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "user-7",
+        "description": "Hard Work + Dream + Dedication = Success."
+    },
+
+    {
+        "email": "user-8@exemple.com",
+        "username":"Braydon Howells",
+        "phoneNumber": "+12025550134",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "user-8",
+        "description": "Happiness is homemade....."
+    },
+
+    {
+        "email": "user-9@exemple.com",
+        "username":"Alan Blundell",
+        "phoneNumber": "+12025550111",
+        "password": "$2a$12$37QRLh9/2bHd/OFoYfjwReN5jUSusgeBwR5q4HX/oDwWNeNVCsnqi",
+        "photo": "default",
+        "description": "Do or Die...There is no try."
+    }
+]
+
