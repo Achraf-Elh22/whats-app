@@ -58,5 +58,3 @@ app.use('/api/v1/contact', contactRouter);
 app.use('/', viewRouter);
 
 module.exports = app;
-
-('#$fxc3EeNW4cbFg^cY@J');

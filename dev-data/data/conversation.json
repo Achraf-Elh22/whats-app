@@ -1,0 +1,53 @@
+[
+  {
+    "participants": [
+      {
+        "_id": "601d575d7d10b8df50a7d0ba"
+      },
+      {
+        "_id": "601d575d7d10b8df50a7d0bb"
+      }
+    ],
+    "type": "private"
+  },
+  {
+    "participants": [
+      {
+        "_id": "601d575d7d10b8df50a7d0ba"
+      },
+      {
+        "_id": "601d575d7d10b8df50a7d0bc"
+      }
+    ],
+    "type": "private"
+  },
+  {
+    "participants": [
+      {
+        "_id": "601d575d7d10b8df50a7d0ba"
+      },
+      {
+        "_id": "601d575d7d10b8df50a7d0bd"
+      }
+    ],
+    "type": "private"
+  },
+  {
+    "participants": [
+      {
+        "_id": "601d575d7d10b8df50a7d0ba"
+      },
+      {
+        "_id": "601d575d7d10b8df50a7d0bb"
+      },
+      {
+        "_id": "601d575d7d10b8df50a7d0bc"
+      },
+      {
+        "_id": "601d575d7d10b8df50a7d0bd"
+      }
+    ],
+    "type": "group",
+    "description": ""
+  }
+]

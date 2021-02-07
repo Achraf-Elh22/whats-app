@@ -1,5 +1,9 @@
 # TODO:
 
+## information's:
+
+- link to the Db model design [link](https://drawsql.app/aa-12/diagrams/whatsapp)
+
 # Front-End
 
 - [x] Sign up page
@@ -11,10 +15,10 @@
     - At least one lowercase character [a-z]
     - At least one uppercase character [A-Z]
     - At least 8 characters in length
-  - [x] Add password show toogle
+  - [x] Add password show toggle
   - [x] Build the Sign up page "Desktop version"
 - [x] Log In Page
-- [x] remove the deplicate code in css
+- [x] remove the duplicated code in css
 - [x] Build the verify User page
 - [x] Build the new password page
   - [x] "Mobile version"
@@ -40,7 +44,7 @@
   - [x] Verify
   - [x] reset password
   - [x] add the email and password validator
-- [x] Refacture js files to be server from nodejs server
+- [x] Refactors js files to be server from nodejs server
 - [x] implement the error and success flags popup
 - [ ] Build the Intro
 - [ ] implement local storage
@@ -53,24 +57,24 @@
 - [x] Set up the mongodb DB
 - [x] Build User Model "basic version"
 - refactor the pages to pug
-  - [x] signup page
+  - [x] sign up page
   - [x] login page
   - [x] Verify
   - [x] reset password
 - Build the view controller:
-  - [x] signup
+  - [x] sign up
   - [x] Login
-- Build the logique of API:
+- Build the logic of API:
 
-  - signup
+  - sign up
     - [x] Get Data
     - [x] validate the Data
     - [x] check if the user is already exist
-    - [x] Encrypt Inforamtions
+    - [x] Encrypt information's
     - [x] save User
     - [x] POST the user data from form
     - [x] Send him to the next stage "Verify"
-    - [x] Generate Otp and Build the logique behind it
+    - [x] Generate Otp and Build the logic behind it
     - [x] Check the OTP
     - [x] send the otp from the front end
     - [x] Send OTP in SMS
@@ -82,14 +86,14 @@
     - [x] Finish building verify process
     - [x] Pass the User to Stage 3
     - [x] Build the Stage 3 UI "Create Profile"
-    - [x] Build the overlayout to show the user his contact (ui)
+    - [x] Build the over layout to show the user his contact (ui)
     - [x] Protect the profile route and get the username, photo and description
     - [x] implement the functionality to upload profile image (multer)
     - [x] optimize the picture with (sharp)
     - [x] Save the User Information in Db and destroy session
     - [x] Send welcome email to the user via Email
-    - [x] Sign in the User using passportjs and protect the contact route
-    - [x] redirect the user every time accessing the signup process (/signup, /verify, /profile)
+    - [x] Sign in the User using passport js and protect the contact route
+    - [x] redirect the user every time accessing the sign up process (/sign up, /verify, /profile)
     - [x] implement the Create profile api with the UI
     - [x] implement flash in the UI
   - Login
@@ -102,13 +106,15 @@
 
     - [x] Build the UI
     - [x] Refactor to Pug
-    - [ ] Create get all users route
-    - [ ] get all user a show them in Ui
+    - [x] build the import-dev-data for development purposes ( import fake users to db)
+    - [ ] Create functionality to handle and deliver the init data need for the user when they enter the /Contact route (utility function)
+    - [ ] Build automation script for import and init the Data(json ) auto and integrated in package.json
+    - [ ] show all init data coming from the /contact route a show them in Ui
     - [ ] Sort the contact by the time of lastMsg
     - [ ] add functionality of search of users
 
   - [x] show the flags in Ui
-  - [ ] Build error handle controller and handle the message show to the user in more user friendly messagess
+  - [ ] Build error handle controller and handle the message show to the user in more user friendly messages
   - [ ] Security
     - [ ] cookies
   - [ ] Compare the validation in backend with frontend
@@ -118,7 +124,7 @@
 
 ## Error to fix
 
-- fix the bug in profile middleweare
+- fix the bug in profile middleware
 
 ## Errors To handle
 
@@ -127,10 +133,10 @@
 TODO: Learning version
 
 - [x] know more about Parcel and @babel/polyfill
-- [x] know more about how to create perfict model in mongodb
+- [x] know more about how to create perfect model in mongodb
 - [x] Pug
 - [ ] Handle Errors
-- [ ] Passportjs
+- [ ] Passport js
 - [ ] Learn jquery
 - [ ] connect-flash
 - [ ] learn more about [Production best practices: performance and reliability]("https://expressjs.com/th/advanced/best-practice-performance.html")
