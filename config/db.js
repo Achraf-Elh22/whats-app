@@ -7,6 +7,7 @@ const connectDB = async (uri = MONGO_URI) => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
+      autoIndex: false,
     });
 
     console.log(`MongoDB connected 👍👍👍`);

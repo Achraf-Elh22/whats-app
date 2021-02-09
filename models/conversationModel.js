@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
+const _ = require('underscore');
 
 const conversationSchema = new mongoose.Schema(
   {
@@ -7,6 +9,7 @@ const conversationSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true,
+        unique: true,
       },
     ],
     type: {
@@ -17,6 +20,7 @@ const conversationSchema = new mongoose.Schema(
     description: {
       type: String,
       maxLength: 125,
+      default: 'Just some people hanging out',
     },
   },
   { timestamps: true }
@@ -29,15 +33,38 @@ conversationSchema.virtual('messages', {
   foreignField: 'conversationId',
 });
 
+// Plugin
+conversationSchema.plugin(uniqueValidator);
+
+// Pre Hooks
+// Validation to check that participant in conversation is unique
+conversationSchema.pre('save', function (next) {
+  this.participants = _.uniq(this.participants, (i) => (i._id ? i._id.toString() : i));
+  return next();
+});
+
+// Minimale Number of people allowed to creating is 3 participants
+conversationSchema.pre('save', function (next) {
+  if (this.type === 'group') {
+    this.participants.length > 3
+      ? next()
+      : next(new Error('Group need to have more than Three participants'));
+  }
+  return next();
+});
+
+// Description is only for the groups
+conversationSchema.pre('save', function (next) {
+  if (this.type === 'private') {
+    this.description = undefined;
+  }
+  next();
+});
+
+// Sets
 conversationSchema.set('toObject', { virtuals: true });
 conversationSchema.set('toJSON', { virtuals: true });
 
 const Conversation = mongoose.model('Conversation', conversationSchema);
 
 module.exports = Conversation;
-
-// TODO:
-// Validations:
-//  - Participants => should be unique
-// - Type => MINIMALE USERS IS 3
-// - Description => Only for the Groups

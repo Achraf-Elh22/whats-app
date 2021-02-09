@@ -110,6 +110,7 @@
     - [ ] Create functionality to handle and deliver the init data need for the user when they enter the /Contact route (utility function)
     - [ ] Build automation script for import and init the Data(json ) auto and integrated in package.json
     - [ ] show all init data coming from the /contact route a show them in Ui
+    - [ ] Enhance the performance of Db (read this article => https://itnext.io/performance-tips-for-mongodb-mongoose-190732a5d382)
     - [ ] Sort the contact by the time of lastMsg
     - [ ] add functionality of search of users
 
