@@ -1,6 +1,24 @@
 const { isSessionExpired } = require('../utils/validation');
 const { diffTime } = require('../utils/utils');
 
+const errorRes = (
+  errorCode = 501,
+  errorHeader = 'Not implemented',
+  errorDesc = '',
+  errorLink,
+  errorText,
+  title = 'Error'
+) => {
+  return {
+    title,
+    errorCode,
+    errorHeader,
+    errorDesc,
+    errorLink,
+    errorText,
+  };
+};
+
 exports.signup = (req, res) => {
   res.status(200).render('signup', {
     title: 'Sign Up',
@@ -13,35 +31,47 @@ exports.verify = (req, res) => {
   let user = req.session.newUser;
   // Check if there is user data in session and if the user is in the right stage
   if (!user || user.stage !== 'verify')
-    return res.status(401).render('error', {
-      title: 'Error',
-      errorCode: 401,
-      errorHeader: 'Sign Up First',
-      errorDesc: `Unauthorized, Please Sign Up First`,
-      errorLink: `${req.protocol}://${req.headers.host}/signup`,
-      errorText: 'sign up',
-    });
+    return res
+      .status(401)
+      .render(
+        'error',
+        errorRes(
+          401,
+          'Sign Up First',
+          'Unauthorized, Please Sign Up First',
+          `${req.protocol}://${req.headers.host}/signup`,
+          'Sign up'
+        )
+      );
 
   if (isSessionExpired(req.session, user.expDate)) {
-    return res.status(401).render('error', {
-      title: 'Error',
-      errorCode: 401,
-      errorHeader: 'TIMEOUT',
-      errorDesc: `Unauthorized, Please Resign Up `,
-      errorLink: `${req.protocol}://${req.headers.host}/signup`,
-      errorText: 'Resign up',
-    });
+    return res
+      .status(401)
+      .render(
+        'error',
+        errorRes(
+          401,
+          'TIMEOUT',
+          'Unauthorized, Please Resign Up',
+          `${req.protocol}://${req.headers.host}/signup`,
+          'Resign up'
+        )
+      );
   }
 
   if (user.consecutiveFailure >= 3)
-    return res.status(401).render('error', {
-      title: 'Error',
-      errorCode: 401,
-      errorHeader: 'YOU MADE ALOT OF ATTEMPTS ',
-      errorDesc: `You made alot of attempts, Please re-Check your informatiin by re-sign`,
-      errorLink: `${req.protocol}://${req.headers.host}/signup`,
-      errorText: 'Resign up',
-    });
+    return res
+      .status(401)
+      .render(
+        'error',
+        errorRes(
+          401,
+          'YOU MADE ALOT OF ATTEMPTS ',
+          'You made alot of attempts, Please re-Check your informatiin by re-sign',
+          `${req.protocol}://${req.headers.host}/signup`,
+          'Resign up'
+        )
+      );
 
   // Timer
   const formatTime = diffTime(user.expDate).format;
@@ -59,14 +89,18 @@ exports.profile = (req, res, next) => {
   let user = req.session.newUser;
   // Check if there is user data in session and if the user is in the right stage
   if (!user || user.stage !== 'createProfile')
-    return res.status(401).render('error', {
-      title: 'Error',
-      errorCode: 401,
-      errorHeader: 'Sign Up First',
-      errorDesc: `Unauthorized, Please Sign Up First`,
-      errorLink: `${req.protocol}://${req.headers.host}/signup`,
-      errorText: 'sign up',
-    });
+    return res
+      .status(401)
+      .render(
+        'error',
+        errorRes(
+          401,
+          'Sign Up First',
+          'Unauthorized, Please Sign Up First',
+          `${req.protocol}://${req.headers.host}/signup`,
+          'Sign up'
+        )
+      );
 
   res.status(200).render('profile', {
     title: 'Create Profile',
@@ -84,13 +118,20 @@ exports.login = (req, res) => {
 };
 
 exports.contact = (req, res, next) => {
-  // return res.status(501).render('error', {
-  //   title: 'Error',
-  //   errorCode: 501,
-  //   errorHeader: 'Not implemented',
-  //   errorLink: `${req.protocol}://${req.headers.host}/signup`,
-  //   errorText: 'sign up',
-  // });
+  // if (error) {
+  //   return res
+  //     .status(501)
+  //     .render(
+  //       'error',
+  //       errorRes(
+  //         501,
+  //         'Sign Up First',
+  //         'Unauthorized, Please Sign Up First',
+  //         `${req.protocol}://${req.headers.host}/signup`,
+  //         'Sign up'
+  //       )
+  //     );
+  // }
 
   return res.status(200).render('contact', {
     title: 'CONTACT',

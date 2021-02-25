@@ -5,7 +5,7 @@ const User = require('../models/userModel');
 const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = require('../config/index');
 
 module.exports = (passport) => {
-  // Verification using Email and Passport
+  // Verification using Email and Password
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
       try {

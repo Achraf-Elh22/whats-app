@@ -33,6 +33,7 @@
     "type": "private"
   },
   {
+    "groupeName": "friends",
     "participants": [
       {
         "_id": "601d575d7d10b8df50a7d0ba"

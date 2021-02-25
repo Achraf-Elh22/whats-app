@@ -32,6 +32,13 @@ const profile = document.querySelector('#profile');
 const submitButton = document.querySelector('button[type=submit]');
 const profilePicture = document.querySelector('#profilePicture');
 const loginForm = document.querySelector('#login');
+const contact = document.querySelector('#contact');
+
+if (contact) {
+  fetch('http://localhost:3000/api/v1/contact/')
+    .then((res) => res.json())
+    .then((res) => console.log(res));
+}
 
 if (profile) {
   profilePicture.addEventListener('change', function () {

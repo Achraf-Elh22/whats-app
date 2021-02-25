@@ -4,6 +4,10 @@ const _ = require('underscore');
 
 const conversationSchema = new mongoose.Schema(
   {
+    groupeName: {
+      type: String,
+      unique: true,
+    },
     participants: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -25,6 +29,12 @@ const conversationSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Paths
+// add required validation to groupName only if the type is group
+conversationSchema.path('groupeName').required(function () {
+  return this.type === 'group';
+}, 'The groupe name is required');
 
 // virtuals
 conversationSchema.virtual('messages', {

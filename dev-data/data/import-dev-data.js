@@ -18,19 +18,19 @@ const messages = JSON.parse(fs.readFileSync(`${__dirname}/messages.json`));
 
 // Import Data
 const importData = async () => {
-  // await User.create(users);
-  // await Contact.create(contacts);
+  await User.create(users);
+  await Contact.create(contacts);
   await Conversation.create(conversations);
-  // await Message.create(messages);
+  await Message.create(messages);
   process.exit(1);
 };
 
 // Delete Data
 const deleteData = async () => {
-  // await User.deleteMany();
-  // await Contact.deleteMany();
+  await User.deleteMany();
+  await Contact.deleteMany();
   await Conversation.deleteMany();
-  // await Message.deleteMany();
+  await Message.deleteMany();
   process.exit(1);
 };
 
