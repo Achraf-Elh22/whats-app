@@ -6,7 +6,6 @@ const conversationSchema = new mongoose.Schema(
   {
     groupeName: {
       type: String,
-      unique: true,
     },
     participants: [
       {
@@ -18,7 +17,7 @@ const conversationSchema = new mongoose.Schema(
     ],
     type: {
       type: String,
-      enum: ['private', 'group'],
+      enum: ['private', 'groupe'],
     },
     photo: { type: String, default: 'default.jpg' },
     description: {
@@ -31,16 +30,17 @@ const conversationSchema = new mongoose.Schema(
 );
 
 // Paths
-// add required validation to groupName only if the type is group
+// add required validation to groupName and required only if the type is group
 conversationSchema.path('groupeName').required(function () {
   return this.type === 'group';
 }, 'The groupe name is required');
 
 // virtuals
-conversationSchema.virtual('messages', {
+conversationSchema.virtual('lastMsg', {
   ref: 'Message',
   localField: '_id',
   foreignField: 'conversationId',
+  options: { sort: { createdAt: -1 } },
 });
 
 // Plugin
@@ -53,22 +53,21 @@ conversationSchema.pre('save', function (next) {
   return next();
 });
 
-// Minimale Number of people allowed to creating is 3 participants
 conversationSchema.pre('save', function (next) {
+  // Minimale Number of people allowed to creating is 3 participants
   if (this.type === 'group') {
     this.participants.length > 3
       ? next()
       : next(new Error('Group need to have more than Three participants'));
   }
-  return next();
-});
 
-// Description is only for the groups
-conversationSchema.pre('save', function (next) {
+  // Description and photo is only for the groups
   if (this.type === 'private') {
     this.description = undefined;
+    this.photo = undefined;
   }
-  next();
+
+  return next();
 });
 
 // Sets

@@ -26,6 +26,7 @@ router.get('/login', ensureGuestUi, login);
 
 // Route /contact'
 // desc GET contact View
+// router.get('/contact, contact);
 router.get('/contact', ensureAuthUi, contact);
 
 module.exports = router;
