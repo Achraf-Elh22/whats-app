@@ -347,6 +347,35 @@ p {
   top: 10%;
 }
 
+/* contact Information => date and notification of messages */
+.contact__chat-msg--info {
+  /* to move it to the end */
+  margin-left: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.contact__chat-msg--newMessagesLength {
+  text-align: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: #20bf6b;
+  border-radius: 50%;
+  margin-top: 0.25rem;
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact__chat-msg--newMessagesLength span {
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+}
+
 /* Chat user  */
 .contact__chat {
   display: flex;
@@ -392,7 +421,7 @@ p {
   font-size: 12px;
   font-weight: 200;
   color: #727272;
-  align-self: flex-start;
+  /* align-self: flex-start; */
 }
 .contact__chat-msg--name span {
   font-weight: 500;

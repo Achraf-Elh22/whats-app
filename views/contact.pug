@@ -27,11 +27,16 @@ block content
             section.contact__chat
                 //- +contactSideChat => conversationId,userId,userName,photoName,lastMsg,lastMsgDate,lastMsgStatus = "received,send,seeing"
                 each conversation in data.conversations
-                    //- li=conversation.participants[0].username
+                    //-  Length of the new Messages
+                    - let newMessagesLength;
+                    if conversation.lastMsg[0].lastMsg[0]._id !== data.user._id
+                        - newMessagesLength = conversation.lastMsg[0].lastMsg.length;
+                    
+                    //- render Conversation 
                     if conversation.type === "private"
-                        +contactSideChat(conversation.participants[0].username, conversation.participants[0].photo, conversation.lastMsg[0].lastMsg[0].content,conversation.lastMsg[0].lastMsg[0].dateRes,conversation.lastMsg[0].lastMsg[0].status, conversation._id,conversation.participants[0]._id)
+                        +contactSideChat(conversation.participants[0].username, conversation.participants[0].photo, conversation.lastMsg[0].lastMsg[0].content,conversation.lastMsg[0].lastMsg[0].dateRes,conversation.lastMsg[0].lastMsg[0].status, conversation._id,conversation.participants[0]._id, newMessagesLength)
                     else if conversation.type === "groupe"
-                        +contactSideChat(conversation.groupeName, conversation.participants[0].photo, conversation.lastMsg[0].lastMsg[0].content,conversation.lastMsg[0].lastMsg[0].dateRes,conversation.lastMsg[0].lastMsg[0].status, conversation._id,conversation.participants[0]._id)
+                        +contactSideChat(conversation.groupeName, conversation.participants[0].photo, conversation.lastMsg[0].lastMsg[0].content,conversation.lastMsg[0].lastMsg[0].dateRes,conversation.lastMsg[0].lastMsg[0].status, conversation._id,conversation.participants[0]._id,newMessagesLength)
 
         div.messages.messages__default
             div
