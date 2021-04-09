@@ -5,8 +5,8 @@
 //- lastMsgStatus = "received,send,seeing"
 
 
-mixin contactSideChat(userName,photoName,lastMsg,lastMsgDate,lastMsgStatus) 
-    div(class=`contact__chat-msg p-2 `)
+mixin contactSideChat(userName,photoName,lastMsg,lastMsgDate,lastMsgStatus,conversationId,userId) 
+    div(class=`contact__chat-msg p-2 ` data-conv-id=conversationId data-user-id=userId)
         img(src=`/assets/images/users/${photoName}.png` alt="user")
         div(class="contact__chat-msg--name")
             span= userName

@@ -77,15 +77,17 @@ exports.lastMsg = (data, signedUser) => {
       // Message
       let lm = data[idx];
       // currentUser
-      usr = idx == 0 ? lm.senderId : usr;
+      usr = idx == 0 ? lm.senderId.toString() : usr;
 
       //  Check the message is send by the same user
       if (!(idx > 0 && usr != lm.senderId)) {
         // If message has been send by user to someone else we want to push all the message to result array
-        if (usr == signedUser) res.push(lm);
+        // and format Date res
+        if (usr == signedUser) res.push({ ...lm, dateRes: this.formatDateRes(lm.createdAt) });
 
         // If message has been send by other user we want only messages with status received and seeing
-        if (usr != signedUser && (lm.status == 'seeing' || lm.status == 'received')) res.push(lm);
+        if (usr != signedUser && (lm.status == 'seeing' || lm.status == 'received'))
+          res.push({ ...lm, dateRes: this.formatDateRes(lm.createdAt) });
 
         if (
           usr != signedUser &&
@@ -103,4 +105,56 @@ exports.lastMsg = (data, signedUser) => {
   }
 
   return res;
+};
+
+//  UI error template response
+exports.errorRes = (
+  errorCode = 501,
+  errorHeader = 'Not implemented',
+  errorDesc = '',
+  errorLink,
+  errorText,
+  title = 'Error'
+) => {
+  return {
+    title,
+    errorCode,
+    errorHeader,
+    errorDesc,
+    errorLink,
+    errorText,
+  };
+};
+
+// Format the res date
+exports.formatDateRes = (createdAt) => {
+  let date = moment(createdAt);
+  let now = moment(Date.now());
+
+  // Difference between date and now
+  let diffDate = now.diff(date, 'minutes');
+
+  let dateRes;
+
+  // 1440 min = 24h = Day
+  // Date format = 12:10
+  if (diffDate <= 1440) {
+    dateRes = date.format('HH:mm');
+  }
+  // 2880min = 48h = 2 Day
+  // date format = yesterday
+  else if (diffDate > 1440 && diffDate <= 2880) {
+    dateRes = 'Yesterday';
+  }
+  // 10080min = 7 Day
+  // date format = Monday, Tuesday, .....
+  else if (diffDate > 2880 && diffDate <= 10080) {
+    dateRes = date.format('dddd');
+  }
+  // date Format = 01/01/2020
+  else {
+    dateRes = date.format('D/M/YYYY');
+  }
+
+  return dateRes;
 };

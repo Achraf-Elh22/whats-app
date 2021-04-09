@@ -8,8 +8,8 @@ const router = express.Router();
 router.get('/', async (req, res, next) => {
   try {
     // For development purposes
-    // const id = '6037a170d10990042799807b';
-    const id = req.user.id;
+    const id = '6037a170d10990042799807b';
+    // const id = req.user.id;
 
     const data = await initialData(id);
 

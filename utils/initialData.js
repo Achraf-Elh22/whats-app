@@ -1,9 +1,7 @@
 const User = require('../models/userModel.js');
 const Conversation = require('../models/conversationModel');
 const Message = require('../models/messageModel');
-const { lastMsg } = require('../utils/utils');
-
-// Think of using statics
+const { lastMsg, formatDateRes } = require('../utils/utils');
 
 const initialData = async (userId) => {
   try {
@@ -11,7 +9,7 @@ const initialData = async (userId) => {
     const user = await User.findById(userId).select('photo').lean();
 
     const conversations = await Conversation.find({ participants: userId })
-      .select('participants type _id')
+      .select('participants type _id groupeName photo')
       .populate({
         path: 'participants',
         model: User,
@@ -36,6 +34,7 @@ const initialData = async (userId) => {
           _id: '$conversationId',
           lastMsg: {
             $push: {
+              _id: '$_id',
               senderId: '$senderId',
               content: '$content',
               contentType: '$contentType',
@@ -60,7 +59,6 @@ const initialData = async (userId) => {
       for (let last_msg of lastMessages) {
         // i don't know why exactly the lean return bson Type
         if (conv._id._id.toString() === last_msg._id.toString()) {
-          console.log('PASS-2');
           messages.push(last_msg);
         }
       }
@@ -82,4 +80,4 @@ module.exports = initialData;
 // - [x] Build the validations for schema's
 // - [x] Start building INITDATA class (think of what's exactly info we needed in the init )
 // - [ ] Build login
-// - [ ] Build automation script for import and init the Data(json ) auto and integrated in package.json
+// - [ ] Build automation script for import and init the Data(json ) auto and integrated in package.json and add fields to req like user.id ,

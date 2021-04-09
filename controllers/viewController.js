@@ -1,23 +1,6 @@
 const { isSessionExpired } = require('../utils/validation');
-const { diffTime } = require('../utils/utils');
-
-const errorRes = (
-  errorCode = 501,
-  errorHeader = 'Not implemented',
-  errorDesc = '',
-  errorLink,
-  errorText,
-  title = 'Error'
-) => {
-  return {
-    title,
-    errorCode,
-    errorHeader,
-    errorDesc,
-    errorLink,
-    errorText,
-  };
-};
+const { diffTime, errorRes } = require('../utils/utils');
+const initialData = require('../utils/initialData');
 
 exports.signup = (req, res) => {
   res.status(200).render('signup', {
@@ -117,23 +100,37 @@ exports.login = (req, res) => {
   });
 };
 
-exports.contact = (req, res, next) => {
-  // if (error) {
-  //   return res
-  //     .status(501)
-  //     .render(
-  //       'error',
-  //       errorRes(
-  //         501,
-  //         'Sign Up First',
-  //         'Unauthorized, Please Sign Up First',
-  //         `${req.protocol}://${req.headers.host}/signup`,
-  //         'Sign up'
-  //       )
-  //     );
-  // }
+// Initial data need to render Contact page
+exports.initData = async (req, res, next) => {
+  try {
+    // developement purposes
+    const id = '6037a170d10990042799807b';
+    // console.log('Pass', req.user.id);
 
+    if (!id) {
+      return res
+        .status(401)
+        .render(
+          'error',
+          errorRes(
+            501,
+            'Sign Up First',
+            'Unauthorized, Please Sign Up First',
+            `${req.protocol}://${req.headers.host}/signup`,
+            'Sign up'
+          )
+        );
+    }
+    req.init = await initialData(id);
+    next();
+  } catch (err) {
+    res.status(500).json({ status: 'error', message: err });
+  }
+};
+
+exports.contact = (req, res, next) => {
   return res.status(200).render('contact', {
     title: 'CONTACT',
+    data: req.init,
   });
 };

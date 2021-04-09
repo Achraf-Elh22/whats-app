@@ -4,7 +4,14 @@ const express = require('express');
 const { ensureAuthUi, ensureGuestUi } = require('../middlewares/auth');
 
 // Controllers
-const { signup, login, profile, verify, contact } = require('../controllers/viewController');
+const {
+  signup,
+  login,
+  profile,
+  verify,
+  contact,
+  initData,
+} = require('../controllers/viewController');
 
 const router = express.Router();
 
@@ -26,7 +33,7 @@ router.get('/login', ensureGuestUi, login);
 
 // Route /contact'
 // desc GET contact View
-// router.get('/contact, contact);
-router.get('/contact', ensureAuthUi, contact);
+router.get('/contact', initData, contact);
+// router.get('/contact', ensureAuthUi, initData, contact);
 
 module.exports = router;

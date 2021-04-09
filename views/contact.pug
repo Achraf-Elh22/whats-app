@@ -8,7 +8,7 @@ block content
             header(class="contact__options bg-gray")
                 //- header
                 div(class="contact__options-profile px-1")
-                    img(class="contact__options-profile--img" src="/assets/images/users/profile.jpg" alt="user")
+                    img(class="contact__options-profile--img" data-id=data.user._id src=`/assets/images/users/${data.user.photo}.png` alt="user")
             
                 div(class="contact__options-option")
                     div(class="contact__options-option--addfriend px-1")
@@ -25,16 +25,13 @@ block content
                     input(type="text" class="search-input" id="search-input" placeholder="Search or start new chat")
 
             section.contact__chat
-                //- +contactSideChat => userName,photoName,lastMsg,lastMsgDate,lastMsgStatus = "received,send,seeing"
-                +contactSideChat("Rosa Welch","user-1",'hi','12:50',"seeing")
-                +contactSideChat("Caitlin Paul","user-2",'what about u ?','12:50',"send")
-                +contactSideChat('Amber Price',"user-3", "meet tonight?","10:15","send")
-                +contactSideChat('Hugo Morrison',"user-4", "see u tonight","09:15","received")
-                +contactSideChat('Olivia Anderson',"user-5", "HI","09:15","received")
-                +contactSideChat('Charles Jones',"user-6", "By","09:15","seeing")
-                +contactSideChat('Braydon Howells',"user-7", "By","09:15","seeing")
-                +contactSideChat('Alan Blundell',"user-8", "By","09:15","seeing")
-                +contactSideChat('Eric Klein',"default", "what's up ?","19:15","received")
+                //- +contactSideChat => conversationId,userId,userName,photoName,lastMsg,lastMsgDate,lastMsgStatus = "received,send,seeing"
+                each conversation in data.conversations
+                    //- li=conversation.participants[0].username
+                    if conversation.type === "private"
+                        +contactSideChat(conversation.participants[0].username, conversation.participants[0].photo, conversation.lastMsg[0].lastMsg[0].content,conversation.lastMsg[0].lastMsg[0].dateRes,conversation.lastMsg[0].lastMsg[0].status, conversation._id,conversation.participants[0]._id)
+                    else if conversation.type === "groupe"
+                        +contactSideChat(conversation.groupeName, conversation.participants[0].photo, conversation.lastMsg[0].lastMsg[0].content,conversation.lastMsg[0].lastMsg[0].dateRes,conversation.lastMsg[0].lastMsg[0].status, conversation._id,conversation.participants[0]._id)
 
         div.messages.messages__default
             div

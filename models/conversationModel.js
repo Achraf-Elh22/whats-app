@@ -32,16 +32,8 @@ const conversationSchema = new mongoose.Schema(
 // Paths
 // add required validation to groupName and required only if the type is group
 conversationSchema.path('groupeName').required(function () {
-  return this.type === 'group';
+  return this.type === 'groupe';
 }, 'The groupe name is required');
-
-// virtuals
-conversationSchema.virtual('lastMsg', {
-  ref: 'Message',
-  localField: '_id',
-  foreignField: 'conversationId',
-  options: { sort: { createdAt: -1 } },
-});
 
 // Plugin
 conversationSchema.plugin(uniqueValidator);
