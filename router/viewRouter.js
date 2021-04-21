@@ -33,7 +33,7 @@ router.get('/login', ensureGuestUi, login);
 
 // Route /contact'
 // desc GET contact View
-router.get('/contact', initData, contact);
-// router.get('/contact', ensureAuthUi, initData, contact);
+router.get('/contact', ensureAuthUi, initData, contact);
+// router.get('/contact', initData, contact);
 
 module.exports = router;

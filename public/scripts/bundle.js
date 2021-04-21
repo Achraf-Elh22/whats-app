@@ -18221,14 +18221,6 @@ var profilePicture = document.querySelector('#profilePicture');
 var loginForm = document.querySelector('#login');
 var contact = document.querySelector('#contact');
 
-if (contact) {
-  fetch('http://localhost:3000/api/v1/contact/').then(function (res) {
-    return res.json();
-  }).then(function (res) {
-    return console.log(res);
-  });
-}
-
 if (profile) {
   profilePicture.addEventListener('change', function () {
     (0, _profile.readURL)(this);
@@ -18546,7 +18538,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44793" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39409" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

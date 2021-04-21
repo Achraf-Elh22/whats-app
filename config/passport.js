@@ -9,18 +9,20 @@ module.exports = (passport) => {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
       try {
-        await User.findOne({ email: username }, async (err, user) => {
-          if (err) done(err);
+        console.log('check-1', username, password);
+        await User.findOne({ email: username })
+          .select('password')
+          .exec(async (err, user) => {
+            if (err) done(err);
+            if (!user) return done(null, false, { message: 'Incorrect Email or password' });
 
-          if (!user) return done(null, false, { message: 'Incorrect Email or password' });
+            const validPassword = await user.validPassword(password);
 
-          const validPassword = await user.validPassword(password);
-
-          if (!validPassword) {
-            return done(null, false, { message: 'Incorrect Email or password' });
-          }
-          return done(null, user);
-        });
+            if (!validPassword) {
+              return done(null, false, { message: 'Incorrect Email or password' });
+            }
+            return done(null, user);
+          });
       } catch (err) {
         return done(err);
       }
