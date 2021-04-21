@@ -6,7 +6,7 @@
     "email": "user-1@exemple.com",
     "username": "rosa welch",
     "phoneNumber": "+441632960065",
-    "password": "$2a$12$Ij3YCCNBjoOwkLh6qYT7YezvKyG8cR5.d2bR.6vbLdhDn5JyDmcrS",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.546Z",
     "updatedAt": "2021-02-25T13:09:04.546Z"
   },
@@ -17,7 +17,7 @@
     "email": "user-2@exemple.com",
     "username": "caitlin paul",
     "phoneNumber": "+441632960740",
-    "password": "$2a$12$QKjqPEFmTXrY2Czu6UDGn.ylQF3EaSOP1P7HIDJwktpOI6POXDynW",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.546Z",
     "updatedAt": "2021-02-25T13:09:04.546Z"
   },
@@ -28,7 +28,7 @@
     "email": "user-3@exemple.com",
     "username": "amber price",
     "phoneNumber": "+611900654321",
-    "password": "$2a$12$86zE6azg6EY1kiwxnJeQFOp7dBrjVpYAh1gDcS8s.dX5J6cOEDFlK",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.546Z",
     "updatedAt": "2021-02-25T13:09:04.546Z"
   },
@@ -39,7 +39,7 @@
     "email": "user-4@exemple.com",
     "username": "olivia anderson",
     "phoneNumber": "+12025550196",
-    "password": "$2a$12$PSzXdVTSEZeaREMpVmoz6OqiYXOuPDV2lHiu5Dm7rcnenL/gkK9WO",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.546Z",
     "updatedAt": "2021-02-25T13:09:04.546Z"
   },
@@ -50,7 +50,7 @@
     "email": "user-5@exemple.com",
     "username": "hugo morrison",
     "phoneNumber": "+12025550121",
-    "password": "$2a$12$fm6brWoHkliIg7CKrz7jOeXPdn6JyOf0hl/7FKSjsgUz.QhM8p.Ru",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.546Z",
     "updatedAt": "2021-02-25T13:09:04.546Z"
   },
@@ -61,7 +61,7 @@
     "email": "user-6@exemple.com",
     "username": "eric klein",
     "phoneNumber": "+12025550124",
-    "password": "$2a$12$B4mH7DKcSnAklLyT0WPZ/eh/VoLecLnp.msa/Qpr7fNjGvYoN6H22",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.547Z",
     "updatedAt": "2021-02-25T13:09:04.547Z"
   },
@@ -72,7 +72,7 @@
     "email": "user-7@exemple.com",
     "username": "charles jones",
     "phoneNumber": "+12025550140",
-    "password": "$2a$12$ZEUnfKXKzDsfxA.6p29b6.TI8QcAvO/2oRSsJ5Zi6cRNO3pQ8WG3O",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.547Z",
     "updatedAt": "2021-02-25T13:09:04.547Z"
   },
@@ -83,7 +83,7 @@
     "email": "user-8@exemple.com",
     "username": "braydon howells",
     "phoneNumber": "+12025550134",
-    "password": "$2a$12$WBI0SWc6.X3TIrRbLzX.gO8xV.TgjedMLfYE7HktSIIqyCbZNVfdO",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.547Z",
     "updatedAt": "2021-02-25T13:09:04.547Z"
   },
@@ -94,7 +94,7 @@
     "email": "user-9@exemple.com",
     "username": "alan blundell",
     "phoneNumber": "+12025550111",
-    "password": "$2a$12$nb7zLChaHni5ec2DYR7/wuLCZTOnJorV7cs1m.X03sYD2MVGY3py2",
+    "password": "password123",
     "createdAt": "2021-02-25T13:09:04.547Z",
     "updatedAt": "2021-02-25T13:09:04.547Z"
   }
