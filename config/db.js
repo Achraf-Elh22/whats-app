@@ -9,8 +9,6 @@ const connectDB = async (uri = MONGO_URI) => {
       useCreateIndex: true,
       autoIndex: false,
     });
-
-    console.log(`MongoDB connected 👍👍👍`);
   } catch (err) {
     console.log('Some Things went wrong 💣💣💣 : ', err.message);
     process.exit(1);

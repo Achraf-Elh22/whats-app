@@ -107,12 +107,13 @@
     - [x] Build the UI
     - [x] Refactor to Pug
     - [x] build the import-dev-data for development purposes ( import fake users to db)
-    - [ ] Create functionality to handle and deliver the init data need for the user when they enter the /Contact route (utility function)
-    - [ ] Build automation script for import and init the Data(json ) auto and integrated in package.json
-    - [ ] show all init data coming from the /contact route a show them in Ui
-    - [ ] Enhance the performance of Db (read this article => https://itnext.io/performance-tips-for-mongodb-mongoose-190732a5d382)
+    - [x] Create functionality to handle and deliver the init data need for the user when they enter the /Contact route (utility function)
+    - [ ] Build automation script for import Development data
+    - [ ] Build automation script for push the project to repository data inspired from https://github.com/franciscop/happy/
+    - [x] show all init data coming from the /contact route a show them in Ui
     - [ ] Sort the contact by the time of lastMsg
     - [ ] add functionality of search of users
+    - [ ] Enhance the performance of Db (read this article => https://itnext.io/performance-tips-for-mongodb-mongoose-190732a5d382)
 
   - [x] show the flags in Ui
   - [ ] Build error handle controller and handle the message show to the user in more user friendly messages

@@ -79,5 +79,5 @@ module.exports = initialData;
 // - [x] Build the hole DB schema
 // - [x] Build the validations for schema's
 // - [x] Start building INITDATA class (think of what's exactly info we needed in the init )
-// - [ ] Build login
+// - [x] Build login
 // - [ ] Build automation script for import and init the Data(json ) auto and integrated in package.json and add fields to req like user.id ,

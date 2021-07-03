@@ -10,7 +10,7 @@ process.on('unhandledRejection', (err) => {
   });
 });
 // Connect to DB
-connectDB();
+connectDB().then(() => console.log(`MongoDB connected 👍👍👍`));
 
 // Server
 const server = app.listen(PORT, () => {
