@@ -1,11 +1,11 @@
 const express = require('express');
-const auth = require('../middlewares/auth');
+const { ensureAuth } = require('../middlewares/auth');
 
 const initialData = require('../utils/initialData');
 
 const router = express.Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/', ensureAuth, async (req, res, next) => {
   try {
     // For development purposes
     const id = '6037a170d10990042799807b';

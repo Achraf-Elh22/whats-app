@@ -1,6 +1,7 @@
 const app = require('./app.js');
 const { PORT } = require('./config/index');
 const connectDB = require('./config/db');
+const { NODE_ENV } = require('./config/index');
 
 process.on('unhandledRejection', (err) => {
   console.error(err.name, err.message);

@@ -9,7 +9,6 @@ module.exports = (passport) => {
   passport.use(
     new LocalStrategy({ usernameField: 'email' }, async (username, password, done) => {
       try {
-        console.log('check-1', username, password);
         await User.findOne({ email: username })
           .select('password')
           .exec(async (err, user) => {

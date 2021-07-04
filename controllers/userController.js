@@ -25,7 +25,6 @@ exports.verify = async (req, res) => {
     let user = req.session.newUser;
     let { otpCode, otpFailure, consecutiveFailure } = req.session.newUser;
 
-    console.log(user.otpCode);
     // Check if  the user is in the right stage
     if (user.stage !== 'verify')
       return res.status(401).json({

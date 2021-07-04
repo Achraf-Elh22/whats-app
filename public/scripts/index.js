@@ -16,6 +16,7 @@ import { signup } from './forms/signup';
 import { login } from './forms/login';
 import { startTimer } from './forms/countDownTimer';
 import { readURL, createProfile } from './forms/profile';
+import axios from 'axios';
 
 const resetPasswordForm = document.querySelector('#resetPassword');
 const container = document.querySelector('.container');
@@ -33,6 +34,10 @@ const submitButton = document.querySelector('button[type=submit]');
 const profilePicture = document.querySelector('#profilePicture');
 const loginForm = document.querySelector('#login');
 const contact = document.querySelector('#contact');
+
+if (contact) {
+  axios.get('/api/v1/contact').then((res) => console.log(res.data));
+}
 
 if (profile) {
   profilePicture.addEventListener('change', function () {

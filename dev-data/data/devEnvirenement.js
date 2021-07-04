@@ -18,15 +18,6 @@ const Contact = require('../../models/contactModel');
 const Conversation = require('../../models/conversationModel');
 const Message = require('../../models/messageModel');
 
-/*-----------------------------------Temparary---------------------------------------------------------------*/
-let responses = {
-  imported_data: 'all',
-  mongoDB_URI:
-    'mongodb+srv://AchrafElh22:yxI9Fs4AzqCRYPlr@cluster0.2qzql.mongodb.net/whats-app?retryWrites=true&w=majority',
-  auto_login: false,
-};
-/*-----------------------------------------------------------------------------------------------------------*/
-
 // Args --import
 const questions = [
   //   ImportedData => options = ['USERS', 'CONTACTS', 'CONVERSATIONS', 'MESSAGES']
@@ -218,4 +209,5 @@ const printHelp = () => {
 //-     [ ] specify new data without deleting configStore
 //- [ ] notes:
 //-     [ ] it's preferable to use devolopement DB because data exists in collection(users, messages, contact, conversations) will be delete it.
-//-     [ ] Pasword123 in console REPEL
+//-     [ ] Pasword123 in console REPEL!
+//- [ ] Build Help
