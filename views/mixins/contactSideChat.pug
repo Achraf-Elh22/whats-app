@@ -23,7 +23,6 @@ mixin contactSideChat(userName,photoName,lastMsg,lastMsgDate,lastMsgStatus,conve
         div(class="contact__chat-msg--info")
             span(class="contact__chat-msg--lastmsgdate")= lastMsgDate
             if newMessagesLength !== 0
-                - console.log(newMessagesLength) 
                 div(class="contact__chat-msg--newMessagesLength circle-notification ${}")
                     span=newMessagesLength 
 

@@ -7,11 +7,7 @@ const router = express.Router();
 
 router.get('/', ensureAuth, async (req, res, next) => {
   try {
-    // For development purposes
-    const id = '6037a170d10990042799807b';
-    // const id = req.user.id;
-
-    const data = await initialData(id);
+    const data = await initialData(req.user.id);
 
     res.status(200).json({
       status: 'sucess',

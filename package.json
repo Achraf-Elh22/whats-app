@@ -4,9 +4,9 @@
   "description": "chat app",
   "main": "app.js",
   "scripts": {
-    "start": "node server.js",
-    "start:prod": "set NODE_ENV=production && nodemon server.js",
-    "dev": "nodemon server.js",
+    "start:dev": " set NODE_ENV=development && npm run start",
+    "start:prod": "set NODE_ENV=production && npm run start",
+    "start": "nodemon server.js --auto-auth",
     "watch:dev": "parcel watch ./public/scripts/index.js --out-dir ./public/scripts --out-file bundle.js",
     "build:prod": "parcel build ./public/scripts/index.js --out-dir ./public/scripts --out-file bundle.js"
   },

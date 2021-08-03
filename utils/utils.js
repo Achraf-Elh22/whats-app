@@ -1,4 +1,5 @@
 const moment = require('moment');
+const fs = require('fs');
 
 exports.generateOtp = () => {
   const otp = Math.floor(Math.random() * (1000000 - 100000) + 100000);
@@ -158,3 +159,15 @@ exports.formatDateRes = (createdAt) => {
 
   return dateRes;
 };
+
+// Check if the file exist
+exports.fileExists = async (path) => {
+  try {
+    await fs.access(path);
+    return true;
+  } catch (err) {
+    return false;
+  }
+};
+// Retrieve the content of a file
+exports.fileContent = (path) => fs.readFileSync(path);

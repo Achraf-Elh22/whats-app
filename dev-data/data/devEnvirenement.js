@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const delay = require('delay');
 const Configstore = require('conf');
+const { spawn } = require('child_process');
 
 // Config Store
 const config = new Configstore({ accessPropertiesByDotNotation: false });
@@ -185,16 +186,34 @@ class PhaseTwo {
       await this.importData(this.res.imported_data);
 
       task.succeed('Import data (completed ✅)');
+      if (this.res.auto_login) return this.PhaseThree();
       process.exit(0);
     } catch (err) {
-      task.fail('Something went wrong (wrong ❌) ');
+      task.fail('Something went wrong (Fail ❌) :');
       console.error(err);
     }
+  }
+  async taskFour() {
+    const task = ora('Setting up auto login').start();
+    // Modifying package.json start script using json package
+    const packagejson = spawn('json', [
+      '-I',
+      '-f',
+      '../../package.json',
+      '-e',
+      'this.scripts.start="nodemon server.js --auto-auth"',
+    ]);
+
+    packagejson.stderr.on('error', (error) =>
+      console.log(`Something went wrong (Fail ❌): ${error}`)
+    );
+    packagejson.stdout.on('close', () =>
+      task.succeed('No need to login, User is login automatically (completed ✅) ')
+    );
   }
 }
 
 // Set user.id
-class PhaseThree {}
 
 const printHelp = () => {
   console.log;
@@ -202,7 +221,8 @@ const printHelp = () => {
 
 // TODO: automation script:
 //- [x] Save development data
-//- [ ] initiate development environment like user.id
+//- [x] Initiate development environment like user.id
+//- [ ] Add way to remove --auto-auth from npm dev script
 //- [ ] Arguments
 //-     [ ] Be able to specify wich data to save in arguments
 //-     [ ] reset the configstore
@@ -210,4 +230,6 @@ const printHelp = () => {
 //- [ ] notes:
 //-     [ ] it's preferable to use devolopement DB because data exists in collection(users, messages, contact, conversations) will be delete it.
 //-     [ ] Pasword123 in console REPEL!
+//-     [ ] we are login as user-1@exmple.com with id(in mongodb):  and password:
+//-     [ ] to use auto login you should install json globally
 //- [ ] Build Help

@@ -103,9 +103,7 @@ exports.login = (req, res) => {
 // Initial data need to render Contact page
 exports.initData = async (req, res, next) => {
   try {
-    // developement purposes
-    const id = '6037a170d10990042799807b';
-    // console.log('Pass', req.user.id);
+    const id = req.user.id;
 
     if (!id) {
       return res
