@@ -1,5 +1,6 @@
 const moment = require('moment');
 const fs = require('fs');
+const { spawn } = require('child_process');
 
 exports.generateOtp = () => {
   const otp = Math.floor(Math.random() * (1000000 - 100000) + 100000);
@@ -171,3 +172,33 @@ exports.fileExists = async (path) => {
 };
 // Retrieve the content of a file
 exports.fileContent = (path) => fs.readFileSync(path);
+
+// Log the user out or in by changing script in package.json
+exports.userAutoLogin = (autoLogin = true) => {
+  // set scripts
+  let script = 'nodemon server.js';
+  if (autoLogin) script.concat(' --auto-auth');
+
+  debugger;
+  // Modify package.json
+  const packagejson = spawn('npx json', [
+    '-I',
+    '-f',
+    '../package.json',
+    '-e',
+    `this.scripts.start="${script}"`,
+  ]);
+
+  debugger;
+
+  let response;
+  packagejson.stderr.on('error', (error) => {
+    console.log(error);
+    response = { status: 'fail', error };
+  });
+  packagejson.stdout.on('close', () => (response = { status: 'completed' }));
+  packagejson.stdout.on('data', (data) => console.log(data));
+
+  debugger;
+  return response;
+};

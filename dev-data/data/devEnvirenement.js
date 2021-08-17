@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 const fs = require('fs');
 const delay = require('delay');
 const Configstore = require('conf');
-const { spawn } = require('child_process');
+const { userAutoLogin } = require('../../utils/utils');
+const argv = require('minimist')(process.argv.slice(2));
 
 // Config Store
 const config = new Configstore({ accessPropertiesByDotNotation: false });
@@ -18,6 +19,19 @@ const User = require('../../models/userModel');
 const Contact = require('../../models/contactModel');
 const Conversation = require('../../models/conversationModel');
 const Message = require('../../models/messageModel');
+
+// Phase One : Check for default responses, if they don't exists collect responses
+let defaultAnswers = config.get('defaultResponses');
+
+// Reset ConfigStore
+if (argv['reset-config'] || argv.R) {
+  config.delete('defaultResponses');
+}
+
+// New responses with out deleting default
+if (argv['new-config'] || argv.N) {
+  defaultAnswers = undefined;
+}
 
 // Args --import
 const questions = [
@@ -61,13 +75,10 @@ const questions = [
   },
 ];
 
-// Phase One : Collect the information
-const defaultAnswers = config.get('defaultResponses');
-
 inquirer
   .prompt(questions, defaultAnswers)
   // Pass to next phase
-  .then((answers) => new PhaseTwo(answers).EntryTask())
+  .then((answers) => new PhaseTwo(answers).TaskFour())
   .catch((error) => {
     if (error.isTtyError) {
       // Prompt couldn't be rendered in the current environment
@@ -186,50 +197,49 @@ class PhaseTwo {
       await this.importData(this.res.imported_data);
 
       task.succeed('Import data (completed ✅)');
-      if (this.res.auto_login) return this.PhaseThree();
+      if (this.res.auto_login) return this.TaskFour();
       process.exit(0);
     } catch (err) {
       task.fail('Something went wrong (Fail ❌) :');
       console.error(err);
     }
   }
-  async taskFour() {
+  async TaskFour() {
     const task = ora('Setting up auto login').start();
     // Modifying package.json start script using json package
-    const packagejson = spawn('json', [
-      '-I',
-      '-f',
-      '../../package.json',
-      '-e',
-      'this.scripts.start="nodemon server.js --auto-auth"',
-    ]);
+    debugger;
 
-    packagejson.stderr.on('error', (error) =>
-      console.log(`Something went wrong (Fail ❌): ${error}`)
-    );
-    packagejson.stdout.on('close', () =>
-      task.succeed('No need to login, User is login automatically (completed ✅) ')
-    );
+    const autoLogin = userAutoLogin();
+
+    debugger;
+    // check if task failed
+    if (autoLogin.status === 'fail') return task.fail(autoLogin.error);
+    debugger;
+
+    // check if task completed
+    if (autoLogin.status === 'completed')
+      return task.succeed('No need to login, User is login automatically (completed ✅) ');
   }
 }
 
-// Set user.id
-
 const printHelp = () => {
-  console.log;
+  // Notes:
+  //  -Arguments
+  //     - --reset-config or -R: reset all responses from configStore cache
+  //     -  --new-config or -N: New responses with out deleting default
 };
 
 // TODO: automation script:
 //- [x] Save development data
 //- [x] Initiate development environment like user.id
-//- [ ] Add way to remove --auto-auth from npm dev script
-//- [ ] Arguments
-//-     [ ] Be able to specify wich data to save in arguments
-//-     [ ] reset the configstore
-//-     [ ] specify new data without deleting configStore
+//- [x] Arguments
+//-     [x] reset the configstore
+//-     [x] specify new data without deleting configStore
+//-     [ ] Add way to remove --auto-auth from npm dev script
 //- [ ] notes:
 //-     [ ] it's preferable to use devolopement DB because data exists in collection(users, messages, contact, conversations) will be delete it.
 //-     [ ] Pasword123 in console REPEL!
 //-     [ ] we are login as user-1@exmple.com with id(in mongodb):  and password:
 //-     [ ] to use auto login you should install json globally
 //- [ ] Build Help
+// - [ ] refactor
