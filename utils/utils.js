@@ -1,6 +1,7 @@
 const moment = require('moment');
 const fs = require('fs');
-const { spawn } = require('child_process');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 
 exports.generateOtp = () => {
   const otp = Math.floor(Math.random() * (1000000 - 100000) + 100000);
@@ -164,7 +165,7 @@ exports.formatDateRes = (createdAt) => {
 // Check if the file exist
 exports.fileExists = async (path) => {
   try {
-    await fs.access(path);
+    fs.access(path);
     return true;
   } catch (err) {
     return false;
@@ -173,32 +174,9 @@ exports.fileExists = async (path) => {
 // Retrieve the content of a file
 exports.fileContent = (path) => fs.readFileSync(path);
 
-// Log the user out or in by changing script in package.json
-exports.userAutoLogin = (autoLogin = true) => {
-  // set scripts
-  let script = 'nodemon server.js';
-  if (autoLogin) script.concat(' --auto-auth');
+// edit json file
+exports.modifyJson = async (jsonPath, modifiedProperty) => {
+  const obj = await exec(`npx json -q -I -f ${jsonPath} -e '${modifiedProperty}'`);
 
-  debugger;
-  // Modify package.json
-  const packagejson = spawn('npx json', [
-    '-I',
-    '-f',
-    '../package.json',
-    '-e',
-    `this.scripts.start="${script}"`,
-  ]);
-
-  debugger;
-
-  let response;
-  packagejson.stderr.on('error', (error) => {
-    console.log(error);
-    response = { status: 'fail', error };
-  });
-  packagejson.stdout.on('close', () => (response = { status: 'completed' }));
-  packagejson.stdout.on('data', (data) => console.log(data));
-
-  debugger;
-  return response;
+  return obj;
 };
