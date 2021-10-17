@@ -1,12 +1,11 @@
 const delay = require('delay');
 const chalk = require('chalk');
 const ora = require('ora');
-const mongoose = require('mongoose');
 const ConfigStore = require('conf');
 
 const config = new ConfigStore({ accessPropertiesByDotNotation: false });
 
-const { importData, setAutoAuth } = require('./utilities');
+const { importData, setAutoAuth, connectToDb } = require('./utilities');
 
 class ImportDevData {
   constructor(responses) {
@@ -43,23 +42,15 @@ class ImportDevData {
   async taskTwo() {
     const task = ora('Connect to DB').start();
 
-    //   Close any open mongoDb connection
-    await mongoose.connection.close();
+    const { status, message } = await connectToDb(this.res.mongoDB_URI);
 
-    // Connect to DB
-    try {
-      await require('../../config/db')(this.res.mongoDB_URI);
-
-      if (mongoose.connection.readyState === 0) {
-        return task.fail(' SomeThing went wrong trying to connect to DB 💣💣💣  =>  ');
-      }
-
-      if (mongoose.connection.readyState === 1) {
-        task.succeed('Connect to DB (completed ✅)');
-        return this.taskThree();
-      }
-    } catch (err) {
-      task.fail(' => ' + err);
+    if (status == 'success') {
+      task.succeed(message);
+      return this.taskThree();
+    }
+    if (status == 'error') {
+      task.succeed(message);
+      return this.taskThree();
     }
   }
   async taskThree() {

@@ -1,4 +1,7 @@
 const fs = require('fs');
+const mongoose = require('mongoose');
+const ora = require('ora');
+const chalk = require('chalk');
 const { modifyJson } = require('../../utils/utils');
 
 // models
@@ -58,4 +61,58 @@ exports.importData = async (data) => {
       reject(err);
     }
   });
+};
+
+// Connect to Db
+exports.connectToDb = async (mongoDB_URI) => {
+  //   Close any open mongoDb connection
+  await mongoose.connection.close();
+
+  // Connect to DB
+  try {
+    await require('../../config/db')(mongoDB_URI);
+
+    if (mongoose.connection.readyState === 0) {
+      return {
+        status: 'error',
+        message: ' SomeThing went wrong trying to connect to DB 💣💣💣  => ',
+      };
+    }
+
+    if (mongoose.connection.readyState === 1) {
+      return { status: 'success', message: ' Connect to DB (completed ✅) ' };
+    }
+  } catch (err) {
+    return { status: 'error', message: ' => ' + err };
+  }
+};
+
+// delete document from Mongodb
+exports.deleteDoc = async (item, mongoDB_URI) => {
+  const task = ora(`Delete ${item.toUpperCase()} Documents from Db`).start();
+
+  try {
+    const { status, message } = await this.connectToDb(mongoDB_URI);
+
+    if (status === 'success') task.text = chalk.bgBlueBright(message);
+    if (status === 'error') task.fail(chalk.bgBlueBright(message));
+
+    if (item === 'users') await User.deleteMany();
+    else if (item === 'contacts') await Contact.deleteMany();
+    else if (item === 'conversations') await Conversation.deleteMany();
+    else if (item === 'messages') await Message.deleteMany();
+    else if (item === 'all')
+      await Promise.all([
+        User.deleteMany(),
+        Contact.deleteMany(),
+        Conversation.deleteMany(),
+        Message.deleteMany(),
+      ]);
+
+    task.succeed(`${item.toUpperCase()} Documents are deleted successfully from DB`);
+
+    process.exit(0);
+  } catch (err) {
+    task.fail(`Some thing went wrong trying to delete ${item} document => ${err}`);
+  }
 };
